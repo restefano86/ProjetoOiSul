@@ -26,7 +26,7 @@
 	</beans:bean>
 	
 	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-    	<beans:property name="jndiName" value="java:jboss/jdbc/projetooisulDS"/>
+    	<beans:property name="jndiName" value="java:jboss/datasources/MySQLDS"/>
 	</beans:bean>
 
 	<!--<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">

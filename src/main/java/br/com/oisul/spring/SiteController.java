@@ -6,12 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.oisul.spring.model.Usuario;
+import br.com.oisul.spring.utils.UrlsSite;
 
 @Controller
-public class SiteController {
+public class SiteController extends DefaultController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -36,6 +35,13 @@ public class SiteController {
 	@RequestMapping(value = "/contato", method = RequestMethod.GET)
 	public String contato(Model model) {
 		return "site/contato";
+	}
+	
+	@RequestMapping(value = "/aquisicaoPasso1", method = RequestMethod.GET)
+	public String aquisicaoPasso1(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.HOME.url;};
+		
+		return UrlsSite.AQUISICAO_PASSO_1.url;
 	}
 	
 	

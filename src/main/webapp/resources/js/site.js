@@ -6,6 +6,10 @@ $(function(){
 		fastOnEvent: false 
 	});
 	
+	$("#btLogin").click(function(){
+		$(".usuarioForm").submit();
+	});
+	
 });
 var abreLink = function(url){
 	location.href=url;

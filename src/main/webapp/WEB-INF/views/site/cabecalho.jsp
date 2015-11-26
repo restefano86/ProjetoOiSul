@@ -1,13 +1,18 @@
 <div id="cabecalho">
 	<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiEmpresas.jpg" class="oiEmpresas"
-		onclick="abreLink('/ProjetoOi');">
+		onclick="abreLink('/ProjetoOiSul');">
 	<h1 class="tituloPrincipal">Canal exclusivo para empresas<br>(48) 3266-8000</h1>
-	<div id="areaRestrita">
-	<span class="cadastrese"><span style="color: #bbb;">Não tem usuário?</span> <a href="abrirCadUsuarioSite">Cadastre-se</a></span>
-		<span>Login:</span><br>
-		<input type="text" placeholder="E-mail" style="width: 180px"/> 
-		<input type="text" placeholder="Senha" /> 
-		<img alt="cadeado" src="/ProjetoOiSul/resources/images/cadeado.jpg">
+	<div id="areaRestrita" style="display: ${!empty sessionScope.usuario.nome ? 'none' : ''}">
+		<form:form action="loginUsuario" commandName="usuario" class="usuarioForm">
+			<span class="cadastrese"><span style="color: #bbb;">Não tem usuário?</span> <a href="abrirCadUsuarioSite">Cadastre-se</a></span>
+				<span>Login:</span><br>
+				<input type="text" name="email" id="email" placeholder="E-mail" style="width: 180px"/> 
+				<input type="password" name="senha" id="senha" placeholder="Senha" /> 
+				<img alt="cadeado" id="btLogin" src="/ProjetoOiSul/resources/images/cadeado.jpg">
+		</form:form>
+	</div>
+	<div id="areaRestritalogado" style="display: ${empty sessionScope.usuario.nome ? 'none' : ''}">
+		Olá ${sessionScope.usuario.nome}. <a href="logoutUsuario">Sair</a>.
 	</div>
 </div>
 	<div id="barraMenu">  

@@ -197,6 +197,15 @@ div {
 	text-align: left;
 }
 
+#areaRestritaLogado{
+	width: 280px;
+	float: right;
+	margin-left: 685px;
+	margin-top: 130px;
+	position: absolute;
+	text-align: right;
+}
+
 #areaRestrita .cadastrese{
 	margin-left: 80px;
 	position: absolute;
@@ -332,4 +341,12 @@ div {
 
 .floatLeft{
 	float: left;
+}
+
+#btLogin {
+	cursor: pointer;
+}
+
+.form-error{
+	color: #F08080;
 }

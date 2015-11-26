@@ -1,5 +1,7 @@
 package br.com.oisul.spring;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -9,12 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.com.oisul.spring.model.Person;
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.service.usuario.UsuarioService;
 
 @Controller
-public class UsuarioController {
+public class UsuarioController extends DefaultController {
 	
 	private UsuarioService usuarioService;
 	
@@ -26,8 +27,6 @@ public class UsuarioController {
 	
 	@RequestMapping(value = "/testeUsuario", method = RequestMethod.GET)
 	public String listPersons(Model model) {
-		System.out.println("passou action");
-//		model.addAttribute("person", new Person());
 		model.addAttribute("usuario", new Usuario());
 		return "usuario";
 	}
@@ -47,21 +46,42 @@ public class UsuarioController {
 	
 	//For add and update person both
 	@RequestMapping(value= "/addUsuario", method = RequestMethod.POST)
-	public String addUsuario(@ModelAttribute("usuario") Usuario usuario){
-		usuarioService.saveUsuario(usuario);
+	public String addUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){
+		String url = request.getRequestURL().toString().replace("addUsuario", "");
+		usuarioService.saveUsuario(usuario, url);
 		return "redirect:/abrirCadUsuarioSite";
 	}
 
 	@RequestMapping(value = "/confirmarUsuario", method = RequestMethod.GET)
-	public String confirmarUsuario(@RequestParam("idUsuario") String idUsuario) {
+	public String confirmarUsuario(@RequestParam("idUsuario") String strIdUsuario) {
 		try {
-			
-//			Usuario usuario = usuarioService.confirmarUsuario(idUsuario);
-//			setUsuario(usuario);
+			Integer idUsuario = Integer.parseInt(strIdUsuario);
+			usuarioService.ativaUsuario(idUsuario);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		return "SUCESSO";
+		return "site/confirmadoSucesso";
+	}
+
+	@RequestMapping(value = "/loginUsuario", method = RequestMethod.POST)
+	public String loginUsuario(@ModelAttribute("usuario") Usuario usr, HttpServletRequest request) {
+		try {
+			Usuario usuario = usuarioService.findUsuarioLogin(usr);
+			request.getSession().setAttribute("usuario", usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "site/index";
+	}
+
+	@RequestMapping(value = "/logoutUsuario", method = RequestMethod.GET)
+	public String logoutUsuario(HttpServletRequest request) {
+		try {
+			request.getSession().setAttribute("usuario", null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		return "site/index";
 	}
 
 	

@@ -5,4 +5,6 @@ import br.com.oisul.spring.model.Usuario;
 
 public interface UsuarioDAO extends GenericDAO<Integer, Usuario> {
 	
+	public Usuario findUsuarioByLogin(Usuario usuario);
+	
 }
