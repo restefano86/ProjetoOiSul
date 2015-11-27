@@ -2,6 +2,7 @@ package br.com.oisul.spring;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 
 import br.com.oisul.spring.model.Usuario;
@@ -18,4 +19,11 @@ public class DefaultController {
 		return false;
 	}
 
+	protected void addMensagemAviso(Model model, String mensagem){
+		model.addAttribute("mensagemAviso", mensagem);
+	}
+	
+	protected void addMensagemErro(Model model, String mensagem){
+		model.addAttribute("mensagemErro", mensagem);
+	}
 }

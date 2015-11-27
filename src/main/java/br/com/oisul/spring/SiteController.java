@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.utils.UrlsSite;
 
 @Controller
@@ -14,7 +15,7 @@ public class SiteController extends DefaultController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		return "site/index";
+		return UrlsSite.HOME.url;
 	}
 	
 	@RequestMapping(value = "/solucoesMovel", method = RequestMethod.GET)
@@ -37,10 +38,16 @@ public class SiteController extends DefaultController {
 		return "site/contato";
 	}
 	
+	@RequestMapping(value = "/cadastroNaoLogado", method = RequestMethod.GET)
+	public String cadastroNaoLogado(Model model) {
+		addMensagemAviso(model, "É necessário estar logado para iniciar o processo de contratação.<br> Faça o login na parte superior do site ou realize o cadastro abaixo.");
+		model.addAttribute("usuario", new Usuario());
+		return UrlsSite.CADASTROUSUARIO.url;
+	}
+	
 	@RequestMapping(value = "/aquisicaoPasso1", method = RequestMethod.GET)
 	public String aquisicaoPasso1(Model model, HttpServletRequest request) {
-		if(!validateLogin(request)){return UrlsSite.HOME.url;};
-		
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		return UrlsSite.AQUISICAO_PASSO_1.url;
 	}
 	

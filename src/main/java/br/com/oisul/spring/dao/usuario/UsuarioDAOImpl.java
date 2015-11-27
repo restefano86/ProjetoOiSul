@@ -17,6 +17,7 @@ public class UsuarioDAOImpl extends GenericDAOImpl<Integer, Usuario> implements 
 		if(!StringUtils.isEmpty(usuario.getEmail())){
 			criteria.add(Restrictions.ge("email",usuario.getEmail()));
 			criteria.add(Restrictions.ge("senha",usuario.getSenha()));
+			criteria.add(Restrictions.ge("isAtivado","S"));
 		}
 		Usuario result = (Usuario) criteria.uniqueResult();
 		return result;

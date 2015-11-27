@@ -1,13 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-aquisição<BR>
-${sessionScope.idUsuario}
-aa
-</body>
+	<head>
+		<title>OiSul - Planos empresariais da operadora Oi</title>
+		<%@include file="includes.jsp"%> 
+	</head>
+	<body>
+		<div id="site">
+			<%@include file="cabecalho.jsp" %>
+ 			<div id="conteudo">
+			 	<div id="corpo">
+			 	<h2>Soluções em Telefonia Móvel</h2>
+			 	</div>
+			 </div>
+			<%@include file="rodape.jsp" %> 
+		</div>
+	</body>
 </html>

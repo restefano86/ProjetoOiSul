@@ -8,6 +8,7 @@
 			<%@include file="cabecalho.jsp" %>
  			<div id="conteudo">
 			 	<div id="corpo">
+		 		<div class="alert alert-warning" style="display: ${empty mensagemAviso ? 'none' : 'block'}">${mensagemAviso}</div>
 			 	<h2>Cadastro de usuários</h2>
 			 		<form:form action="addUsuario" commandName="usuario">
 				 		<table width="800px">

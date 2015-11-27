@@ -44,6 +44,10 @@ div {
 	text-align: center;	
 }
 
+.imgLink{
+	cursor: pointer;	
+}
+
 .oiEmpresas{
 	float: left;
 	margin-left: 50px;

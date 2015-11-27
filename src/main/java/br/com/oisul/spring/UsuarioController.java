@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.service.usuario.UsuarioService;
+import br.com.oisul.spring.utils.UrlsSite;
 
 @Controller
 public class UsuarioController extends DefaultController {
@@ -53,10 +54,13 @@ public class UsuarioController extends DefaultController {
 	}
 
 	@RequestMapping(value = "/confirmarUsuario", method = RequestMethod.GET)
-	public String confirmarUsuario(@RequestParam("idUsuario") String strIdUsuario) {
+	public String confirmarUsuario(@RequestParam("idUsuario") String strIdUsuario, HttpServletRequest request) {
 		try {
 			Integer idUsuario = Integer.parseInt(strIdUsuario);
-			usuarioService.ativaUsuario(idUsuario);
+			Usuario usuario = usuarioService.ativaUsuario(idUsuario);
+			if(usuario != null){
+				request.getSession().setAttribute("usuario", usuario);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -67,11 +71,14 @@ public class UsuarioController extends DefaultController {
 	public String loginUsuario(@ModelAttribute("usuario") Usuario usr, HttpServletRequest request) {
 		try {
 			Usuario usuario = usuarioService.findUsuarioLogin(usr);
-			request.getSession().setAttribute("usuario", usuario);
+			if(usuario != null){
+				request.getSession().setAttribute("usuario", usuario);
+				return UrlsSite.HOME.url;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		return "site/index";
+		return UrlsSite.CADASTROUSUARIO.url;
 	}
 
 	@RequestMapping(value = "/logoutUsuario", method = RequestMethod.GET)
