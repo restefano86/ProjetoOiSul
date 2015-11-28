@@ -6,8 +6,8 @@
 		<form:form action="loginUsuario" commandName="usuario" class="usuarioForm">
 			<span class="cadastrese"><span style="color: #bbb;">Não tem usuário?</span> <a href="abrirCadUsuarioSite">Cadastre-se</a></span>
 				<span>Login:</span><br>
-				<input type="text" name="email" id="email" placeholder="E-mail" style="width: 180px"/> 
-				<input type="password" name="senha" id="senha" placeholder="Senha" /> 
+				<input type="text" name="email" id="emailLogin" placeholder="E-mail" style="width: 180px"/> 
+				<input type="password" name="senha" id="senhaLogin" placeholder="Senha"/> 
 				<img alt="cadeado" id="btLogin" src="/ProjetoOiSul/resources/images/cadeado.jpg">
 		</form:form>
 	</div>

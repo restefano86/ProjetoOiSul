@@ -354,3 +354,31 @@ div {
 .form-error{
 	color: #F08080;
 }
+
+.topAquisicao{
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.tituloAquisicao{
+	text-align: center;
+	color: #E13A21;
+}
+
+#navegacaoEtapasContratacao{
+	width: 100%;
+	margin: 0 auto;
+	height: 60px;
+}
+
+.btEtapaAnterior{
+	float: left;
+	cursor: pointer;
+}
+
+.btProximaEtapa{
+	float: right;
+	cursor: pointer;
+}
+
+

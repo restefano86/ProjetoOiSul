@@ -45,10 +45,40 @@ public class SiteController extends DefaultController {
 		return UrlsSite.CADASTROUSUARIO.url;
 	}
 	
+	@RequestMapping(value = "/aquisicaoPasso0", method = RequestMethod.GET)
+	public String aquisicaoPasso0(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		return UrlsSite.AQUISICAO_PASSO_0.url;
+	}
+	
 	@RequestMapping(value = "/aquisicaoPasso1", method = RequestMethod.GET)
 	public String aquisicaoPasso1(Model model, HttpServletRequest request) {
 		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		return UrlsSite.AQUISICAO_PASSO_1.url;
+	}
+	
+	@RequestMapping(value = "/aquisicaoPasso2", method = RequestMethod.GET)
+	public String aquisicaoPasso2(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		return UrlsSite.AQUISICAO_PASSO_2.url;
+	}
+	
+	@RequestMapping(value = "/aquisicaoPasso3", method = RequestMethod.GET)
+	public String aquisicaoPasso3(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		return UrlsSite.AQUISICAO_PASSO_3.url;
+	}
+	
+	@RequestMapping(value = "/aquisicaoPasso4", method = RequestMethod.GET)
+	public String aquisicaoPasso4(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		return UrlsSite.AQUISICAO_PASSO_4.url;
+	}
+	
+	@RequestMapping(value = "/aquisicaoPasso5", method = RequestMethod.GET)
+	public String aquisicaoPasso5(Model model, HttpServletRequest request) {
+		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		return UrlsSite.AQUISICAO_PASSO_5.url;
 	}
 	
 	

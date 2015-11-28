@@ -7,13 +7,29 @@ $(function(){
 	});
 	
 	$("#btLogin").click(function(){
-		$(".usuarioForm").submit();
+		var isEmailLoginPreenchido = $("#emailLogin").val(); 
+		var isSenhaLoginPreenchido = $("#senhaLogin").val();
+		if(isEmailLoginPreenchido && isSenhaLoginPreenchido){
+			$(".usuarioForm").submit();
+		} else {
+			alert("Por favor, preencha login e senha.");
+			$("#emailLogin").focus();
+		}
 	});
 	
+	$( "#areaRestrita input" ).keypress(function(e) {
+		  console.log("aaa");
+		  if(e.which == 13) {
+			  $("#btLogin").trigger( "click" );
+		  }
+	});
 });
+
 var abreLink = function(url){
 	location.href=url;
 }
+
+
 /*$("#slide1").click(function(){
 	location.href="solucoesTI.php#servidores";
 });

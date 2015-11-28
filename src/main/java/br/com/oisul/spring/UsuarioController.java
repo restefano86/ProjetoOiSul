@@ -68,12 +68,14 @@ public class UsuarioController extends DefaultController {
 	}
 
 	@RequestMapping(value = "/loginUsuario", method = RequestMethod.POST)
-	public String loginUsuario(@ModelAttribute("usuario") Usuario usr, HttpServletRequest request) {
+	public String loginUsuario(Model model, @ModelAttribute("usuario") Usuario usr, HttpServletRequest request) {
 		try {
 			Usuario usuario = usuarioService.findUsuarioLogin(usr);
 			if(usuario != null){
 				request.getSession().setAttribute("usuario", usuario);
 				return UrlsSite.HOME.url;
+			} else {
+				addMensagemErro(model, "Usuário ou senha incorretos. Se você não possui um usuário cadastrado, preencha o formulário abaixo, caso contrário, forneça os dados corretos para acesso.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

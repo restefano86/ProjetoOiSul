@@ -10,7 +10,7 @@
 			 	<div id="corpo">
 			 		<h2>Soluções em Telefonia Móvel</h2>
 			 		<BR><BR>
-			 		<img src="/ProjetoOiSul/resources/images/contrateAgora.png" class="imgLink" onclick="abreLink('aquisicaoPasso1');" />
+			 		<img src="/ProjetoOiSul/resources/images/contrateAgora.png" class="imgLink" onclick="abreLink('aquisicaoPasso0');" />
 			 	</div>
 			 </div>
 			<%@include file="rodape.jsp" %> 
