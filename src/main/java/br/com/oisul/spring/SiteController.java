@@ -57,12 +57,6 @@ public class SiteController extends DefaultController {
 		return UrlsSite.AQUISICAO_PASSO_1.url;
 	}
 	
-	@RequestMapping(value = "/aquisicaoPasso2", method = RequestMethod.GET)
-	public String aquisicaoPasso2(Model model, HttpServletRequest request) {
-		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
-		return UrlsSite.AQUISICAO_PASSO_2.url;
-	}
-	
 	@RequestMapping(value = "/aquisicaoPasso3", method = RequestMethod.GET)
 	public String aquisicaoPasso3(Model model, HttpServletRequest request) {
 		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};

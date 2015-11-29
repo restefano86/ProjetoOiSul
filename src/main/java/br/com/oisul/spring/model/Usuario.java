@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="usuario")
-public class Usuario{
+public class Usuario implements ModelInterface{
 
 	@Id 
     @Column(name="idUsuario", unique=true, nullable=false)
@@ -104,6 +104,11 @@ public class Usuario{
     public void setIsAtivado(String isAtivado) {
         this.isAtivado = isAtivado;
     }
+
+	@Override
+	public Integer getId() {
+		return getIdUsuario();
+	}
 
 
 

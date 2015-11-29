@@ -9,10 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import br.com.oisul.spring.dao.usuario.UsuarioDAOImpl;
+import br.com.oisul.spring.model.ModelInterface;
 import br.com.oisul.spring.model.Person;
 
 @Repository
-public class GenericDAOImpl<PK, T> implements GenericDAO<PK, T>{
+public class GenericDAOImpl<PK, T extends ModelInterface> implements GenericDAO<PK, T>{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioDAOImpl.class);
 	protected SessionFactory sessionFactory;
@@ -45,6 +46,14 @@ public class GenericDAOImpl<PK, T> implements GenericDAO<PK, T>{
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(entity);
 		logger.info(getTypeClass()+" updated successfully");
+	}
+
+	public void saveEntity(T entity) {
+		if(entity.getId() != null){
+			this.updateEntity(entity);
+		} else {
+			this.addEntity(entity);
+		}
 	}
 
 

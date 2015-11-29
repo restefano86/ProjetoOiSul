@@ -26,4 +26,9 @@ public class DefaultController {
 	protected void addMensagemErro(Model model, String mensagem){
 		model.addAttribute("mensagemErro", mensagem);
 	}
+	
+	protected Integer getIdUsuarioFromSession(HttpServletRequest request){
+		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+		return usuario.getIdUsuario();
+	}
 }

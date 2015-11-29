@@ -13,20 +13,197 @@
 				 	
 				 	<h2 class="tituloAquisicao">Preencha o cadastro com os dados da empresa.</h2>
 				 	
-				 	
-				 	
-				 	
-				 	
+				 	<form:form action="addEmpresa" commandName="empresa">
+						
+						<form:hidden path="idEmpresa"/>
+						
+				 		<table width="800px">
+				 			<tr>
+				 				<td class="label" width="200px">Razão social*:</td> 
+				 				<td>
+							 		<form:input path="deRazaoSocial" class="form-control" placeholder="Ex: Xyz Alimentos LTDA" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 			</tr>
+				 			<tr>
+				 				<td class="label">CNPJ*:</td>
+				 				<td>
+							 		<form:input path="nuCnpjFmt" class="form-control fmtCnpj" placeholder="Ex: 00.000.000/0000-00 ou 00000000000000" 
+							 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$" style="width: 350px;"/>
+				 				</td>
+				 			</tr>
+				 			<tr>
+				 				<td class="label">Representante legal*:</td>
+				 				<td>
+							 		<form:input path="nmRepLegal" class="form-control" placeholder="Ex: Paulo Barbosa" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 			</tr> 
+				 			<tr>
+				 				<td class="label">CPF do representante legal*:</td>
+				 				<td>
+							 		<form:input path="nuCpfRepLegalFmt" class="form-control fmtCpf" placeholder="Ex: 000.000.000-00 ou 00000000000" 
+							 			data-validation="custom" data-validation-regexp="^\d{3}.\d{3}.\d{3}-\d{2}$" style="width: 350px;"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label">Telefone Fixo*:</td>
+				 				<td>
+							 		<form:input path="nuDddFixo" class="form-control" placeholder="00" maxlength="2"
+							 			data-validation="required number length" style="width: 50px; float: left;" data-validation-length="min2"/>
+							 		<form:input path="nuTelFixoFmt" class="form-control fmtTelefone" placeholder="Ex: 0000-0000" maxlength="9"
+							 			data-validation="custom" style="width: 300px;" data-validation-regexp="^\d{4}-\d{4}$"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label">Telefone Celular*:</td>
+				 				<td>
+							 		<form:input path="nuDddCelular" class="form-control" placeholder="00" maxlength="2"
+							 			data-validation="required number length" style="width: 50px; float: left;" data-validation-length="min2"/>
+							 		<form:input path="nuTelCelularFmt" class="form-control fmtTelefone" placeholder="Ex: 0000-0000" maxlength="9"
+							 			data-validation="custom" style="width: 300px;" data-validation-regexp="^\d{4}-\d{4}$"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label">E-mail*:</td> 
+				 				<td>
+							 		<form:input path="deEmail" class="form-control" placeholder="Ex: nome@dominio.com" data-validation="email" />
+				 				</td>
+				 			</tr>
+
+				 		</table>
+				 		
+				 		<br>
+				 		<h2>Endereço da Empresa</h2>
+				 		
+				 		<table width="800px">
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Endereço(Rua/nº)*:</td>
+				 				<td colspan="3">
+							 		<form:input path="deEndereco" class="form-control" placeholder="Ex: Av. Atlântica, 255" data-validation="required length" data-validation-length="max80"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Bairro*:</td>
+				 				<td colspan="3">
+							 		<form:input path="nmBairro" class="form-control" placeholder="Ex: Centro" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 			</tr>
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Municipio*:</td>
+				 				<td>
+							 		<form:input path="nmMunicipio" class="form-control" placeholder="Ex: Florianópolis" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 				<td class="label" style="width: 100px;">UF*:</td>
+				 				<td>
+									<select id="deUf" name="deUf" class="form-control" style="width: 100%;">
+									   <option value="SC">SC</option>
+									   <option value="PR">PR</option>
+									</select> 						 		
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label">CEP*:</td>
+				 				<td>
+							 		<form:input path="nuCepFmt" class="form-control fmtCep" placeholder="Ex: 00.000-000 ou 00000000" 
+							 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}-\d{3}$" style="width: 350px;"/>
+				 				</td> 
+				 			</tr>
+				 		</table>	
+				 			
+				 		<br>
+				 		<h2>Dados para Cobrança</h2>
+				 		<table width="800px">
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Endereço(Rua/nº)*:</td>
+				 				<td colspan="3">
+							 		<form:input path="deEnderecoCob" class="form-control" placeholder="Ex: Av. Atlântica, 255" data-validation="required length" data-validation-length="max80"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Bairro*:</td>
+				 				<td colspan="3">
+							 		<form:input path="nmBairroCob" class="form-control" placeholder="Ex: Centro" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 			</tr>
+				 			<tr>
+				 				<td class="label" style="width: 200px;">Municipio*:</td>
+				 				<td>
+							 		<form:input path="nmMunicipioCob" class="form-control" placeholder="Ex: Florianópolis" data-validation="required length" data-validation-length="max80"/>
+				 				</td>
+				 				<td class="label" style="width: 100px;">UF*:</td>
+				 				<td>
+									<select id="deUf" name="deUfCob" class="form-control" style="width: 100%;">
+									   <option value="SC">SC</option>
+									   <option value="PR">PR</option>
+									</select> 						 		
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label">CEP*:</td>
+				 				<td>
+							 		<form:input path="nuCepCobFmt" class="form-control fmtCep" placeholder="Ex: 00.000-000 ou 00000000" 
+							 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}-\d{3}$" style="width: 350px;"/>
+				 				</td> 
+				 			</tr>
+				 			<tr>
+				 				<td class="label" width="200px">Dia do Vencimento da Fatura:</td>
+				 				<td>
+									<select id="nuDiaVencimento" name="nuDiaVencimento" class="form-control" style="width: 150px;" data-validation="required">
+									   <option value="">-- Selecione --</option>
+									   <option value="1">1</option>
+									   <option value="4">4</option>
+									   <option value="10">10</option>
+									   <option value="14">14</option>
+									</select> 						 		
+				 				</td>
+				 			</tr>
+						</table>			
+						
+				 	</form:form> 
+
+					<BR><BR>
 				 	
 				 	<div id="navegacaoEtapasContratacao">
 						<img alt="Etapa Anterior" src="/ProjetoOiSul/resources/images/btEtapaAnterior.jpg" 
-							onclick="abreLink('aquisicaoPasso1');" class="btEtapaAnterior">
+							onclick="abreLink('aquisicaoPasso1')" class="btEtapaAnterior">
 						<img alt="Próxima Etapa" src="/ProjetoOiSul/resources/images/btProximaEtapa.jpg" 
-							onclick="abreLink('aquisicaoPasso3');" class="btProximaEtapa">
+							onclick="salvarProximo();" class="btProximaEtapa">
 					</div>
 			 	</div>
 			 </div>
 			<%@include file="rodape.jsp" %> 
 		</div>
 	</body>
+	<script>
+
+		function salvarProximo(){
+			$("#empresa").submit();
+		}
+
+		$.validate({lang : 'pt'}); 
+
+		$(".fmtCnpj").keypress(function(){
+			if(this.value.length == 14 && isNumber(this.value)){
+				this.value = formataCNPJ(this.value);
+			}
+		});
+
+		$(".fmtCpf").keypress(function(){
+			if(this.value.length == 11 && isNumber(this.value)){
+				this.value = formataCPF(this.value);
+			}
+		});
+
+		$(".fmtCep").keypress(function(){
+			if(this.value.length == 8 && isNumber(this.value)){
+				this.value = formataCEP(this.value);
+			}
+		});
+
+		$(".fmtTelefone").keypress(function(){
+			if(this.value.length == 8 && isNumber(this.value)){
+				this.value = formataTelefone(this.value);
+			}
+		});
+
+	</script>
 </html>

@@ -15,7 +15,7 @@
 				 			<tr>
 				 				<td class="label">Nome*:</td>
 				 				<td>
-				 					<form:input path="nome" class="form-control" placeholder="E-mail" data-validation="required"/>
+				 					<form:input path="nome" class="form-control" placeholder="Ex: Paulo da Costa" data-validation="required"/>
 				 				</td>
 				 			</tr>
 				 			<tr>

@@ -17,7 +17,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+	<!-- Resolves views selected for rendering by @'s to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -40,12 +40,6 @@
 	<beans:bean id="hibernate4AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="annotatedClasses">
-			<beans:list>
-				<beans:value>br.com.oisul.spring.model.Person</beans:value>
-				<beans:value>br.com.oisul.spring.model.Usuario</beans:value>
-			</beans:list>
-		</beans:property>
 		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
@@ -53,20 +47,42 @@
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
 			</beans:props>
 		</beans:property>
+		<beans:property name="annotatedClasses">
+	<!-- ######################################################################################## -->
+	<!-- ######################################## ENTITY ######################################## -->
+	<!-- ######################################################################################## -->
+			<beans:list>
+				<beans:value>br.com.oisul.spring.model.Person</beans:value>
+				<beans:value>br.com.oisul.spring.model.Usuario</beans:value>
+				<beans:value>br.com.oisul.spring.model.Empresa</beans:value>
+			</beans:list>
+		</beans:property>
 	</beans:bean>
 	
+	<!-- ######################################################################################## -->
+	<!-- ########################################## DAO ######################################### -->
+	<!-- ######################################################################################## -->
 	<beans:bean id="personDAO" class="br.com.oisul.spring.dao.PersonDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="personService" class="br.com.oisul.spring.service.PersonServiceImpl">
-		<beans:property name="personDAO" ref="personDAO"></beans:property>
-	</beans:bean>
-	
 	<beans:bean id="usuarioDAO" class="br.com.oisul.spring.dao.usuario.UsuarioDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
+	<beans:bean id="empresaDAO" class="br.com.oisul.spring.dao.empresa.EmpresaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+
+	<!-- ######################################################################################## -->
+	<!-- ######################################## SERVICE ####################################### -->
+	<!-- ######################################################################################## -->
+	<beans:bean id="personService" class="br.com.oisul.spring.service.PersonServiceImpl">
+		<beans:property name="personDAO" ref="personDAO"></beans:property>
+	</beans:bean>
 	<beans:bean id="usuarioService" class="br.com.oisul.spring.service.usuario.UsuarioServiceImpl">
 		<beans:property name="usuarioDAO" ref="usuarioDAO"></beans:property>
+	</beans:bean>
+	<beans:bean id="empresaService" class="br.com.oisul.spring.service.empresa.EmpresaServiceImpl">
+		<beans:property name="empresaDAO" ref="empresaDAO"></beans:property>
 	</beans:bean>
 	
 	

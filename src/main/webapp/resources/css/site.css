@@ -368,6 +368,7 @@ div {
 #navegacaoEtapasContratacao{
 	width: 100%;
 	margin: 0 auto;
+	margin-top: 20px;
 	height: 60px;
 }
 
@@ -381,4 +382,8 @@ div {
 	cursor: pointer;
 }
 
+td.label{
+	vertical-align: text-top;
+	padding-top: 8px;
+}
 

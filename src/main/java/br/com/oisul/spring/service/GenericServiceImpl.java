@@ -1,5 +1,8 @@
 package br.com.oisul.spring.service;
 
-public class GenericServiceImpl {
+import org.apache.log4j.Logger;
 
+public class GenericServiceImpl {
+	
+	
 }
