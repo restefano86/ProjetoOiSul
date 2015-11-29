@@ -15,6 +15,9 @@
 				 	
 				 	
 				 	
+				 	
+				 	
+				 	
 				 	<div id="navegacaoEtapasContratacao">
 						<img alt="Etapa Anterior" src="/ProjetoOiSul/resources/images/btEtapaAnterior.jpg" 
 							onclick="abreLink('aquisicaoPasso1');" class="btEtapaAnterior">
