@@ -13,7 +13,7 @@
 <BR><BR><BR>
 <div id="navegacaoEtapasContratacao">
 	<img alt="Etapa Anterior" src="/ProjetoOiSul/resources/images/btEtapaAnterior.jpg" 
-		onclick="abreLink('aquisicaoPasso3');" class="btEtapaAnterior">
+		onclick="etapaAnterior();" class="btEtapaAnterior">
 	<img alt="Próxima Etapa" src="/ProjetoOiSul/resources/images/btProximaEtapa.jpg" 
-		onclick="abreLink('aquisicaoPasso5');" class="btProximaEtapa">
+		onclick="proximaEtapa();" class="btProximaEtapa">
 </div>

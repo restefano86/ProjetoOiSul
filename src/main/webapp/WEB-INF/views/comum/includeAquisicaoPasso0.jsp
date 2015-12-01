@@ -7,5 +7,5 @@
 
 <div id="navegacaoEtapasContratacao">
 	<img alt="Próxima Etapa" src="/ProjetoOiSul/resources/images/btProximaEtapa.jpg" 
-		onclick="abreLink('aquisicaoPasso1');" class="btProximaEtapa">
+		onclick="proximaEtapa();" class="btProximaEtapa">
 </div>

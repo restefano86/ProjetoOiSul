@@ -48,5 +48,11 @@
 			}
 		});
 
+		function proximaEtapa(){
+			abreLink('aquisicaoPasso3');
+		}
+		function etapaAnterior(){
+			abreLink('aquisicaoPasso1');
+		}
 	</script>
 </html>

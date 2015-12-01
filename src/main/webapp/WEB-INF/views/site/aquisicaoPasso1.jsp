@@ -15,3 +15,11 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	function proximaEtapa(){
+		abreLink('aquisicaoPasso2');
+	}
+	function etapaAnterior(){
+		abreLink('aquisicaoPasso0');
+	}
+</script>

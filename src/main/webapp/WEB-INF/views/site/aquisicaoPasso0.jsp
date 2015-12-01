@@ -17,3 +17,8 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+function proximaEtapa(){
+	abreLink('aquisicaoPasso1');
+}
+</script>

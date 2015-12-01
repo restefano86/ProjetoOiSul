@@ -22,7 +22,7 @@ public class AquisicaoController extends DefaultController {
 	
 	@Autowired(required=true)
 	@Qualifier(value="empresaService")
-	public void setUsuarioService(EmpresaService service){
+	public void setEmpresaService(EmpresaService service){
 		this.empresaService = service;
 	}
 

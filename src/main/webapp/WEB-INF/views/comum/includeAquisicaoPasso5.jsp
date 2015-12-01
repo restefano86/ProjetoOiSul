@@ -8,5 +8,5 @@
 
 <div id="navegacaoEtapasContratacao">
 	<img alt="Etapa Anterior" src="/ProjetoOiSul/resources/images/btEtapaAnterior.jpg" 
-		onclick="abreLink('aquisicaoPasso4');" class="btEtapaAnterior">
+		onclick="etapaAnterior();" class="btEtapaAnterior">
 </div>

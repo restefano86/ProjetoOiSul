@@ -9,33 +9,33 @@
 
 	<table width="800px">
 		<tr>
-			<td class="label" width="200px">Razão social*:</td> 
+			<td class="rotulo" width="200px">Razão social*:</td> 
 			<td>
 	 		<form:input path="deRazaoSocial" class="form-control" placeholder="Ex: Xyz Alimentos LTDA" data-validation="required length" data-validation-length="max80"/>
 			</td>
 		</tr>
 		<tr>
-			<td class="label">CNPJ*:</td>
+			<td class="rotulo">CNPJ*:</td>
 			<td>
 	 		<form:input path="nuCnpjFmt" class="form-control fmtCnpj" placeholder="Ex: 00.000.000/0000-00 ou 00000000000000" 
 	 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}.\d{3}\/\d{4}-\d{2}$" style="width: 350px;"/>
 			</td>
 		</tr>
 		<tr>
-			<td class="label">Representante legal*:</td>
+			<td class="rotulo">Representante legal*:</td>
 			<td>
 	 		<form:input path="nmRepLegal" class="form-control" placeholder="Ex: Paulo Barbosa" data-validation="required length" data-validation-length="max80"/>
 			</td>
 		</tr> 
 		<tr>
-			<td class="label">CPF do representante legal*:</td>
+			<td class="rotulo">CPF do representante legal*:</td>
 			<td>
 	 		<form:input path="nuCpfRepLegalFmt" class="form-control fmtCpf" placeholder="Ex: 000.000.000-00 ou 00000000000" 
 	 			data-validation="custom" data-validation-regexp="^\d{3}.\d{3}.\d{3}-\d{2}$" style="width: 350px;"/>
 			</td> 
 		</tr>
 		<tr>
-			<td class="label">Telefone Fixo*:</td>
+			<td class="rotulo">Telefone Fixo*:</td>
 			<td>
 	 		<form:input path="nuDddFixo" class="form-control" placeholder="00" maxlength="2"
 	 			data-validation="required number length" style="width: 50px; float: left;" data-validation-length="min2"/>
@@ -44,7 +44,7 @@
 			</td> 
 		</tr>
 		<tr>
-			<td class="label">Telefone Celular*:</td>
+			<td class="rotulo">Telefone Celular*:</td>
 			<td>
 	 		<form:input path="nuDddCelular" class="form-control" placeholder="00" maxlength="2"
 	 			data-validation="required number length" style="width: 50px; float: left;" data-validation-length="min2"/>
@@ -53,7 +53,7 @@
 			</td> 
 		</tr>
 		<tr>
-			<td class="label">E-mail*:</td> 
+			<td class="rotulo">E-mail*:</td> 
 			<td>
 	 		<form:input path="deEmail" class="form-control" placeholder="Ex: nome@dominio.com" data-validation="email" />
 			</td>
@@ -66,23 +66,23 @@
 	
 	<table width="800px">
 		<tr>
-			<td class="label" style="width: 200px;">Endereço(Rua/nº)*:</td>
+			<td class="rotulo" style="width: 200px;">Endereço(Rua/nº)*:</td>
 			<td colspan="3">
 	 		<form:input path="deEndereco" class="form-control" placeholder="Ex: Av. Atlântica, 255" data-validation="required length" data-validation-length="max80"/>
 			</td> 
 		</tr>
 		<tr>
-			<td class="label" style="width: 200px;">Bairro*:</td>
+			<td class="rotulo" style="width: 200px;">Bairro*:</td>
 			<td colspan="3">
 	 		<form:input path="nmBairro" class="form-control" placeholder="Ex: Centro" data-validation="required length" data-validation-length="max80"/>
 			</td>
 		</tr>
 		<tr>
-			<td class="label" style="width: 200px;">Municipio*:</td>
+			<td class="rotulo" style="width: 200px;">Municipio*:</td>
 			<td>
 	 		<form:input path="nmMunicipio" class="form-control" placeholder="Ex: Florianópolis" data-validation="required length" data-validation-length="max80"/>
 			</td>
-			<td class="label" style="width: 100px;">UF*:</td>
+			<td class="rotulo" style="width: 100px;">UF*:</td>
 			<td>
 			<select id="deUf" name="deUf" class="form-control" style="width: 100%;">
 			   <option value="SC">SC</option>
@@ -91,7 +91,7 @@
 			</td> 
 		</tr>
 		<tr>
-			<td class="label">CEP*:</td>
+			<td class="rotulo">CEP*:</td>
 			<td>
 	 		<form:input path="nuCepFmt" class="form-control fmtCep" placeholder="Ex: 00.000-000 ou 00000000" 
 	 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}-\d{3}$" style="width: 350px;"/>
@@ -103,23 +103,23 @@
 	<h2>Dados para Cobrança</h2>
 	<table width="800px">
 		<tr>
-			<td class="label" style="width: 200px;">Endereço(Rua/nº)*:</td>
+			<td class="rotulo" style="width: 200px;">Endereço(Rua/nº)*:</td>
 			<td colspan="3">
 	 		<form:input path="deEnderecoCob" class="form-control" placeholder="Ex: Av. Atlântica, 255" data-validation="required length" data-validation-length="max80"/>
 			</td> 
 		</tr>
 		<tr>
-			<td class="label" style="width: 200px;">Bairro*:</td>
+			<td class="rotulo" style="width: 200px;">Bairro*:</td>
 			<td colspan="3">
 	 		<form:input path="nmBairroCob" class="form-control" placeholder="Ex: Centro" data-validation="required length" data-validation-length="max80"/>
 			</td>
 		</tr>
 		<tr>
-			<td class="label" style="width: 200px;">Municipio*:</td>
+			<td class="rotulo" style="width: 200px;">Municipio*:</td>
 			<td>
 	 		<form:input path="nmMunicipioCob" class="form-control" placeholder="Ex: Florianópolis" data-validation="required length" data-validation-length="max80"/>
 			</td>
-			<td class="label" style="width: 100px;">UF*:</td>
+			<td class="rotulo" style="width: 100px;">UF*:</td>
 			<td>
 			<select id="deUf" name="deUfCob" class="form-control" style="width: 100%;">
 			   <option value="SC">SC</option>
@@ -128,14 +128,14 @@
 			</td> 
 		</tr>
 		<tr>
-			<td class="label">CEP*:</td>
+			<td class="rotulo">CEP*:</td>
 			<td>
 	 		<form:input path="nuCepCobFmt" class="form-control fmtCep" placeholder="Ex: 00.000-000 ou 00000000" 
 	 			data-validation="custom" data-validation-regexp="^\d{2}.\d{3}-\d{3}$" style="width: 350px;"/>
 			</td> 
 		</tr>
 		<tr>
-			<td class="label" width="200px">Dia do Vencimento da Fatura:</td>
+			<td class="rotulo" width="200px">Dia do Vencimento da Fatura:</td>
 			<td>
 			<select id="nuDiaVencimento" name="nuDiaVencimento" class="form-control" style="width: 150px;" data-validation="required">
 				   <option value="">-- Selecione --</option>
@@ -154,7 +154,7 @@
 	
 	<div id="navegacaoEtapasContratacao">
 	<img alt="Etapa Anterior" src="/ProjetoOiSul/resources/images/btEtapaAnterior.jpg" 
-		onclick="abreLink('aquisicaoPasso1')" class="btEtapaAnterior">
+		onclick="etapaAnterior();" class="btEtapaAnterior">
 <img alt="Próxima Etapa" src="/ProjetoOiSul/resources/images/btProximaEtapa.jpg" 
-	onclick="salvarProximo();" class="btProximaEtapa">
+	onclick="proximaEtapa();" class="btProximaEtapa">
 </div>

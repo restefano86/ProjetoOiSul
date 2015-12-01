@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.service.usuario.UsuarioService;
+import br.com.oisul.spring.utils.UrlsAdmin;
 import br.com.oisul.spring.utils.UrlsSite;
 
 @Controller
@@ -66,6 +67,11 @@ public class UsuarioController extends DefaultController {
 			Usuario usuario = usuarioService.findUsuarioLogin(usr);
 			if(usuario != null){
 				request.getSession().setAttribute("usuario", usuario);
+				if(usuario.isConsultor()){
+					return UrlsAdmin.HOME.url;
+				} else if(usuario.isAdmin()) {
+					return UrlsAdmin.HOME.url;
+				}
 				return UrlsSite.HOME.url;
 			} else {
 				addMensagemErro(model, "Usuário ou senha incorretos. Se você não possui um usuário cadastrado, preencha o formulário abaixo, caso contrário, forneça os dados corretos para acesso.");

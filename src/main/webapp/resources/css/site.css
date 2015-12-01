@@ -339,7 +339,7 @@ div {
 	padding-bottom:8px; 
 }
 
-.label{
+.rotulo{
 	text-align: right;
 }
 
@@ -382,23 +382,7 @@ div {
 	cursor: pointer;
 }
 
-td.label{
+td.rotulo{
 	vertical-align: text-top;
 	padding-top: 8px;
-}
-
-#cabecalhoAdm{
-	background-image: url("/ProjetoOiSul/resources/images/bgConteudo.png");
-	background-position: center;
-	background-repeat: repeat-y;
-	width:1000px;
-	height: 80px;
-}
-
-#menuAdm{ 
-	background-color: darkpurple;
-}
-
-#menuAdm a {
-	color: white;
 }

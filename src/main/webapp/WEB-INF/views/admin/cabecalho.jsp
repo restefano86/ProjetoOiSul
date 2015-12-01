@@ -1,13 +1,15 @@
-<c:if test="${sessionScope.usuario.tpUsuario eq 'C' || 1==1}">
+<c:if test="${sessionScope.usuario.tpUsuario eq 'C'}">
 	<div id="titulo">
+		<div id="logout"><a href="/ProjetoOiSul/logoutUsuario">Logout</a></div>
 		<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiSulConsultores.jpg" class="oiEmpresas"
 			onclick="abreLink('/ProjetoOiSul');">
 	</div>
 	<div id="menu">
 		<div class="btn-group" role="group" aria-label="...">
+		  <button type="button" class="btn btn-default" onclick="abreLink('admin');">Home</button>
 		  <button type="button" class="btn btn-default" onclick="abreLink('aquisicaoAdminPasso0');">Cadastrar nova venda</button>
-		  <button type="button" class="btn btn-default">Meus Pedidos</button>
-		  <button type="button" class="btn btn-default">Alterar Senha</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirConPedidoConsultor');">Meus Pedidos</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirAlterarSenha');">Alterar Senha</button>
 		 
 		  <!-- 
 		  <div class="btn-group" role="group">
@@ -33,9 +35,11 @@
 	</div>
 	<div id="menu">
 		<div class="btn-group" role="group" aria-label="...">
-		  <button type="button" class="btn btn-default">Cadastrar nova venda</button>
-		  <button type="button" class="btn btn-default">Meus Pedidos</button>
-		  <button type="button" class="btn btn-default">Alterar Senha</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('admin');">Home</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('aquisicaoAdminPasso0');">Cadastrar nova venda</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirConVendas');">Vendas</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirConUsuarios');">Usuários</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirAlterarSenha');">Alterar Senha</button>
 		 
 		  <!-- 
 		  <div class="btn-group" role="group">

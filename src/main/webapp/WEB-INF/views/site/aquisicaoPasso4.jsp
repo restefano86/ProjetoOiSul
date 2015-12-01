@@ -17,3 +17,11 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	function proximaEtapa(){
+		abreLink('aquisicaoPasso5');
+	}
+	function etapaAnterior(){
+		abreLink('aquisicaoPasso3');
+	}
+</script>

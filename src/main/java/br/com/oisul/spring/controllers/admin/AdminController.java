@@ -15,4 +15,19 @@ public class AdminController extends DefaultController {
 		return "admin/index";
 	}
 
+	@RequestMapping(value = "/abrirAlterarSenha", method = RequestMethod.GET)
+	public String abrirAlterarSenha(Model model) {
+		return "admin/alterarSenha";
+	}
+
+	@RequestMapping(value = "/abrirConVendas", method = RequestMethod.GET)
+	public String abrirConVendas(Model model) {
+		return "admin/conVendas";
+	}
+
+	@RequestMapping(value = "/abrirConUsuarios", method = RequestMethod.GET)
+	public String abrirConUsuarios(Model model) {
+		return "admin/conUsuario";
+	}
+
 }

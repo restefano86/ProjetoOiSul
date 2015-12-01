@@ -8,6 +8,16 @@ body{
 	background-color: #6A65A6;
 }
 
+h2{
+	font-size: 16pt;
+	text-align: left;
+	color: #444170;
+	margin-bottom: 20px;
+}
+
+
+
+
 #geral{
 	width: 1000px;
 	margin: 0 auto;
@@ -21,6 +31,18 @@ body{
 
 #conteudo{
 	padding: 15px;
+}
+
+td.rotulo{
+	vertical-align: text-top;
+	padding-top: 8px;
+	color: black;
+	font-size: 10pt;
+	padding-right: 5px;
+}
+
+.rotulo{
+	text-align: right;
 }
 
 #menu{
@@ -60,4 +82,51 @@ body{
 	color: #FFF;
 	padding-bottom:8px; 
 }
+
+#logout {
+	position: absolute;
+	margin-left: 920px;
+	margin-top: 83px;
+}
+
+#logout a {
+	font-weight: bold;
+	color: white;
+}
+
+.topAquisicao{
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+.tituloAquisicao{
+	text-align: center;
+	color: #E13A21;
+}
+
+#navegacaoEtapasContratacao{
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 20px;
+	height: 60px;
+}
+
+.btEtapaAnterior{
+	float: left;
+	cursor: pointer;
+}
+
+.btProximaEtapa{
+	float: right;
+	cursor: pointer;
+}
+
+td.label{
+	vertical-align: text-top;
+	padding-top: 8px;
+}
+
+
+
+
 
