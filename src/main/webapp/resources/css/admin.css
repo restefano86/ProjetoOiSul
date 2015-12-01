@@ -1,0 +1,63 @@
+body{
+	background-position: top center;
+	background-repeat: no-repeat;
+	text-align: center;
+	font-family: verdana, arial, sans-serif;
+	font-size: 10pt;
+	color: #333;
+	background-color: #6A65A6;
+}
+
+#geral{
+	width: 1000px;
+	margin: 0 auto;
+	background-color: white;
+	text-align: left;
+}
+
+#titulo{
+	padding: 10px;
+}
+
+#conteudo{
+	padding: 15px;
+}
+
+#menu{
+	background-color: MidnightBlue;	
+}
+
+#rodape{
+	width: 100%;
+	background-color: MidnightBlue;	
+	padding-top: 5px;
+}
+
+#rodape p{
+	color: #222;
+	font-size: 9pt;
+}
+
+.desenvolvidoPor{
+	margin-top: 10px;
+	font-size: 11pt;
+	text-align: center;	
+	color: #333;
+}
+
+.desenvolvidoPor a,.desenvolvidoPor a:visited {
+	color: #333;
+}
+
+#tableRodape {
+	width: 950px;
+	margin: 0 auto;
+}
+#tableRodape * {
+	font-size: 9px;;
+	line-height: 12px;
+	font-family: Tahoma;
+	color: #FFF;
+	padding-bottom:8px; 
+}
+

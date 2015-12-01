@@ -1,4 +1,3 @@
-<c:if test="${empty sessionScope.usuario.nome || sessionScope.usuario.tpUsuario eq 'B'}">
 <div id="cabecalho">
 	<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiEmpresas.jpg" class="oiEmpresas"
 		onclick="abreLink('/ProjetoOiSul');">
@@ -29,10 +28,3 @@
 			</tr>
 		</table>
 	</div>
-</c:if>
-<c:if test="${empty sessionScope.usuario.nome || sessionScope.usuario.tpUsuario eq 'A'}">
-Administrador
-</c:if>
-<c:if test="${empty sessionScope.usuario.nome || sessionScope.usuario.tpUsuario eq 'C'}">
-Consultor
-</c:if>

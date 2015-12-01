@@ -1,4 +1,4 @@
-package br.com.oisul.spring;
+package br.com.oisul.spring.controllers.site;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +13,16 @@ public class DefaultController {
 		if(request.getSession().getAttribute("usuario") != null){
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 			if(!StringUtils.isEmpty(usuario.getEmail())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected boolean validateLoginConsultor(HttpServletRequest request){
+		if(request.getSession().getAttribute("usuario") != null){
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+			if(usuario.isConsultor() || usuario.isAdmin()){
 				return true;
 			}
 		}

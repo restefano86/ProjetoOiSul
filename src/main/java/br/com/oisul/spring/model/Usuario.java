@@ -125,7 +125,18 @@ public class Usuario implements ModelInterface{
 		this.tpUsuario = tpUsuario;
 	}
 
-
+	public boolean isConsultor(){
+		if(TP_USUARIO_CONSULTOR.equals(getTpUsuario())){
+			return true;
+		}
+		return false;
+	}
+	public boolean isAdmin(){
+		if(TP_USUARIO_ADMINISTRADOR.equals(getTpUsuario())){
+			return true;
+		}
+		return false;
+	}
 
 
 }

@@ -1,4 +1,4 @@
-package br.com.oisul.spring;
+package br.com.oisul.spring.controllers.site;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -387,7 +387,15 @@ td.label{
 	padding-top: 8px;
 }
 
-#menuAdm{
+#cabecalhoAdm{
+	background-image: url("/ProjetoOiSul/resources/images/bgConteudo.png");
+	background-position: center;
+	background-repeat: repeat-y;
+	width:1000px;
+	height: 80px;
+}
+
+#menuAdm{ 
 	background-color: darkpurple;
 }
 

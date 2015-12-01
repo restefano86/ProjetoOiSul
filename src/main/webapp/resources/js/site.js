@@ -30,10 +30,6 @@ function isNumber(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-var abreLink = function(url){
-	location.href=url;
-}
-
 function formataCNPJ (nuCNPJ){
 	var parte1 = nuCNPJ.substring(0,2);
 	var parte2 = nuCNPJ.substring(2,5);

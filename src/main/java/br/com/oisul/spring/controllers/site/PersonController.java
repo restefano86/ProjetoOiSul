@@ -1,4 +1,4 @@
-package br.com.oisul.spring;
+package br.com.oisul.spring.controllers.site;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
