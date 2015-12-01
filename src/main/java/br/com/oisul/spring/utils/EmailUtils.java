@@ -16,9 +16,11 @@ public class EmailUtils {
 	static Session getMailSession;
 	static MimeMessage generateMailMessage;
 	
+	public static final String CONTATO_EMAIL_SITE = "rafael.estefano.rosa@gmail.com";
+	
 	public static void enviaEmail(String emailDestinatario, String conteudo, String assunto) throws AddressException, MessagingException {
 		
-		// Step1
+				// Step1
 				System.out.println("\n 1st ===> setup Mail Server Properties..");
 				mailServerProperties = System.getProperties();
 				mailServerProperties.put("mail.smtp.port", "587");

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import br.com.oisul.spring.model.Contato;
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.utils.UrlsSite;
 
@@ -35,8 +36,11 @@ public class SiteController extends DefaultController {
 	
 	@RequestMapping(value = "/contato", method = RequestMethod.GET)
 	public String contato(Model model) {
+		model.addAttribute("contato", new Contato());
 		return "site/contato";
 	}
+	
+
 	
 	@RequestMapping(value = "/cadastroNaoLogado", method = RequestMethod.GET)
 	public String cadastroNaoLogado(Model model) {

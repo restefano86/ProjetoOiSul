@@ -27,6 +27,14 @@ public class DefaultController {
 		model.addAttribute("mensagemErro", mensagem);
 	}
 	
+	protected void addMensagemSucesso(Model model, String mensagem){
+		model.addAttribute("mensagemSucesso", mensagem);
+	}
+	
+	protected void addMensagemErroGenerica(Model model){
+		model.addAttribute("mensagemErro", "Ocorreu um problema na sua requisição. Por favor, tente novamente mais tarde.");
+	}
+	
 	protected Integer getIdUsuarioFromSession(HttpServletRequest request){
 		Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 		return usuario.getIdUsuario();

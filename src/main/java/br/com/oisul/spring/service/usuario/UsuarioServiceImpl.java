@@ -8,6 +8,7 @@ import javax.mail.internet.AddressException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import br.com.oisul.spring.dao.usuario.UsuarioDAO;
 import br.com.oisul.spring.model.Usuario;
@@ -27,6 +28,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Transactional
 	public void saveUsuario(Usuario usuario, String url){
 		try {
+			if(StringUtils.isEmpty(usuario.getTpUsuario())){
+				usuario.setTpUsuario(Usuario.TP_USUARIO_BASICO);
+			}
 			this.usuarioDAO.addEntity(usuario);
 	     	String assunto = "Confirmação de cadastro";
 	     	StringBuilder conteudo = new StringBuilder();

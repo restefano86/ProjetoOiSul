@@ -11,6 +11,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="usuario")
 public class Usuario implements ModelInterface{
+	
+	public static final String TP_USUARIO_BASICO = "B";
+	public static final String TP_USUARIO_CONSULTOR = "C";
+	public static final String TP_USUARIO_ADMINISTRADOR = "A";
 
 	@Id 
     @Column(name="idUsuario", unique=true, nullable=false)
@@ -23,6 +27,7 @@ public class Usuario implements ModelInterface{
      private String ddd;
      private String telefone;
      private String isAtivado;
+     private String tpUsuario;
 
     public Usuario() {
     }
@@ -108,6 +113,16 @@ public class Usuario implements ModelInterface{
 	@Override
 	public Integer getId() {
 		return getIdUsuario();
+	}
+
+
+	public String getTpUsuario() {
+		return tpUsuario;
+	}
+
+
+	public void setTpUsuario(String tpUsuario) {
+		this.tpUsuario = tpUsuario;
 	}
 
 

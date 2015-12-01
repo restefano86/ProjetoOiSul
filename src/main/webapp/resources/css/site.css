@@ -387,3 +387,10 @@ td.label{
 	padding-top: 8px;
 }
 
+#menuAdm{
+	background-color: darkpurple;
+}
+
+#menuAdm a {
+	color: white;
+}

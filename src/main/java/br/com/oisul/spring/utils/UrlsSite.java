@@ -9,7 +9,8 @@ public enum UrlsSite {
 	AQUISICAO_PASSO_2("site/aquisicaoPasso2"),
 	AQUISICAO_PASSO_3("site/aquisicaoPasso3"),
 	AQUISICAO_PASSO_4("site/aquisicaoPasso4"),
-	AQUISICAO_PASSO_5("site/aquisicaoPasso5");
+	AQUISICAO_PASSO_5("site/aquisicaoPasso5"),
+	CONTATO("site/contato");
 	
 	public String url;
 

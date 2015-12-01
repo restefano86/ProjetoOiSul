@@ -55,6 +55,7 @@
 				<beans:value>br.com.oisul.spring.model.Person</beans:value>
 				<beans:value>br.com.oisul.spring.model.Usuario</beans:value>
 				<beans:value>br.com.oisul.spring.model.Empresa</beans:value>
+				<beans:value>br.com.oisul.spring.model.Contato</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -71,6 +72,9 @@
 	<beans:bean id="empresaDAO" class="br.com.oisul.spring.dao.empresa.EmpresaDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
+	<beans:bean id="contatoDAO" class="br.com.oisul.spring.dao.contato.ContatoDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
 
 	<!-- ######################################################################################## -->
 	<!-- ######################################## SERVICE ####################################### -->
@@ -83,6 +87,9 @@
 	</beans:bean>
 	<beans:bean id="empresaService" class="br.com.oisul.spring.service.empresa.EmpresaServiceImpl">
 		<beans:property name="empresaDAO" ref="empresaDAO"></beans:property>
+	</beans:bean>
+	<beans:bean id="contatoService" class="br.com.oisul.spring.service.contato.ContatoServiceImpl">
+		<beans:property name="contatoDAO" ref="contatoDAO"></beans:property>
 	</beans:bean>
 	
 	

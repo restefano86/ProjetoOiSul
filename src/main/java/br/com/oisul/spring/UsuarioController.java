@@ -34,14 +34,7 @@ public class UsuarioController extends DefaultController {
 	
 	@RequestMapping(value = "/abrirCadUsuarioSite", method = RequestMethod.GET)
 	public String testeBanana(Model model) {
-		
-		Usuario usuario = new Usuario();
-		usuario.setNome("Rafael");
-		usuario.setEmail("rafael.estefano.rosa@gmail.com");
-		usuario.setDdd("48");
-		usuario.setTelefone("3246-8159");
-		
-		model.addAttribute("usuario", usuario);
+		model.addAttribute("usuario", new Usuario());
 		return "site/cadastro";
 	}
 	

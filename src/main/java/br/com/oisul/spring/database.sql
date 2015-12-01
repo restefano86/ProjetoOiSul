@@ -14,8 +14,9 @@ CREATE TABLE `usuario` (
   `ddd` varchar(45) DEFAULT NULL,
   `telefone` varchar(45) DEFAULT NULL,
   `isAtivado` varchar(1) DEFAULT 'N',
+  `tpUsuario` varchar(1) NOT NULL DEFAULT 'B',
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `empresa` (
@@ -43,3 +44,14 @@ CREATE TABLE `empresa` (
   `nuCepCob` int(8) unsigned zerofill DEFAULT NULL,
   PRIMARY KEY (`idEmpresa`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+CREATE TABLE `contato` (
+  `idContato` int(11) NOT NULL AUTO_INCREMENT,
+  `nmContato` varchar(45) DEFAULT NULL,
+  `deTelefone` varchar(45) DEFAULT NULL,
+  `deEmail` varchar(45) DEFAULT NULL,
+  `deMensagem` text,
+  `deProduto` varchar(45) DEFAULT NULL,
+  `dtContato` datetime DEFAULT NULL,
+  PRIMARY KEY (`idContato`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
