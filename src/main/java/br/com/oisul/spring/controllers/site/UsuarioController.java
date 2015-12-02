@@ -41,10 +41,16 @@ public class UsuarioController extends DefaultController {
 	
 	//For add and update person both
 	@RequestMapping(value= "/addUsuario", method = RequestMethod.POST)
-	public String addUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){
-		String url = request.getRequestURL().toString().replace("addUsuario", "");
-		usuarioService.saveUsuario(usuario, url);
-		return "redirect:/abrirCadUsuarioSite";
+	public String addUsuario(Model model, @ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){
+		try {
+			String url = request.getRequestURL().toString().replace("addUsuario", "");
+			usuarioService.saveUsuario(usuario, url);
+			model.addAttribute("usuario", new Usuario());
+			addMensagemSucesso(model, "Seu cadastro foi realizado com sucesso.<br>Por Favor, verifique seu e-mail para realizar a confirmação do cadastro.");
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+		}
+		return "site/cadastro";
 	}
 
 	@RequestMapping(value = "/confirmarUsuario", method = RequestMethod.GET)

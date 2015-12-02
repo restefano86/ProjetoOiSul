@@ -7,7 +7,8 @@
 <div style="text-align: center; width: 100%">
 	<p style="text-align: center;">Agora que você já preencheu todos os dados necessários, você deve gerar os contratos para que os mesmo sejam assinados e retornados para o sistema na póxima etapa.</p>
 	<BR><BR>
-	<input type="button" id="btGerarContratos" class="btn btn-primary" title="Gerar Contrato" value="Gerar Contrato" /> 
+	<input type="button" id="btGerarContratos" class="btn" title="Gerar Contrato" value="Gerar Contrato" /> 
+	<input type="button" id="btGerarContratos" class="btn btn-primary" title="Download do Contrato" value="Download do Contrato" /> 
 </div>
 
 <BR><BR><BR>

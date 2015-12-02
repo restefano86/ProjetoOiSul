@@ -1,8 +1,8 @@
 <c:if test="${sessionScope.usuario.tpUsuario eq 'C'}">
 	<div id="titulo">
 		<div id="logout"><a href="/ProjetoOiSul/logoutUsuario">Logout</a></div>
-		<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiSulConsultores.jpg" class="oiEmpresas"
-			onclick="abreLink('/ProjetoOiSul');">
+		<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiSulConsultores.jpg" class="logoOiAdmin"
+			onclick="abreLink('/ProjetoOiSul/admin');">
 	</div>
 	<div id="menu">
 		<div class="btn-group" role="group" aria-label="...">
@@ -30,6 +30,7 @@
 
 <c:if test="${sessionScope.usuario.tpUsuario eq 'A'}">
 	<div id="titulo">
+		<div id="logout"><a href="/ProjetoOiSul/logoutUsuario">Logout</a></div>
 		<img alt="logo-oi-empresas" src="/ProjetoOiSul/resources/images/logoOiSulPortalAdministrativo.jpg" class="oiEmpresas"
 			onclick="abreLink('/ProjetoOiSul');">
 	</div>

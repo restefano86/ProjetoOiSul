@@ -9,3 +9,4 @@
 <link href="/ProjetoOiSul/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="/ProjetoOiSul/resources/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
 <link href="/ProjetoOiSul/resources/css/admin.css" rel="stylesheet" type="text/css" />
+<link href="/ProjetoOiSul/resources/css/comum.css" rel="stylesheet" type="text/css" />

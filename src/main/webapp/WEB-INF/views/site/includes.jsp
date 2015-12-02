@@ -6,6 +6,7 @@
 <script src="/ProjetoOiSul/resources/js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="/ProjetoOiSul/resources/js/jquery.cycle.all.js" type="text/javascript"></script>
 <script src="/ProjetoOiSul/resources/js/jQuery-Validator/form-validator/jquery.form-validator.min.js" type="text/javascript"></script>
+<link href="/ProjetoOiSul/resources/css/comum.css" rel="stylesheet" type="text/css" />
 <link href="/ProjetoOiSul/resources/css/site.css" rel="stylesheet" type="text/css" />
 <script src="/ProjetoOiSul/resources/js/site.js" type="text/javascript"></script>
 <script src="/ProjetoOiSul/resources/js/comum.js" type="text/javascript"></script>

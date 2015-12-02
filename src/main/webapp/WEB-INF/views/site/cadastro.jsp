@@ -13,25 +13,25 @@
 			 		<form:form action="addUsuario" commandName="usuario">
 				 		<table width="800px">
 				 			<tr>
-				 				<td class="label">Nome*:</td>
+				 				<td class="rotulo">Nome*:</td>
 				 				<td>
 				 					<form:input path="nome" class="form-control" placeholder="Ex: Paulo da Costa" data-validation="required"/>
 				 				</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">E-mail*:</td>
+				 				<td class="rotulo">E-mail*:</td>
 				 				<td>
 				 					<form:input path="email" class="form-control" placeholder="nome@dominio.com" data-validation="email"/>
 			 					</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">Senha*:</td>
+				 				<td class="rotulo">Senha*:</td>
 				 				<td>
 				 					<form:password path="senha" class="form-control" placeholder="" data-validation="required"/> 
 				 				</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">Telefone*:</td>
+				 				<td class="rotulo">Telefone*:</td>
 				 				<td>
 				 					<form:input path="ddd" class="form-control floatLeft" style="width: 50px;" placeholder="00" data-validation="number"/>
 				 					<form:input path="telefone" class="form-control" style="width: 120px;" placeholder="0000-0000" data-validation="required"/>

@@ -13,25 +13,25 @@
 			 		<form:form action="enviarContato" commandName="contato">
 				 		<table width="800px">
 				 			<tr>
-				 				<td class="label">Nome*:</td>
+				 				<td class="rotulo">Nome*:</td>
 				 				<td>
 				 					<form:input path="nmContato" class="form-control" placeholder="Ex: Paulo da Costa" data-validation="required"/>
 				 				</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">E-mail*:</td>
+				 				<td class="rotulo">E-mail*:</td> 
 				 				<td>
 				 					<form:input path="deEmail" class="form-control" placeholder="nome@dominio.com" data-validation="email"/>
 			 					</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">Telefone:</td>
+				 				<td class="rotulo">Telefone:</td>
 				 				<td>
 				 					<form:input path="deTelefone" class="form-control" placeholder="(00) 0000-0000"/>
 			 					</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">Produto:</td>
+				 				<td class="rotulo">Produto:</td>
 				 				<td>
 									<select id="deProduto" name="deProduto" class="form-control" style="width: 300px;">
 									   <option value="Não Selecionado">-- Selecione --</option>
@@ -42,7 +42,7 @@
 			 					</td>
 				 			</tr>
 				 			<tr>
-				 				<td class="label">Mensagem*:</td>
+				 				<td class="rotulo">Mensagem*:</td>
 				 				<td>
 				 					<textarea class="form-control" rows="10" id="deMensagem" name="deMensagem" style="height: 200px;"
 				 					data-validation="required">
@@ -52,7 +52,7 @@
 				 		</table>
 						<br>
 						<p class="alignCenter">
-							<input type="submit"  class="btn btn-primary"  title="Confirmar Cadastro" />
+							<input type="submit"  class="btn btn-primary"  title="Enviar Contato" value="Enviar Contato" />
 						</p>
 			 		</form:form>
 			 	</div>

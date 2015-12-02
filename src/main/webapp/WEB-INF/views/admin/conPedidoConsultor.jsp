@@ -25,6 +25,24 @@
 		<td>Texto</td>
 		<td><a href="#">Editar</a></td>
 	</tr> 
+	<tr>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td><a href="#">Editar</a></td>
+	</tr> 
+	<tr>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td><a href="#">Editar</a></td>
+	</tr> 
+	<tr>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td>Texto</td>
+		<td><a href="#">Editar</a></td>
+	</tr> 
 </table>
 <%@include file="posConteudo.jsp" %>			 	
 
