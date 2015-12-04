@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.oisul.spring.model.Usuario;
+import br.com.oisul.spring.reports.contrato.RelContrato;
 import br.com.oisul.spring.service.usuario.UsuarioService;
 import br.com.oisul.spring.utils.UrlsAdmin;
 import br.com.oisul.spring.utils.UrlsSite;
@@ -30,6 +31,9 @@ public class UsuarioController extends DefaultController {
 	@RequestMapping(value = "/testeUsuario", method = RequestMethod.GET)
 	public String listPersons(Model model) {
 		model.addAttribute("usuario", new Usuario());
+		RelContrato rel = new RelContrato();
+		rel.geraRelatorio();
+		System.out.println("Gerou o relatório");
 		return "usuario";
 	}
 	
