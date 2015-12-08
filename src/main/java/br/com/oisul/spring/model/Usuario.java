@@ -17,7 +17,7 @@ public class Usuario implements ModelInterface{
 	public static final String TP_USUARIO_ADMINISTRADOR = "A";
 
 	@Id 
-    @Column(name="idUsuario", unique=true, nullable=false)
+    @Column(name="idusuario", unique=true, nullable=false)
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
      private Integer idUsuario;
 	

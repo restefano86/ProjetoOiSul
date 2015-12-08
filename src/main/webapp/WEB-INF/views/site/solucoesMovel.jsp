@@ -7,9 +7,9 @@
 		<div id="site">
 			<%@include file="cabecalho.jsp" %>
  			<div id="conteudo">
-			 	<div id="corpo">
+			 	<div id="corpo" style="text-align: center;">
 			 		<h2>Soluções em Telefonia Móvel</h2>
-			 		<BR><BR>
+					<img src="/ProjetoOiSul/resources/images/descPlanosMovel.jpg"/>
 			 		<img src="/ProjetoOiSul/resources/images/contrateAgora.png" class="imgLink" onclick="abreLink('aquisicaoPasso0');" />
 			 	</div>
 			 </div>

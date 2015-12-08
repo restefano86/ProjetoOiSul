@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 public class Contato implements ModelInterface {
 	
 	@Id 
-    @Column(name="idContato", unique=true, nullable=false)
+    @Column(name="idcontato", unique=true, nullable=false)
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer idContato;
 	

@@ -6,6 +6,6 @@ function proximaEtapa(){
 	abreLink('aquisicaoAdminPasso5');
 }
 function etapaAnterior(){
-	abreLink('aquisicaoAdminPasso3');
+	abreLink('aquisicaoAdminVoltarPasso2');
 }
 </script>		

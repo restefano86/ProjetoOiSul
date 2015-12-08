@@ -31,49 +31,49 @@
 			 		
 			 		<tr>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisCelularControle.jpg">
 			 			</td>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisFixoBasico.jpg">
 			 			</td> 
 			 		</tr>
 			 		
 			 		<tr>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisCelularControleAvancado.jpg">
 			 			</td>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisFixoAvancado.jpg">
 			 			</td> 
 			 		</tr>
 			 		
 			 		<tr>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisCelular.jpg">
 			 			</td>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisFixoTop.jpg">
 			 			</td> 
 			 		</tr>
 			 		
 			 		<tr>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisCelularAvancado.jpg">
 			 			</td>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				&nbsp;
 			 			</td> 
 			 		</tr>
 			 		
 			 		<tr>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/bannerOiMaisCelularTop.jpg">
 			 			</td>
 			 			<td>
-			 				<img alt="oferta1" src="/ProjetoOiSul/resources/images/ofertaIndex1.jpg">
+			 				&nbsp;
 			 			</td> 
 			 		</tr>
-			 		
+
 			 	</table> 
 			 	
 			 	

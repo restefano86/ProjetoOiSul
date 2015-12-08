@@ -1,6 +1,6 @@
 <script src="/ProjetoOiSul/resources/js/bootstrap-filestyle.min.js" type="text/javascript"></script>
 
-<img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso5.jpg" class="topAquisicao" >
+<img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso4.jpg" class="topAquisicao" >
 
 <h2 class="tituloAquisicao">Envie o contrato assinado juntamente com a documentação necessária.</h2>
 

@@ -12,13 +12,13 @@ import br.com.oisul.spring.utils.UrlsAdmin;
 import br.com.oisul.spring.utils.UrlsSite;
 
 @Controller
-public class PedidoController extends DefaultController {
-	
+public class VendaController extends DefaultController  {
+
 	@RequestMapping(value = "/abrirConPedidoConsultor", method = RequestMethod.GET)
 	public String aquisicaoAdminPasso0(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		return UrlsAdmin.ABRIR_PEDIDOS_CONSULTOR.url;
 	}
 
-
+	
 }

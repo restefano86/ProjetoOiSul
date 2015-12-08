@@ -1,3 +1,8 @@
 .alignCenter{
 	text-align: center;	
 }
+
+.destaque{
+	font-weight: bold;
+	color: #EB3505;
+}

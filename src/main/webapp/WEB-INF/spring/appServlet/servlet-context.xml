@@ -56,10 +56,14 @@
 				<beans:value>br.com.oisul.spring.model.Usuario</beans:value>
 				<beans:value>br.com.oisul.spring.model.Empresa</beans:value>
 				<beans:value>br.com.oisul.spring.model.Contato</beans:value>
+				<beans:value>br.com.oisul.spring.model.Operadora</beans:value>
+				<beans:value>br.com.oisul.spring.model.Produto</beans:value>
+				<beans:value>br.com.oisul.spring.model.SituacaoVenda</beans:value>
+				<beans:value>br.com.oisul.spring.model.Venda</beans:value>
+				<beans:value>br.com.oisul.spring.model.VendaItem</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
-	
 	<!-- ######################################################################################## -->
 	<!-- ########################################## DAO ######################################### -->
 	<!-- ######################################################################################## -->
@@ -73,6 +77,12 @@
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 	<beans:bean id="contatoDAO" class="br.com.oisul.spring.dao.contato.ContatoDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="vendaDAO" class="br.com.oisul.spring.dao.venda.VendaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="situacaoVendaDAO" class="br.com.oisul.spring.dao.situacaovenda.SituacaoVendaDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
 
@@ -90,6 +100,12 @@
 	</beans:bean>
 	<beans:bean id="contatoService" class="br.com.oisul.spring.service.contato.ContatoServiceImpl">
 		<beans:property name="contatoDAO" ref="contatoDAO"></beans:property>
+	</beans:bean>
+	<beans:bean id="vendaService" class="br.com.oisul.spring.service.venda.VendaServiceImpl">
+		<beans:property name="vendaDAO" ref="vendaDAO"></beans:property>
+	</beans:bean>
+	<beans:bean id="situacaoVendaService" class="br.com.oisul.spring.service.situacaovenda.SituacaoVendaServiceImpl">
+		<beans:property name="situacaoVendaDAO" ref="situacaoVendaDAO"></beans:property>
 	</beans:bean>
 	
 	

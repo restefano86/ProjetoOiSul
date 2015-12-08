@@ -1,5 +1,5 @@
 			 	
-<img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso4.jpg" class="topAquisicao" >
+<img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso3.jpg" class="topAquisicao" >
 
 <h2 class="tituloAquisicao">Gere o contrato preenchido para assinatura.</h2>
 

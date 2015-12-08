@@ -58,11 +58,30 @@
 	 		<form:input path="deEmail" class="form-control" placeholder="Ex: nome@dominio.com" data-validation="email" />
 			</td>
 		</tr>
+		<tr>
+			<td class="rotulo">Gestor da conta*:</td>
+			<td>
+	 		<form:input path="nmGestorConta" class="form-control" placeholder="Ex: Paulo Barbosa" data-validation="required length" data-validation-length="max80"/>
+			</td>
+		</tr> 
+		<tr>
+			<td class="rotulo">CPF do gestor da conta*:</td>
+			<td>
+	 		<form:input path="nuCpfGestorContaFmt" class="form-control fmtCpf" placeholder="Ex: 000.000.000-00 ou 00000000000" 
+	 			data-validation="custom" data-validation-regexp="^\d{3}.\d{3}.\d{3}-\d{2}$" style="width: 350px;"/>
+			</td> 
+		</tr>
+		<tr>
+			<td class="rotulo">E-mail do gestor da conta*:</td> 
+			<td>
+	 		<form:input path="deEmailGestorConta" class="form-control" placeholder="Ex: nome@dominio.com" data-validation="email" />
+			</td>
+		</tr>
 
 	</table>
 	
 	<br>
-	<h2>Endereço da Empresa</h2>
+	<h2 style="float: left;">Endereço da Empresa</h2><span class="destaque" style="padding-top: 22px; padding-left: 5px; float: left; font-style: italic;">(Deve ser o mesmo registrado na Receita Federal)</span>
 	
 	<table width="800px">
 		<tr>
@@ -101,7 +120,15 @@
 		
 	<br>
 	<h2>Dados para Cobrança</h2>
-	<table width="800px">
+	<table width="800px" id="dadosCobranca">
+		<tr>
+			<td class="rotulo" style="width: 200px;">
+				<input type="checkbox" id="dadosCobrancaMesmoEmpresa" onchange="preecheDadosCobranca(this);"/>
+			</td>
+			<td colspan="3" style="padding: 8 0 10 0; text-decoration: underline;">
+				<span style="font-size: 10pt; padding: 10px;">Preencher os dados de cobrança com os mesmos dados da empresa.</span>
+			</td> 
+		</tr>
 		<tr>
 			<td class="rotulo" style="width: 200px;">Endereço(Rua/nº)*:</td>
 			<td colspan="3">
@@ -158,3 +185,16 @@
 <img alt="Próxima Etapa" src="/ProjetoOiSul/resources/images/btProximaEtapa.jpg" 
 	onclick="proximaEtapa();" class="btProximaEtapa">
 </div>
+
+<script type="text/javascript">
+	function preecheDadosCobranca(_this){
+		if($("#dadosCobrancaMesmoEmpresa:checked" ).length > 0){
+			$("#dadosCobranca input").attr("disabled", "disabled");
+			$("#dadosCobranca select").attr("disabled", "disabled");
+		} else {
+			$("#dadosCobranca input").removeAttr("disabled");
+			$("#dadosCobranca select").removeAttr("disabled");
+		}
+		$("#dadosCobrancaMesmoEmpresa").removeAttr("disabled");
+	}
+</script>

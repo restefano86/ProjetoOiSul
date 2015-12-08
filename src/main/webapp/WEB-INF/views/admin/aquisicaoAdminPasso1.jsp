@@ -3,7 +3,10 @@
 <%@include file="posConteudo.jsp" %>	
 <script type="text/javascript">
 	function proximaEtapa(){
-		abreLink('aquisicaoAdminPasso2');
+		$("input").removeAttr("disabled");
+		$("select").removeAttr("disabled");
+		$("#venda").submit();
+		//abreLink('aquisicaoAdminPasso2');
 	}
 	function etapaAnterior(){
 		abreLink('aquisicaoAdminPasso0');

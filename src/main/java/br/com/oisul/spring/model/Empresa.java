@@ -15,7 +15,7 @@ import br.com.oisul.spring.utils.FormatadorUtil;
 public class Empresa implements ModelInterface {
 
 	@Id 
-    @Column(name="idEmpresa", unique=true, nullable=false)
+    @Column(name="idempresa", unique=true, nullable=false)
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer idEmpresa;
 
@@ -40,6 +40,9 @@ public class Empresa implements ModelInterface {
 	private String nmMunicipioCob;
 	private String deUfCob;
 	private Integer nuCepCob;
+	private String nmGestorConta;
+	private Long nuCpfGestorConta;
+	private String deEmailGestorConta;
 	
 	public Integer getIdEmpresa() {
 		return idEmpresa;
@@ -213,12 +216,38 @@ public class Empresa implements ModelInterface {
 	public void setNuCepCob(Integer nuCepCob) {
 		this.nuCepCob = nuCepCob;
 	}
+	public String getNmGestorConta() {
+		return nmGestorConta;
+	}
+	public void setNmGestorConta(String nmGestorConta) {
+		this.nmGestorConta = nmGestorConta;
+	}
+	public Long getNuCpfGestorConta() {
+		return nuCpfGestorConta;
+	}
+	public void setNuCpfGestorConta(Long nuCpfGestorConta) {
+		this.nuCpfGestorConta = nuCpfGestorConta;
+	}
+	public String getDeEmailGestorConta() {
+		return deEmailGestorConta;
+	}
+	public void setDeEmailGestorConta(String deEmailGestorConta) {
+		this.deEmailGestorConta = deEmailGestorConta;
+	}
 	public String getNuCepCobFmt() {
 		return FormatadorUtil.formataCep(nuCepCob);
 	}
 	public void setNuCepCobFmt(String nuCepCobFmt) {
 		if(!StringUtils.isEmpty(nuCepCobFmt)){
 			setNuCepCob(FormatadorUtil.desformataCep(nuCepCobFmt));
+		}
+	}
+	public String getNuCpfGestorContaFmt() {
+		return FormatadorUtil.formataCpf(getNuCpfGestorConta());
+	}
+	public void setNuCpfGestorContaFmt(String nuCpfFmt) {
+		if(!StringUtils.isEmpty(nuCpfFmt)){
+			setNuCpfGestorConta(FormatadorUtil.desformataCpf(nuCpfFmt));
 		}
 	}
 	@Override
