@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 function proximaEtapa(){
-	abreLink('aquisicaoAdminPasso3');
+	jQuery("#empresa").submit();
 }
 function etapaAnterior(){
 	abreLink('aquisicaoAdminPasso1');

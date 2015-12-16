@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-16T12:47:59 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relTermoPortabilidade" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f096b29e-cc83-41df-b70b-5f9e73049af4">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<detail>
+		<band height="780">
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="780" backcolor="rgba(255, 255, 255, 0.0)" uuid="73a45621-341a-4f77-b693-84af6d6ef032">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.4"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="12" forecolor="#000000" backcolor="#000000" uuid="1205613f-4784-462a-94c7-9e80248c9cf1">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="2" width="250" height="10" forecolor="#FFFFFF" uuid="13625090-684c-48c3-a822-7165d84b0b41"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="tw_cent_mt_regular" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[FICHA COMPLEMENTAR DE PORTABILIDADE OI]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="215" width="529" height="12" forecolor="#000000" backcolor="#000000" uuid="b4dbb81c-fff6-42c7-9d99-ae13f05d72d8">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="217" width="250" height="10" forecolor="#FFFFFF" uuid="0fbc5dec-b8e0-467a-ab76-bcc9c7ff5fbd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="tw_cent_mt_regular" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[1- Serviços opcionais]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

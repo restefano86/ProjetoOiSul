@@ -3,7 +3,7 @@
 
 <h2 class="tituloAquisicao">Preencha o cadastro com os dados da empresa.</h2>
 
-<form:form action="addEmpresa" commandName="empresa">
+<form:form action="aquisicaoAdminPasso3" commandName="empresa">
 
 <form:hidden path="idEmpresa"/>
 
@@ -197,4 +197,36 @@
 		}
 		$("#dadosCobrancaMesmoEmpresa").removeAttr("disabled");
 	}
+
+	function salvarProximo(){
+		$("#empresa").submit();
+	}
+
+$(function(){
+	$.validate({lang : 'pt'}); 
+
+	$(".fmtCnpj").keypress(function(){
+		if(this.value.length == 14 && isNumber(this.value)){
+			this.value = formataCNPJ(this.value);
+		}
+	});
+
+	$(".fmtCpf").keypress(function(){
+		if(this.value.length == 11 && isNumber(this.value)){
+			this.value = formataCPF(this.value);
+		}
+	});
+
+	$(".fmtCep").keypress(function(){
+		if(this.value.length == 8 && isNumber(this.value)){
+			this.value = formataCEP(this.value);
+		}
+	});
+
+	$(".fmtTelefone").keypress(function(){
+		if(this.value.length == 8 && isNumber(this.value)){
+			this.value = formataTelefone(this.value);
+		}
+	});
+});
 </script>

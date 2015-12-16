@@ -1,6 +1,7 @@
 package br.com.oisul.spring.dao;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,6 +29,12 @@ public class GenericDAOImpl<PK, T extends ModelInterface> implements GenericDAO<
 		logger.info("Person saved successfully, Person Details="+entity);
 	}
 	
+	public void sessionFlush() {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.flush();
+		logger.info("############# FLUSH REALIZADO COM SUCESSO");
+	}
+	
 	public T getEntityById(Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();		
 		@SuppressWarnings("unchecked")
@@ -53,6 +60,22 @@ public class GenericDAOImpl<PK, T extends ModelInterface> implements GenericDAO<
 			this.updateEntity(entity);
 		} else {
 			this.addEntity(entity);
+		}
+	}
+
+	public void deleteEntity(T entity) {
+		Session session = this.sessionFactory.getCurrentSession();
+		session.delete(entity);
+		logger.info(getTypeClass()+" DELETADO successfully");
+	}
+
+	public void saveAllEntity(List<T> entities) {
+		for (T entity : entities) {
+			if(entity.getId() != null){
+				this.updateEntity(entity);
+			} else {
+				this.addEntity(entity);
+			}
 		}
 	}
 

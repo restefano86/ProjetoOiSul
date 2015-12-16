@@ -61,6 +61,8 @@
 				<beans:value>br.com.oisul.spring.model.SituacaoVenda</beans:value>
 				<beans:value>br.com.oisul.spring.model.Venda</beans:value>
 				<beans:value>br.com.oisul.spring.model.VendaItem</beans:value>
+				<beans:value>br.com.oisul.spring.model.PerfilVenda</beans:value>
+				<beans:value>br.com.oisul.spring.model.VendaDocumento</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>
@@ -85,6 +87,12 @@
 	<beans:bean id="situacaoVendaDAO" class="br.com.oisul.spring.dao.situacaovenda.SituacaoVendaDAOImpl">
 		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
 	</beans:bean>
+	<beans:bean id="perfilVendaDAO" class="br.com.oisul.spring.dao.perfilvenda.PerfilVendaDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
+	<beans:bean id="vendaDocumentoDAO" class="br.com.oisul.spring.dao.vendadocumento.VendaDocumentoDAOImpl">
+		<beans:property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+	</beans:bean>
 
 	<!-- ######################################################################################## -->
 	<!-- ######################################## SERVICE ####################################### -->
@@ -103,6 +111,9 @@
 	</beans:bean>
 	<beans:bean id="vendaService" class="br.com.oisul.spring.service.venda.VendaServiceImpl">
 		<beans:property name="vendaDAO" ref="vendaDAO"></beans:property>
+		<beans:property name="empresaDAO" ref="empresaDAO"></beans:property>
+		<beans:property name="perfilVendaDAO" ref="perfilVendaDAO"></beans:property>
+		<beans:property name="vendaDocumentoDAO" ref="vendaDocumentoDAO"></beans:property>
 	</beans:bean>
 	<beans:bean id="situacaoVendaService" class="br.com.oisul.spring.service.situacaovenda.SituacaoVendaServiceImpl">
 		<beans:property name="situacaoVendaDAO" ref="situacaoVendaDAO"></beans:property>

@@ -1,0 +1,2974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-16T14:52:30 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relContratoMovel" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0296d7e7-7d1c-4468-980a-a3be43aae2fb">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PROJETOOISUL"/>
+	<queryString>
+		<![CDATA[SELECT 
+venda.idUsuario,
+empresa.derazaosocial,
+empresa.nucnpj,
+empresa.deendereco,
+empresa.nmbairro,
+empresa.nucep,
+empresa.nmmunicipio,
+empresa.deuf,
+IF(empresa.deenderecocob is null, 'X', '') as cobMesmoReceita,
+IF(empresa.deenderecocob is null, '', 'X') as cobDifReceita,
+empresa.deenderecocob,
+empresa.nmbairrocob,
+empresa.nmmunicipiocob,
+empresa.deufcob,
+empresa.nucepcob,
+empresa.nmgestorconta,
+empresa.nucpfgestorconta,
+empresa.deemailgestorconta,
+empresa.nudddfixo,
+empresa.nutelfixo,
+empresa.nudddcelular,
+empresa.nutelcelular,
+empresa.nmreplegal,
+empresa.nucpfreplegal,
+produtoPerfil1.codigoOi as p1Codigo,
+perfil1.nuddd as p1Ddd,
+perfil1.qtacessos as p1QtAcessos,
+perfil1.qtacessos * produtoPerfil1.vlPlano as p1VlTotal,
+tipochipPerfil1.decontrato as p1TipoChip,
+produtoPerfil2.codigoOi as p2Codigo,
+perfil2.nuddd as p2Ddd,
+perfil2.qtacessos as p2QtAcessos,
+perfil2.qtacessos * produtoPerfil2.vlPlano as p2VlTotal,
+tipochipPerfil2.decontrato as p2TipoChip,
+produtoPerfil3.codigoOi as p3Codigo,
+perfil3.nuddd as p3Ddd,
+perfil3.qtacessos as p3QtAcessos,
+perfil3.qtacessos * produtoPerfil3.vlPlano as p3VlTotal,
+tipochipPerfil3.decontrato as p3TipoChip,
+produtoPerfil4.codigoOi as p4Codigo,
+perfil4.nuddd as p4Ddd,
+perfil4.qtacessos as p4QtAcessos,
+perfil4.qtacessos * produtoPerfil4.vlPlano as p4VlTotal,
+tipochipPerfil4.decontrato as p4TipoChip,
+produtoPerfil5.codigoOi as p5Codigo,
+perfil5.nuddd as p5Ddd,
+perfil5.qtacessos as p5QtAcessos,
+perfil5.qtacessos * produtoPerfil5.vlPlano as p5VlTotal,
+tipochipPerfil5.decontrato as p5TipoChip,
+produtoPerfil6.codigoOi as p6Codigo,
+perfil6.nuddd as p6Ddd,
+perfil6.qtacessos as p6QtAcessos,
+perfil6.qtacessos * produtoPerfil6.vlPlano as p6VlTotal,
+tipochipPerfil6.decontrato as p6TipoChip,
+produtoPerfil1.vlPlano
+FROM venda venda
+inner join empresa empresa on venda.idempresa = empresa.idempresa 
+left join perfilvenda perfil1 on venda.idvenda = perfil1.idvenda and perfil1.nuperfil = 1 
+left join produto produtoPerfil1 on perfil1.idproduto = produtoPerfil1.idproduto
+left join tipochip tipochipPerfil1 on perfil1.fltipochip = tipochipPerfil1.fltipochip
+left join perfilvenda perfil2 on venda.idvenda = perfil2.idvenda and perfil2.nuperfil = 2 
+left join produto produtoPerfil2 on perfil2.idproduto = produtoPerfil2.idproduto
+left join tipochip tipochipPerfil2 on perfil2.fltipochip = tipochipPerfil2.fltipochip
+left join perfilvenda perfil3 on venda.idvenda = perfil3.idvenda and perfil3.nuperfil = 3
+left join produto produtoPerfil3 on perfil3.idproduto = produtoPerfil3.idproduto
+left join tipochip tipochipPerfil3 on perfil3.fltipochip = tipochipPerfil3.fltipochip
+left join perfilvenda perfil4 on venda.idvenda = perfil4.idvenda and perfil4.nuperfil = 4
+left join produto produtoPerfil4 on perfil4.idproduto = produtoPerfil4.idproduto
+left join tipochip tipochipPerfil4 on perfil4.fltipochip = tipochipPerfil4.fltipochip
+left join perfilvenda perfil5 on venda.idvenda = perfil5.idvenda and perfil5.nuperfil = 5 
+left join produto produtoPerfil5 on perfil5.idproduto = produtoPerfil5.idproduto
+left join tipochip tipochipPerfil5 on perfil5.fltipochip = tipochipPerfil5.fltipochip
+left join perfilvenda perfil6 on venda.idvenda = perfil6.idvenda and perfil6.nuperfil = 6 
+left join produto produtoPerfil6 on perfil6.idproduto = produtoPerfil6.idproduto
+left join tipochip tipochipPerfil6 on perfil6.fltipochip = tipochipPerfil6.fltipochip
+where venda.idvenda = 20]]>
+	</queryString>
+	<field name="idUsuario" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="derazaosocial" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nucnpj" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deendereco" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmbairro" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nucep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmmunicipio" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deuf" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cobMesmoReceita" class="java.lang.String"/>
+	<field name="cobDifReceita" class="java.lang.String"/>
+	<field name="deenderecocob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmbairrocob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmmunicipiocob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deufcob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nucepcob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmgestorconta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nucpfgestorconta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="deemailgestorconta" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nudddfixo" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nutelfixo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nudddcelular" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nutelcelular" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmreplegal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nucpfreplegal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="p1Codigo" class="java.lang.Integer"/>
+	<field name="p1Ddd" class="java.lang.Integer"/>
+	<field name="p1QtAcessos" class="java.lang.Integer"/>
+	<field name="p1VlTotal" class="java.lang.Double"/>
+	<field name="p1TipoChip" class="java.lang.String"/>
+	<field name="p2Codigo" class="java.lang.Integer"/>
+	<field name="p2Ddd" class="java.lang.Integer"/>
+	<field name="p2QtAcessos" class="java.lang.Integer"/>
+	<field name="p2VlTotal" class="java.lang.Double"/>
+	<field name="p2TipoChip" class="java.lang.String"/>
+	<field name="p3Codigo" class="java.lang.Integer"/>
+	<field name="p3Ddd" class="java.lang.Integer"/>
+	<field name="p3QtAcessos" class="java.lang.Integer"/>
+	<field name="p3VlTotal" class="java.lang.Double"/>
+	<field name="p3TipoChip" class="java.lang.String"/>
+	<field name="p4Codigo" class="java.lang.Integer"/>
+	<field name="p4Ddd" class="java.lang.Integer"/>
+	<field name="p4QtAcessos" class="java.lang.Integer"/>
+	<field name="p4VlTotal" class="java.lang.Double"/>
+	<field name="p4TipoChip" class="java.lang.String"/>
+	<field name="p5Codigo" class="java.lang.Integer"/>
+	<field name="p5Ddd" class="java.lang.Integer"/>
+	<field name="p5QtAcessos" class="java.lang.Integer"/>
+	<field name="p5VlTotal" class="java.lang.Double"/>
+	<field name="p5TipoChip" class="java.lang.String"/>
+	<field name="p6Codigo" class="java.lang.Integer"/>
+	<field name="p6Ddd" class="java.lang.Integer"/>
+	<field name="p6QtAcessos" class="java.lang.Integer"/>
+	<field name="p6VlTotal" class="java.lang.Double"/>
+	<field name="p6TipoChip" class="java.lang.String"/>
+	<field name="vlPlano" class="java.lang.Float">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="480" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="800" height="477" backcolor="rgba(255, 255, 255, 0.0)" uuid="dff84bb7-b0ed-4e18-82d1-251c6b36ac3d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="800" height="10" backcolor="#CCCCCC" uuid="51224bd1-1bf3-44e5-940a-6bf80037786d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="275" y="4" width="250" height="16" uuid="190361e4-6f6b-429e-b9fb-7f8da6c921c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[FICHA DE PEDIDO - EMPRESARIAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="13" width="800" height="15" backcolor="rgba(255, 255, 255, 0.0)" uuid="25aeb060-1c69-488b-a217-1542d6a4e376">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="15" width="780" height="16" uuid="44e4f193-e6d3-42d9-87a1-a45289e84320"/>
+				<textElement>
+					<font fontName="FonteOi" size="5.7"/>
+				</textElement>
+				<text><![CDATA[Identificação da Prestadora (O serviço será prestado pela empresa que detém a outorga do SMP no local de ativação do serviço) : OI MÓVEL S.A., com sede no Setor Comercial Norte, quadra 03, Bloco A, Ed. Estação Telefônica – Térreo – Parte 2, Brasília, inscrita no CNPJ sob o nº5.423.963/0001-11; TELEMAR NORTE LESTE S/A, com sede na cidade e estado do Rio de Janeiro, na Rua do Lavradio, n° 71,
+Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="28" width="800" height="8" backcolor="#CCCCCC" uuid="fe7b3acb-f4c1-4c24-bdde-71106313e697">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2" y="28" width="188" height="8" uuid="38d06bfe-e4a4-42af-b05e-20065d2e5f03"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[1. IDENTIFICAÇÃO DA FORÇA DE VENDAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="36" width="800" height="9" backcolor="#FFFFFF" uuid="abd19e21-8016-4bb4-9d48-0a7a20550efd">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="37" width="50" height="8" uuid="e7b697c2-5485-49e7-a299-60bf72810273"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nome do Parceiro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="38" width="130" height="8" uuid="8057e5b1-3f1e-4f77-8468-fdd2d9bc69da"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<text><![CDATA[VALORANCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="37" width="48" height="8" uuid="937d210d-f9a1-4ac6-ac9d-ae3259b484ae"/>
+				<textElement textAlignment="Right">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[ PDV Parceiro:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="38" width="130" height="8" uuid="d1263a45-d088-413e-91e2-a92793fa7f55"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<text><![CDATA[1033292/1480]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="45" width="800" height="8" backcolor="#CCCCCC" uuid="1291db0b-db2a-4abd-b7a6-f4023b2b0783">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2" y="45" width="188" height="8" uuid="c38c7943-4edf-491b-a417-765794e9f837"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[2. IDENTIFICAÇÃO DO CLIENTE]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="53" width="510" height="10" backcolor="#FFFFFF" uuid="827679da-9d06-441f-bac1-4361133129ce">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="55" width="38" height="8" uuid="da85b7c8-c580-4786-9292-93cea16254f4"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Razão Social:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="510" y="53" width="290" height="10" backcolor="#FFFFFF" uuid="6e14c123-ed47-489b-a166-80f558c9c0ec">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="510" y="55" width="14" height="8" uuid="bfc89324-ce8d-4d36-97bd-0471398c0534"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CNPJ:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="55" width="379" height="8" uuid="b0b7176b-e07a-498c-98a3-d6cbf1681c40"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{derazaosocial}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="63" width="103" height="14" backcolor="#FFFFFF" uuid="7410d6ad-232c-40ba-a94f-13a19d414e74">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="63" width="88" height="16" uuid="a2f77db8-b8ce-48a9-86b8-fad48da17197"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Endereço da Empresa  Para Entrega (Receita Fereral) ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="103" y="63" width="100" height="14" backcolor="#FFFFFF" uuid="bcfebcc4-e440-4740-929e-b1e52ee68a0f">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="203" y="63" width="597" height="14" backcolor="#FFFFFF" uuid="c6b08424-4897-4682-9068-b25db71548a4">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="203" y="66" width="37" height="8" uuid="4b43251e-47b1-4421-82e8-b434b1271450"/>
+				<textElement textAlignment="Right">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Logradouro / Nº:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="77" width="190" height="10" backcolor="#FFFFFF" uuid="14b8416f-5137-4a5d-8adc-3873374792a5">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="79" width="18" height="8" uuid="4feea737-c746-49c4-befc-93491c70cb7b"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="190" y="77" width="140" height="10" backcolor="#FFFFFF" uuid="77fe867a-922c-470e-b4d4-7e4ebd0c03c5">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="330" y="77" width="260" height="10" backcolor="#FFFFFF" uuid="111fb7f6-aa54-4dc0-9ab6-4d33ef94f5c5">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="590" y="77" width="210" height="10" backcolor="#FFFFFF" uuid="ddaded36-612c-47e2-bb9b-1baf83aff0b1">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="191" y="79" width="12" height="8" uuid="5be92484-1618-4f33-a958-0df066ea5856"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="79" width="19" height="8" uuid="5d14e807-bf94-4ac5-b996-d41f2f4c47e2"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Cidade:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="591" y="79" width="19" height="8" uuid="96bbb4ad-3429-4814-99b7-845d1ffe9542"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="87" width="330" height="10" backcolor="#FFFFFF" uuid="d7b1baef-b923-4f64-b516-800b4c4b09be">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="429" y="87" width="70" height="10" backcolor="#FFFFFF" uuid="319ceb5d-2c36-40f9-bff1-92dbdc395d1a">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="499" y="87" width="301" height="10" backcolor="#FFFFFF" uuid="dd9c4749-af37-44c9-ba4c-15662d1fc257">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="330" y="87" width="24" height="10" backcolor="#FFFFFF" uuid="779e2060-73f3-45ce-8dff-63848eeac557">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="354" y="87" width="24" height="10" backcolor="#FFFFFF" uuid="6c2c22ee-07b1-4f78-99be-52bfa1878188">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="378" y="87" width="24" height="10" backcolor="#FFFFFF" uuid="7402c0bf-fc7f-454c-9867-f837b7748b64">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="402" y="87" width="27" height="10" backcolor="#FFFFFF" uuid="b067ed5a-787c-419e-b8a3-116cd5c718a2">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="356" y="88" width="9" height="8" uuid="29d0790b-9c14-4e8a-8c4a-0ae886aa7a9c"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[SIM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="405" y="88" width="15" height="8" uuid="c144f816-f9b1-438a-88bf-6aec7e65f2a1"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[NÃO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="333" y="88" width="17" height="8" uuid="c5319fe2-35f2-4283-841f-fc592b8e04b2"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(         )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="381" y="88" width="21" height="8" uuid="763cecb4-1e8c-4118-8330-32cc9abbdb97"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(         )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="88" width="171" height="8" uuid="8e2d0266-51f4-4bd9-bee6-1266343d6f74"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Caso negativo, preencher abaixo]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="97" width="800" height="10" backcolor="#FFFFFF" uuid="4066fb29-12c3-4c43-8d08-ad7663511080">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="107" width="306" height="10" backcolor="#FFFFFF" uuid="35292ca9-4657-4b69-97dc-28b18b5e005b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="109" width="18" height="8" uuid="c4ec6a83-9bd4-43a5-87ec-c3f0c08206a5"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Bairro:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="306" y="107" width="123" height="10" backcolor="#FFFFFF" uuid="a6d56eda-3ba4-4aaf-a4f3-105581d8eecc">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="308" y="109" width="12" height="8" uuid="7231349f-520b-4029-9cca-83c7e100e250"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CEP:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="429" y="107" width="201" height="10" backcolor="#FFFFFF" uuid="3437b574-303e-4fa6-adf4-dfcca212942e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="431" y="109" width="19" height="8" uuid="5b56c144-6797-4d36-94dd-1c4f941c03f4"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Cidade:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="630" y="107" width="170" height="10" backcolor="#FFFFFF" uuid="ba5b157f-514b-4595-99e6-d54037b36e93">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="632" y="109" width="19" height="8" uuid="6853f9c4-d19a-4fcb-94b6-12f76b75c003"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="99" width="37" height="8" uuid="4d4b74f7-7461-4e9c-b424-f7c7360eb226"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Logradouro / Nº:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="117" width="160" height="10" backcolor="#FFFFFF" uuid="05dfb623-e47b-463b-be2f-36fac6c9a359">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="119" width="68" height="8" uuid="69660d7f-af9f-43ef-a76e-496a3976c95d"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[GESTOR DA CONTA da Empresa¹]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="160" y="117" width="450" height="10" backcolor="#FFFFFF" uuid="e029632e-99c0-423d-b0fa-232285fca748">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="162" y="119" width="15" height="8" uuid="66775c27-7f91-4b28-bfb1-50495d80e4cc"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="610" y="117" width="190" height="10" backcolor="#FFFFFF" uuid="f63691bc-c61a-43b5-9d3e-a5b369cdd40c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="610" y="119" width="11" height="8" uuid="37bde0b3-775a-4390-b0ff-08b33f69f919"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="127" width="450" height="10" backcolor="#FFFFFF" uuid="99de8f08-b54d-4d4f-b5c7-152e9b080613">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="129" width="18" height="8" uuid="0d59dcf9-8d71-40e8-90bb-9741b6e9ba30"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[E-mail:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="450" y="127" width="350" height="10" backcolor="#FFFFFF" uuid="fe588d20-9fb7-4564-a705-2b3bcb685fe8">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="452" y="129" width="45" height="8" uuid="373eaf7a-8059-4e91-aa1b-956e853ff2de"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Telefone do Gestor:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="137" width="78" height="10" backcolor="#FFFFFF" uuid="88f86d76-acb9-458d-a06a-b939cc9c784a">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="139" width="58" height="8" uuid="1a6a1307-fdf5-45b4-915d-b53bfdf44d8b"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Telefones para Contato:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="78" y="137" width="228" height="10" backcolor="#FFFFFF" uuid="92435529-4dbd-47b6-9e50-57bdc0712c83">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="70" y="139" width="25" height="8" uuid="76992049-af16-4482-a19e-511dba7cd7ab"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Tel Fixo 1:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="306" y="137" width="284" height="10" backcolor="#FFFFFF" uuid="75ea11f7-6015-4d3d-a44b-7aab125f87f4">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="308" y="139" width="23" height="8" uuid="e42a1228-b7a5-4926-8fd2-9668c4a67cbf"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Tel Fixo 2:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="590" y="137" width="210" height="10" backcolor="#FFFFFF" uuid="c03bf2c0-b967-44c1-acfd-7aac7305bfdb">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="592" y="139" width="37" height="8" uuid="06ddbd8a-c50b-476d-b45d-a2365e07ddc4"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Telefone Celular:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="147" width="590" height="10" backcolor="#FFFFFF" uuid="9d986cd1-3be2-4b02-9ded-6feec932e28c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="149" width="73" height="8" uuid="7a2c38f6-e7cc-409e-b5da-a13be0891a44"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nome do Representante Legal 1:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="590" y="147" width="210" height="10" backcolor="#FFFFFF" uuid="a5101144-6d85-4993-93eb-17057f4676df">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="592" y="149" width="11" height="8" uuid="2a323572-77bf-42b0-8000-32c3b7119149"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="157" width="590" height="10" backcolor="#FFFFFF" uuid="371f332d-c10c-45ff-afcd-8c74bd72ed0d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="159" width="73" height="8" uuid="22ec7304-0ba3-4447-99eb-978f22d62236"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nome do Representante Legal 2:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="590" y="157" width="210" height="10" backcolor="#FFFFFF" uuid="e609b9e3-3380-4cbc-b373-2dd57c687df9">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="592" y="159" width="11" height="8" uuid="4c74c741-eb9d-4fbf-9caa-ecfc4af48a4b"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[CPF:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="89" width="228" height="8" uuid="c477d501-149f-4025-beaf-2f5d3d4e22b4"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Endereço de cobrança será conforme o Endereço da Empresa  (Receita Federal)? ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="167" width="800" height="8" backcolor="#CCCCCC" uuid="bf8fc8f4-4aee-409b-ba52-1b744cf35f83">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="12" y="167" width="178" height="8" uuid="b0e85dd8-97d0-4c18-b8e7-3fd1bf306e2b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[3. DADOS DA CONTRATAÇÃO - PRAZO CONTRATUAL 12 MESES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="36" y="177" width="24" height="8" backcolor="#FFFFFF" uuid="2de4f6fc-64ec-45a9-afdc-4b8d565c1b57">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="62" y="177" width="73" height="8" uuid="ba0e585b-ff91-4424-bb0a-fbde57993ac4"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nº Oi Conta Fatura já existente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="177" width="73" height="8" uuid="90cfa90d-3740-497f-953d-70b904cd39b7"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nova Conta Fatura]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="280" y="177" width="24" height="8" backcolor="#FFFFFF" uuid="fbd18485-5d32-4fdb-ba65-317225554e25">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="450" y="177" width="73" height="8" uuid="03f65b91-4c17-4e67-b7ec-86453218e612"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Data de vencimento (Oi Móvel)  :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="514" y="177" width="5" height="6" uuid="b3af0646-f00d-4f54-b6c1-96f91c14b55d"/>
+				<textElement>
+					<font fontName="FonteOi" size="4.4" isBold="true"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="576" y="177" width="19" height="8" uuid="9f209fdf-c210-4207-89d4-aeab43ec4b45"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(    )    1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="619" y="177" width="19" height="8" uuid="530b5667-1bee-443e-b887-2d143b27147d"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(    )    4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="660" y="177" width="19" height="8" uuid="788c25ed-69f6-4371-a761-0fc7bbaa4fea"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(    )    10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="702" y="177" width="19" height="8" uuid="bc58e944-1a8b-4951-a834-ffbb3506ad6b"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[(    )    14]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="3" y="186" width="190" height="8" uuid="05fcba64-1666-4d8f-9cce-d506cf0bbe41"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[OFERTA CONTRATADA]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="24" y="194" width="353" height="8" backcolor="#CCCCCC" uuid="51a02c4e-3e8b-4401-9a67-dedc3da3aff6">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="449" y="194" width="351" height="8" backcolor="#CCCCCC" uuid="e43d0b17-8305-4056-ac89-53a0c67dec9a">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="91" y="194" width="178" height="8" uuid="f82b0974-b6d1-409a-a8c7-6988698eb412"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Planos de Voz + Pacote de Dados Incluso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="523" y="194" width="178" height="8" uuid="53c783bf-71d3-438d-936b-8faf082be29c"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Planos Somente dados]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="24" y="210" width="48" height="8" backcolor="#FFFFFF" uuid="e94569b0-bfd0-41eb-8610-5105e004bb76">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="194" y="210" width="48" height="8" backcolor="#FFFFFF" uuid="b71f78d4-6555-45e6-9654-93a133111389">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="72" y="210" width="122" height="8" backcolor="#FFFFFF" uuid="973c9b0b-da6f-48d7-8bce-7e5fc28b26cf">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="242" y="210" width="135" height="8" backcolor="#FFFFFF" uuid="145d0586-d338-40bc-94f3-14c592129ad4">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="24" y="218" width="48" height="8" backcolor="#FFFFFF" uuid="23c7a010-0f25-4044-a433-6a1ad06cd609">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="72" y="218" width="122" height="8" backcolor="#FFFFFF" uuid="a577ceaa-4bb8-4c2a-b981-3120e19ffb1d">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="194" y="218" width="48" height="8" backcolor="#FFFFFF" uuid="7a562d70-1206-48db-aad6-f1cf26aa66d0">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="242" y="218" width="135" height="8" backcolor="#FFFFFF" uuid="775b6147-5831-40ed-9e1b-7b4cd4a58811">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="194" y="226" width="48" height="8" backcolor="#FFFFFF" uuid="8251134c-17dc-4a8f-9e76-768b20ac6e5e">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="242" y="226" width="135" height="8" backcolor="#FFFFFF" uuid="8d9d9320-cf34-4ba4-9012-2a22f9c4d7db">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="619" y="210" width="48" height="8" backcolor="#FFFFFF" uuid="db52b94c-8d0c-41bb-ab24-b5721ccc9f6e">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="667" y="210" width="133" height="8" backcolor="#FFFFFF" uuid="b5f63269-90d6-4637-9975-0baaf89f8a27">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="497" y="210" width="122" height="8" backcolor="#FFFFFF" uuid="afe70865-b9d8-4016-bb9a-5d0d64a4de0f">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="449" y="210" width="48" height="8" backcolor="#FFFFFF" uuid="af5c6c94-ad46-4415-9cfa-8234ed6df9e0">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="449" y="218" width="48" height="8" backcolor="#FFFFFF" uuid="21a93478-43d6-49f0-af45-89b4bd87fef1">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="497" y="218" width="122" height="8" backcolor="#FFFFFF" uuid="4c5e90a3-2860-48c6-aa9d-5f9b3df24d37">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="32" y="211" width="32" height="8" uuid="03ac7be7-81b6-4dbf-8f6a-1eadbae11391"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="219" width="32" height="8" uuid="dd8517ca-a67e-49e6-a6ff-ef7ec2f6ecc4"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="211" width="32" height="8" uuid="a54d0442-ff2f-4088-9618-8adc872fe841"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="219" width="32" height="8" uuid="75129556-8a2f-44e7-a3f1-ed0de44f8273"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="227" width="32" height="8" uuid="9f0ae5fa-fe8f-4dc2-b88a-4652a12f1932"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="211" width="117" height="8" uuid="6f02238a-4c9c-4ff8-82d0-e671a66f71b0"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR CONTROLE + 100MB (4G)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="219" width="120" height="8" uuid="647e4524-f936-470d-b05c-c4cf74bc4215"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR CONTROLE AVANÇADO + 500 MB (4G)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="211" width="114" height="8" uuid="921cc10c-75cf-4290-bc2f-e32b0cc04580"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR + 5GB (4G)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="219" width="114" height="8" uuid="f6f5bb04-3736-4b81-ab19-b28b4344749c"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR AVANÇADO + 15GB (4G)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="227" width="114" height="8" uuid="91f1760f-ff69-4352-9376-4b1d3de32858"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR TOP + 15GB (4G)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="211" width="32" height="8" uuid="fc1317b5-fe4e-46c7-ac26-b0556a811d21"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="458" y="219" width="32" height="8" uuid="896c1410-5700-4117-a713-a9fe8d2c23b1"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="627" y="211" width="32" height="8" uuid="daaf74bf-1487-4d19-a82e-f2d2e562bbfe"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="211" width="114" height="8" uuid="e644de2d-be78-4613-bd58-3e41d94be9f5"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI VELOX 3G]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="219" width="114" height="8" uuid="8a65a8c7-501a-41eb-b41d-5f8058db7b15"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI INTERNET MÓVEL 4G]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="669" y="211" width="114" height="8" uuid="9cfe0828-f352-4ee6-95bb-b50b1acc450b"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[OI SOMENTE DADOS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="24" y="202" width="48" height="8" backcolor="#CCCCCC" uuid="b7e4b468-36d7-4681-9bc3-55ac18a57cbd">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="72" y="202" width="122" height="8" backcolor="#CCCCCC" uuid="79ea2517-4582-48e9-8538-fe96e8b5cf52">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="194" y="202" width="48" height="8" backcolor="#CCCCCC" uuid="7266dcdb-e885-4452-bd3d-7d2a9eb2f955">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="242" y="202" width="135" height="8" backcolor="#CCCCCC" uuid="75a84b7d-f607-4d8e-be5e-fa33881e86bc">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="27" y="202" width="42" height="8" uuid="3ebce013-6895-4a70-b936-be446a5e66ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="111" y="202" width="42" height="8" uuid="dc834db4-8c7e-4473-babf-143a875e08db"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="197" y="202" width="42" height="8" uuid="c13eed62-8bee-4148-8826-c6f5dcf95314"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="282" y="202" width="42" height="8" uuid="645504a1-8c27-41ac-b1fa-6184109b0abb"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oferta]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="449" y="202" width="48" height="8" backcolor="#CCCCCC" uuid="db0dd29a-c08e-4d00-b01f-f70b816c7b05">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="497" y="202" width="122" height="8" backcolor="#CCCCCC" uuid="8d5e9308-1bf3-409e-b304-904ece6ebebf">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="619" y="202" width="48" height="8" backcolor="#CCCCCC" uuid="ccc6aace-2f07-431b-b4af-be42185aa9f8">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="667" y="202" width="133" height="8" backcolor="#CCCCCC" uuid="97c14b5d-8914-4054-b432-bb3a132b2de7">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="452" y="202" width="42" height="8" uuid="99c0ed17-e902-4252-80a9-554efd2552f4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="536" y="202" width="42" height="8" uuid="465fce0e-03d3-40c1-a705-c5e2bbf2e2f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="622" y="202" width="42" height="8" uuid="4e8be922-5bde-41ef-80b9-c6c0f76ab7b2"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="707" y="202" width="42" height="8" uuid="b7cdd31b-e94c-4fff-a1d6-6a397b1015ab"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="236" width="45" height="8" uuid="0d044ce9-f638-4e6f-9ae5-96adedae5ea5"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Linhas Portadas?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="236" width="82" height="8" uuid="5c18593c-2b0b-460f-9806-e6effbc5bfd7"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Total de acessos: _____]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="182" y="236" width="24" height="8" backcolor="#FFFFFF" uuid="bea9e4eb-ab0e-47ac-97ac-0ffa9932e66d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="196" y="236" width="9" height="8" uuid="988672bf-988e-4186-af76-4b93e93df492"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="230" y="236" width="24" height="8" backcolor="#FFFFFF" uuid="3fbf91d4-e859-4555-94d4-342d7ac1d451">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="244" y="236" width="9" height="8" uuid="609c9a5f-fc12-4276-84c7-cc1a6d9b6bcb"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Não]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="276" y="236" width="90" height="8" uuid="73053fc8-5db3-4fb0-96b2-79c8ad42e3a3"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Total de Acessos Portados: _____]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="236" width="90" height="8" uuid="29e172f9-bb1c-494f-8ea5-5853346ec89a"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Ver Ficha complementar de Portabilidade]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="248" width="41" height="8" backcolor="#CCCCCC" uuid="b71e587e-c184-4e7c-92bb-10c7e8a22c26">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="248" width="59" height="8" backcolor="#CCCCCC" uuid="bb510b40-cbe8-4d01-8915-dee66c82fe93">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="248" width="87" height="8" backcolor="#CCCCCC" uuid="12fba672-5a93-40b5-9ae3-15f16a8d544c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="248" width="65" height="8" backcolor="#CCCCCC" uuid="7f711715-728c-4b20-a19e-507073895bb5">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="248" width="65" height="8" backcolor="#CCCCCC" uuid="db3acb84-be70-47c6-bbca-f19f072d4044">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="248" width="104" height="8" backcolor="#CCCCCC" uuid="513007e6-b147-482e-a0e7-c6e112a19fc1">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="248" width="141" height="8" backcolor="#CCCCCC" uuid="ad463dc8-eca6-4ccb-802d-f79d2767d69d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="248" width="57" height="8" backcolor="#CCCCCC" uuid="90261835-028a-4b86-b200-eb12e61347e8">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="248" width="92" height="8" backcolor="#CCCCCC" uuid="7c236f97-5b08-456c-8bbf-a6537ac926cd">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="256" width="41" height="8" backcolor="#FFFFFF" uuid="e911181e-6e70-4616-b628-0469f8aeb12c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="256" width="59" height="8" backcolor="#FFFFFF" uuid="a345d6a1-d42f-4481-9f28-2810f76f2cfa">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="256" width="87" height="8" backcolor="#FFFFFF" uuid="7073ff74-bcea-47fe-83eb-9be5862965ae">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="256" width="65" height="8" backcolor="#FFFFFF" uuid="45497683-ac4d-4c53-ab3a-60adfc29065b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="256" width="65" height="8" backcolor="#FFFFFF" uuid="daed6a4b-2b84-4512-88b3-e56832b9a702">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="256" width="104" height="8" backcolor="#FFFFFF" uuid="74d7c9f3-0d13-4851-ad51-f36ba630ea1b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="256" width="141" height="8" backcolor="#FFFFFF" uuid="3102f57a-fc7e-4edf-a8ef-7edd4eabc39e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="256" width="62" height="8" backcolor="#FFFFFF" uuid="9a7df501-8a26-4252-ada3-9c9da5029b47">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="256" width="92" height="8" backcolor="#FFFFFF" uuid="fdd0d9f7-837c-40a1-8f1b-dee134dc6c6b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="264" width="41" height="8" backcolor="#FFFFFF" uuid="9d9c5eab-1a06-4bb9-8d9e-62952ef8a5fb">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="264" width="59" height="8" backcolor="#FFFFFF" uuid="bc7c7ba7-a046-438f-852a-315495a65a18">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="264" width="87" height="8" backcolor="#FFFFFF" uuid="ed6cbfd5-d9fb-4ea8-aa92-7b953bf08560">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="264" width="65" height="8" backcolor="#FFFFFF" uuid="8097eed3-5321-4b8c-8597-7717dfaef03a">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="264" width="65" height="8" backcolor="#FFFFFF" uuid="0b41c6a3-135a-47ba-a6e8-053848d613ac">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="264" width="104" height="8" backcolor="#FFFFFF" uuid="b3911713-301e-4383-961b-6c860d3ba41b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="264" width="141" height="8" backcolor="#FFFFFF" uuid="8d7b249d-ae8a-42a2-80d9-154ee97f36d6">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="264" width="62" height="8" backcolor="#FFFFFF" uuid="e235b46a-914d-4ae6-ad12-c1c64b3f6b84">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="264" width="92" height="8" backcolor="#FFFFFF" uuid="5606b2b7-937d-4d1b-b2a6-a09ae9c6eec3">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="272" width="41" height="8" backcolor="#FFFFFF" uuid="e09d50da-f8e3-4cd2-b422-5caabe494c24">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="272" width="59" height="8" backcolor="#FFFFFF" uuid="b725a7b5-bef8-44e4-aca5-281fb69598c5">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="272" width="87" height="8" backcolor="#FFFFFF" uuid="91c7c262-21fd-4f0e-b94e-0680203bfd8b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="272" width="65" height="8" backcolor="#FFFFFF" uuid="2cb1ee32-2526-43ef-b17c-432e3a98854d">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="272" width="65" height="8" backcolor="#FFFFFF" uuid="d31bb1de-29d3-43a2-a42f-b85eda342773">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="272" width="104" height="8" backcolor="#FFFFFF" uuid="a482053f-832d-4c7f-adf4-525c6b4b0618">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="272" width="141" height="8" backcolor="#FFFFFF" uuid="13d8f962-c340-4613-94a0-e62fea4814dc">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="272" width="62" height="8" backcolor="#FFFFFF" uuid="6accd145-fc15-472d-b33c-a6003acd5ebf">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="272" width="92" height="8" backcolor="#FFFFFF" uuid="e10edd86-9fa5-4a3e-98b1-4cd2faf229f4">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="280" width="41" height="8" backcolor="#FFFFFF" uuid="46178108-e2fc-4190-87dc-1ad1d7992ab1">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="280" width="59" height="8" backcolor="#FFFFFF" uuid="5b94914f-2152-4cbf-9060-72a6f890458a">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="280" width="87" height="8" backcolor="#FFFFFF" uuid="adb8119f-ee7c-4173-94f6-092a60d94e80">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="280" width="65" height="8" backcolor="#FFFFFF" uuid="d727d330-abbd-43c7-98f7-9df9deb4adfb">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="280" width="65" height="8" backcolor="#FFFFFF" uuid="af97e305-b220-4d4a-bfc2-d9cc85c85c52">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="280" width="104" height="8" backcolor="#FFFFFF" uuid="0b141db2-9edb-4d68-ae5f-fa427510389e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="280" width="141" height="8" backcolor="#FFFFFF" uuid="65b709a9-0f07-4785-a779-0d97fd8e5fdc">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="280" width="62" height="8" backcolor="#FFFFFF" uuid="6f581d36-3eb0-4e90-8c12-df2b239ac7b4">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="280" width="92" height="8" backcolor="#FFFFFF" uuid="3c86536c-b9c7-4cb2-8352-5cf0917ccc97">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="288" width="92" height="8" backcolor="#FFFFFF" uuid="52057c83-b90f-4b46-a39f-1fc06d3470c9">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="288" width="57" height="8" backcolor="#FFFFFF" uuid="4fd0cc3b-f4a8-4025-8d31-ab396dc80104">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="288" width="141" height="8" backcolor="#FFFFFF" uuid="ebc25b5b-784f-41c2-b326-7822e2cd8c2e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="288" width="103" height="8" backcolor="#FFFFFF" uuid="83042b06-3072-4f2b-b047-7764a9b9e996">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="288" width="65" height="8" backcolor="#FFFFFF" uuid="b11bbce2-8ed8-4270-b954-20f2fa0cf89c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="288" width="65" height="8" backcolor="#FFFFFF" uuid="f045893e-c0f3-46d7-80e8-125bf4159951">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="288" width="87" height="8" backcolor="#FFFFFF" uuid="9360da7c-78be-4136-9790-3c524d650cb8">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="288" width="59" height="8" backcolor="#FFFFFF" uuid="d17a7964-6a16-43c0-8d50-b55a69c1b6d4">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="288" width="41" height="8" backcolor="#FFFFFF" uuid="e3de5d00-bfd2-4f96-b8c6-4b519e3cbf23">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="296" width="41" height="8" backcolor="#FFFFFF" uuid="66d75365-5a34-409e-81d2-88e9b65af2b2">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="41" y="296" width="59" height="8" backcolor="#FFFFFF" uuid="e1049a9f-cfb0-4062-8925-33d21faac36c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="100" y="296" width="87" height="8" backcolor="#FFFFFF" uuid="5c2a5f14-c542-4ba6-b2f1-e28c1c8baf9e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="187" y="296" width="65" height="8" backcolor="#FFFFFF" uuid="477da93c-b674-4903-a6d0-76db35dfab23">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="252" y="296" width="65" height="8" backcolor="#FFFFFF" uuid="c8a444e1-8837-4817-b116-b2f06defa2cb">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="317" y="296" width="104" height="8" backcolor="#FFFFFF" uuid="fe3aff61-eacf-4c8e-95dd-65775aaa96f3">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="296" width="141" height="8" backcolor="#FFFFFF" uuid="e5cf80e0-4d9c-490a-b10b-e2963f21c2cb">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="561" y="296" width="62" height="8" backcolor="#FFFFFF" uuid="8ee84a4a-6933-4690-b7ac-4182ae7008fc">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="618" y="296" width="92" height="8" backcolor="#FFFFFF" uuid="a0eeddbf-a61c-4743-a85f-d58ea958f797">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="257" width="20" height="8" uuid="669ad2f6-4d85-4df8-95ba-1c4f64be36a0"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="265" width="20" height="8" uuid="3d55c19c-5138-4b13-b249-12702aaeb9e0"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="273" width="20" height="8" uuid="08ec558c-9189-448e-b8cd-8f0bd805a67a"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="281" width="20" height="8" uuid="6072d645-9604-4ea5-8704-f6bbaa0f3837"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="289" width="20" height="8" uuid="25297c5d-bc58-4ee9-98df-e3d2664d8ce9"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="297" width="20" height="8" uuid="ca960bcf-bc9d-4f05-b0ba-776b42c1c6e2"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[P6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="249" width="20" height="8" uuid="301b950f-cb65-485c-8838-16948088476a"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Perfil(A)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="249" width="59" height="8" uuid="ee8210d9-2861-4078-b256-d89fd21c8896"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Cód. Oferta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="249" width="30" height="8" uuid="2981579f-591b-45a3-8e20-ae71c8d78e07"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[DDD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="206" y="249" width="30" height="8" uuid="c797a990-ddef-4b49-b674-3f521d78e124"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Qtd Acessos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="249" width="52" height="8" uuid="0efb62dc-c52c-4bcf-b6a4-d6b822530658"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Assinatura Final (R$)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="249" width="52" height="8" uuid="2333c243-075f-4522-891e-e5525606aa7b"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Franquia Oi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="446" y="249" width="89" height="8" uuid="fcea2496-9f2b-4414-99d9-9c434c0f520d"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Modelo do Chip/Minimodem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="563" y="249" width="53" height="8" uuid="0a02f315-eca8-46e8-97a4-c18f68082ad4"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Valor Chip/Mini modem ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="620" y="249" width="90" height="8" uuid="fa8bf2b4-2f68-4d88-96b8-1948703a1369"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Forma de Pagamento (Avista ou 24X)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="308" width="420" height="8" backcolor="#CCCCCC" uuid="2d2d1dd6-6be1-4626-aa87-7d5c5e0f4717">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="308" width="380" height="8" backcolor="#CCCCCC" uuid="55ffd131-3c9e-4a22-b31a-4f846c8c3d97">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2" y="309" width="178" height="8" uuid="ed3e5cd1-9971-443c-bc54-b9fa37f89008"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="FonteOi" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[MINI MODEM PARA OS PLANOS VELOX 3G E INTERNET MÓVEL 4G]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="422" y="309" width="178" height="8" uuid="0350da2b-545f-4552-934d-5c1378fb90f4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="FonteOi" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DADOS DE APARELHO (PARA COMPRA NO CARTÃO DE CREDITO)]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="316" width="420" height="22" backcolor="#FFFFFF" uuid="4c3f1507-e46c-43c9-8fdc-1b7aa63cfe24">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="420" y="316" width="380" height="22" backcolor="#FFFFFF" uuid="6f061bb4-37d3-474d-9147-955adc75a9cc">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="41" y="319" width="87" height="8" uuid="aef52ed0-fb24-4d9c-b283-c2942d235710"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Pedido com Mini Modem ?]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="329" width="354" height="8" uuid="1a943e0a-5869-44fb-a546-95249575bf1c"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nº Pedido do Minimodem no Portal de Vendas B2B:   ____________________ Nº Pedido do Minimodem no Vitual Zap:   ____________________]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="182" y="319" width="24" height="8" backcolor="#FFFFFF" uuid="15946408-d155-45f3-8790-b83f88c5fe35">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="208" y="319" width="9" height="8" uuid="8279c63d-51f4-4f12-89bd-c0ba8fca43ec"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="272" y="319" width="24" height="8" backcolor="#FFFFFF" uuid="afe4370f-410c-41a3-97b7-26c2aa8f24d0">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="298" y="319" width="9" height="8" uuid="db9610a3-ee03-4b38-a543-60ecd783b337"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Não]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="319" width="87" height="8" uuid="7b3df4c7-c4e6-46bd-97c6-d1d0ecc2d653"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Pedido com Aparelho?]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="548" y="319" width="24" height="8" backcolor="#FFFFFF" uuid="465ef799-7070-447f-9d45-bca40d959709">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="574" y="319" width="9" height="8" uuid="fedfd418-143c-42f6-a676-9f8d205e44e9"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="598" y="319" width="24" height="8" backcolor="#FFFFFF" uuid="538e4028-c0ce-4e71-b47c-b3d15e102d8b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="624" y="319" width="9" height="8" uuid="220b0fa5-7a0a-416d-b8bc-e30f82547304"/>
+				<textElement>
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Não]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="437" y="329" width="353" height="8" uuid="db3c6370-0292-4608-acad-65e5499d44ff"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7"/>
+				</textElement>
+				<text><![CDATA[Nº Pedido Aparelhos no Virtal Zap: ___________________]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="338" width="800" height="142" backcolor="#FFFFFF" uuid="d7da9ce3-15ee-42b7-9326-c15b2818583b">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="340" width="799" height="8" uuid="5a47ed6e-2dad-4a59-9187-72872aa30b99"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Todos os campos são de preenchimento OBRIGATÓRIO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="347" width="799" height="133" uuid="89000a29-0b8f-4107-a26b-a4224bfd3584"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="tw_cent_mt_regular" size="6" isBold="false"/>
+					<paragraph lineSpacing="Proportional" lineSpacingSize="1.3"/>
+				</textElement>
+				<text><![CDATA[1. O Endereço de entrega dos Chips ou aparelhos deverá ser obrigatoriamente o endereço do CNPJ da empresa registrado na Receita Federal e Secretaria da Fazenda;2. Endereço de cobrança: o cliente poderá solicitar que suas contas/faturas sejam entregues no endereço do CNPJ ou em outro endereço que desejar; 3. Fica a Oi autorizada a escolher outra data de vencimento diferente da aqui escolhida sempre que, durante o cadastro, não estiver disponível no sistema a data solicitada pelo cliente. Ficará a cargo do cliente entrar em contato com o Atendimento Empresarial Oi posteriormente para solicitar a data de vencimento que melhor lhe convier; 4. O Gestor da Conta da empresa é o responsável pela administração das linhas da sua Empresa. Ele terá um atendimento direcionado no Atendimento Empresarial Oi e acesso a todos os serviços oferecidos (Oi Mais Empresa, Configuração de Roaming, DDD/DDI, GPRS, Caixa Postal etc.).
+<br>O índice de reajuste aplicável ao SMP é o IGP-DI – Índice Geral de Preços, Fundação Getúlio Vargas, ou outro que vier a substituí-lo; e índice de reajuste aplicável ao STFC é o Índice de Serviços de Telecomunicações – (IST). Caso ocorra reajuste, o novo valor será comunicado previamente aos usuários. <b>O Período de fidelização é de <br>12 meses;decorrido este prazo, os benefícios da Oferta poderão ser cancelados mediante comunicação prévia com pelo menos 30 (trinta) dias de antecedência.Caso o cliente solicite o cancelamento da Oferta antes do término do prazo de fidelização, o mesmo deverá pagar multa por linha contratada de R$ 300, <br>proporcional (pró-rata) ao período de fidelização contratado.</b>
+<br>A solicitação de Débito Automático deverá ser feita diretamente pelo cliente a um dos nossos Bancos Conveniados: Banco do Brasil, Bradesco, Caixa Econômica Federal, Unibanco, Itaú, Real/ABN, Banco Mercantil do Brasil e Banese.
+<br><b>Atenção Cliente: Verifique se todas as informações estão de acordo com a negociação; não deixe campos em branco;  Assine o documento exija uma cópia para futura referência.</b>
+<br>Identificação das Prestadoras (O serviço SMP será prestado pela empresa que detém a outorga do SMP no local de ativação do serviço/ O serviço STFC será prestado pela empresa que detém a outorga do STFC no local de originação da chamada).
+<br>OI MÓVEL S.A., com sede no Setor Comercial Norte, quadra 03, Bloco A, Ed. Estação Telefônica – Térreo – Parte 2, Brasília, inscrita no CNPJ sob o nº 05.423.963/0001-11, TELEMAR NORTE LESTE S/A, com sede na cidade e estado do Rio de Janeiro, na Rua do Lavradio, n° 71, Centro, inscrita no CNPJ sob o n° 33.000.118/0001-
+<br>79.
+<br><b>Para a compra de aparelhos ou dispositivos, confira as regras: atraves do Portal de vendas do B2B Oi, você pode parcelar em até 24vezes e atraves do site Virtual Zap do parceiro Alleid em até 10 vezes.
+<br>Mais informações sobre a oferta, tarifas e da politica de uso e bloqueio de cada Plano , consulte os regulamentos no site da Oi em: http://www.oi.com.br/oi/oi-pra-empresas/termos-e-contratos.
+<br>Oferta válida para o período contratado conforme Regulamento e Sumário disponível no site: www.oi.com.br.</b>]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="243" y="67" width="548" height="8" uuid="73f7d583-8839-4d20-aefb-e505b5cfcbe1"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deendereco}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="525" y="55" width="144" height="8" isPrintInFirstWholeBand="true" uuid="36c501c4-ff85-4b84-9f14-ac1b0e7c546e"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucnpj}.substring( 0, 2 )+'.'+$F{nucnpj}.substring( 2, 5 )+'.'+$F{nucnpj}.substring( 5, 8 )+'/'+$F{nucnpj}.substring( 8, 12 )+'-'+$F{nucnpj}.substring( 12, 14 )]]></textFieldExpression>
+				<patternExpression><![CDATA[$F{nucnpj}.substring( 0, 3 )]]></patternExpression>
+			</textField>
+			<textField>
+				<reportElement x="20" y="79" width="157" height="8" uuid="caaf424e-bec8-48be-bec6-dfbeb92c7da9"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmbairro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="79" width="114" height="8" uuid="58c09bec-a0c3-43a1-a8a2-5e71d0f6014f"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucep}.substring( 0, 2 )+'.'+$F{nucep}.substring( 2, 5 )+'-'+$F{nucep}.substring( 5, 8 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="79" width="240" height="8" uuid="bf47c501-b7b2-4098-888d-4cac1d278242"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmmunicipio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="610" y="79" width="144" height="8" isPrintInFirstWholeBand="true" uuid="12983c0d-8505-476c-a159-1d06ace24755"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deuf}]]></textFieldExpression>
+				<patternExpression><![CDATA[$F{nucnpj}.substring( 0, 3 )]]></patternExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="88" width="12" height="8" uuid="98cd8dcf-918b-400f-a627-2ee765015d73"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cobMesmoReceita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="88" width="12" height="8" uuid="89281e05-b88c-49b5-ab03-aa37b0b178a7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cobDifReceita}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="39" y="99" width="741" height="8" uuid="266aac6a-66c7-41b7-be56-e408dc8fcffa"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deenderecocob}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="109" width="157" height="8" uuid="3ee346f1-34ca-495f-a14f-2f42c9d5582b"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmbairrocob}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="320" y="109" width="108" height="8" uuid="0e433784-0731-45a2-8b37-380e276e44ba"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucepcob}.substring( 0, 2 )+'.'+$F{nucepcob}.substring( 2, 5 )+'-'+$F{nucepcob}.substring( 5, 8 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="450" y="109" width="177" height="8" uuid="9f2ae33f-3115-4932-ba0d-882571cddbaf"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmmunicipiocob}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="651" y="109" width="138" height="8" uuid="e75948d8-e613-4df0-9268-58e285bf452a"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deufcob}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="167" y="119" width="426" height="8" uuid="622a4712-f5cd-4d74-a034-6363b65f5b59"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmgestorconta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="621" y="119" width="114" height="8" uuid="f8ca08d3-2a63-4b29-aec0-0e35b851a8d5"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucpfgestorconta}.substring( 0, 3)+'.'+$F{nucpfgestorconta}.substring( 3, 6 )+'.'+$F{nucpfgestorconta}.substring( 6, 9 )+'-'+$F{nucpfgestorconta}.substring(9, 11 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="20" y="129" width="234" height="8" uuid="a2370eeb-8522-4da9-a4b5-83adad218b81"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deemailgestorconta}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="497" y="129" width="177" height="8" uuid="ad9ffd0a-6f35-49e3-9226-8b69e984a959"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{nudddfixo}+")"+$F{nutelfixo}.substring( 0,4)+"-"+$F{nutelfixo}.substring( 4,8)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="94" y="139" width="177" height="8" uuid="c8033782-7fa9-4445-a016-3150f69d4f1d"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{nudddfixo}+")"+$F{nutelfixo}.substring( 0,4)+"-"+$F{nutelfixo}.substring( 4,8)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="629" y="139" width="131" height="8" uuid="df873586-7d54-42df-bd16-8a96405e6488"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{nudddcelular}+")"+$F{nutelcelular}.substring( 0,4)+"-"+$F{nutelcelular}.substring( 4,8)]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="75" y="149" width="426" height="8" uuid="27e7b9dc-ee2c-4c46-a451-406cc9fdda05"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmreplegal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="603" y="149" width="114" height="8" uuid="f2cc4e15-4163-4435-8f1b-d913c5169c61"/>
+				<textElement>
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucpfreplegal}.substring( 0, 3)+'.'+$F{nucpfreplegal}.substring( 3, 6 )+'.'+$F{nucpfreplegal}.substring( 6, 9 )+'-'+$F{nucpfreplegal}.substring(9, 11 )]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="258" width="59" height="7" uuid="8f035f13-d565-4d0b-a8ca-dd0f04777d61"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="258" width="87" height="7" uuid="544bf8d7-eda9-4d40-80a3-0f7c4e787de1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="258" width="65" height="7" uuid="3fc47fc8-60f2-492b-9af3-bfa524ffd217"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="258" width="65" height="7" uuid="db8ccd6b-0258-4897-9c4f-14edb4001b94"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="258" width="141" height="7" uuid="c5886c1a-a075-471b-ba66-29f710d92b0e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1TipoChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="266" width="59" height="7" uuid="30eda6ca-42d5-4f55-a696-271f905d82bf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="274" width="59" height="7" uuid="8458ee52-07c9-4047-b7d9-51f674afd622"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="282" width="59" height="7" uuid="e8173135-1e67-48dd-910d-a2575452e73e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="290" width="59" height="7" uuid="de575db0-c886-4186-9ad4-aea08eb53854"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="41" y="298" width="59" height="7" uuid="c786a010-c320-4fe8-af4e-8ff3ca8e63fe"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6Codigo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="266" width="87" height="7" uuid="b62f2e07-4cae-4045-83d0-22bf68982294"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="274" width="87" height="7" uuid="9b60585d-d723-4204-8c95-219733950f4d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="282" width="87" height="7" uuid="13abe2dd-5819-4059-810e-58246383759e"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="290" width="87" height="7" uuid="4343b1ca-d597-4116-8883-1d48a03830ae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="100" y="298" width="87" height="7" uuid="e6024fff-095b-4769-8f79-e3d0cdd20cb7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6Ddd}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="266" width="65" height="7" uuid="bed8620a-b41c-4639-b265-c9d13b7a8cd7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="274" width="65" height="7" uuid="defe8c5b-41ad-4d19-9863-62e2b89bf05c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="282" width="65" height="7" uuid="7bf5a7d9-2726-4ea9-ba43-6e90ee4c30ef"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="290" width="65" height="7" uuid="f2940c2f-95c5-4c65-b276-f1b85239e5df"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="187" y="298" width="65" height="7" uuid="09dccbf6-78b1-49db-b827-a5696200da45"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6QtAcessos}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="266" width="65" height="7" uuid="93339a4f-ee0d-4820-82a3-5017e6a0f360"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="274" width="65" height="7" uuid="dc911c7d-eb9a-40e1-a40e-516bfbc33d18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="282" width="65" height="7" uuid="f2b6853d-8673-4290-90aa-a9b2c5b2cad1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="290" width="65" height="7" uuid="e17b558d-4d1f-4d30-b277-520c686040e4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="252" y="298" width="65" height="7" uuid="bc34fc01-366f-4634-bee6-ea2a8c5b6d0c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6VlTotal}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="266" width="141" height="7" uuid="3e224fb4-31b2-484e-87e4-72d7bfec8a57"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2TipoChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="274" width="141" height="7" uuid="03f4fff5-9ad1-4b38-92dc-f56307c162b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3TipoChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="282" width="141" height="7" uuid="72d5a393-4a02-45b3-a476-38f2508b6341"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4TipoChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="290" width="141" height="7" uuid="28dd269c-edd2-4c67-90ba-d0c85fb3e88d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5TipoChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="420" y="298" width="141" height="7" uuid="d66d6c0f-d9c3-4d1b-ab69-cd9fff9e536b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6TipoChip}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="177" width="24" height="8" uuid="d4252523-e911-4f89-a2aa-58d4db9e514a"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="272" y="319" width="24" height="8" uuid="49e1c757-def9-4642-921a-b186543973b7"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="598" y="319" width="24" height="8" uuid="7cae74dc-9b99-4785-85b7-47b36cd025dd"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+		</band>
+		<band height="554">
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="7" width="800" height="543" backcolor="rgba(255, 255, 255, 0.0)" uuid="c9dc9e2f-5c83-4504-bbad-a64d734cb5c2">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="800" height="124" backcolor="rgba(255, 255, 255, 0.0)" uuid="42050460-fa93-422a-bee0-f3f186596420">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="139" width="103" height="8" backcolor="#CCCCCC" uuid="e5730d8d-79f5-49de-80a7-e3fed9056102">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<break>
+				<reportElement x="0" y="5" width="100" height="1" uuid="0eab7de5-f297-4369-9290-f0bebb5b5e2a"/>
+			</break>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="103" y="139" width="697" height="8" backcolor="#CCCCCC" uuid="48b09809-8bca-449b-8404-d29e81925f34">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="147" width="275" height="8" backcolor="#FFFFFF" uuid="6fd5026a-be84-4eaa-be3e-22256fc842dd">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="275" y="147" width="253" height="8" backcolor="#FFFFFF" uuid="2767af99-a28a-40b4-9896-1c96f599fc50">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="528" y="147" width="272" height="8" backcolor="#FFFFFF" uuid="880e6b76-6756-4fb0-af3e-d0685578890e">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="155" width="275" height="222" backcolor="#FFFFFF" uuid="513d37a4-0e52-4ab9-8772-c2460f646968">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="275" y="155" width="253" height="222" backcolor="#FFFFFF" uuid="f9e27e1a-9cb9-4170-8b20-f48a874940f0">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="528" y="155" width="272" height="222" backcolor="#FFFFFF" uuid="64f35d68-e330-49c7-b632-347ac5a8f819">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="139" width="103" height="8" uuid="36e31285-5325-42d6-b6da-7580d0f42368"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Condições gerais:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="103" y="139" width="697" height="8" uuid="929ffad9-cbf5-4264-b413-d61081caa294"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Autorizo expressamente que os valores cobrados a título de tributos, que forem recolhidos indevidamente aos Estados ou Municípios, sejam recuperados pela Prestadora junto aos Estados e Municípios competentes.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="147" width="274" height="8" uuid="661a1ad6-3b9a-407d-89b2-6a8318a97748"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR CONTROLE; OI MAIS CELULAR CONTROLE AVANÇADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="275" y="147" width="253" height="8" uuid="b91b934d-f95c-47b7-9664-5e748d4b4b71"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[OI MAIS CELULAR; OI MAIS CELULAR AVANÇADO;OI MAIS CELULAR TOP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="528" y="147" width="271" height="8" uuid="496b7685-2347-4b97-961e-3cadf4a947b0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[DADOS: OI VELOX 3G; OI INTERNET MÓVEL 4G; OI SOMENTE DADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="275" y="155" width="253" height="195" uuid="b24ab543-e03b-4d1e-b523-444eb01dbbef"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[• Oferta destinadas a clientes que desejam um plano  Individual, sem se preocupar com as chamadas e/ou limitação de número máximo de acessos contratados. 
+• Franquia de dados para acesso à internet a partir da estação móvel ativada na Oferta. Pacote compatível com tecnologia 4G, 3G e 2G de acordo com a disponibilidade de rede. Após o esgotamento da franquia do pacote haverá redução de velocidade de download para até 64 Kbps.
+• Estas ofertas possuem política de volume médio do uso deste tipo de tráfego, para esta oferta, e restrição de uso inadequado.  A Oi se reserva o direito de cancelar os benefícios da oferta e/ou bloquear o serviço dos acessos para os clientes nas seguintes condições:
+• Clientes que excederem o limite mensal de 10.000 (dez mil) minutos em ligações locais e LDN para celulares Oi e Fixo de qualquer operadora e/ou excederem o limite mensal em ligações local e LDN para outras operadoras de 450 (quatrocentos e cinquenta) minutos para a oferta Oi Mais Celular;
+• Clientes que excederem o limite mensal de 10.000 (dez mil) minutos em ligações locais e LDN para celulares Oi e Fixo de qualquer operadora e/ou excederem o limite mensal em ligações local e LDN para outras operadoras de 750 (setecentos e cinquenta) minutos para a oferta Oi Mais Celular Avançado;
+• Clientes que excederem o limite mensal de 10.000 (dez mil) minutos em ligações locais e LDN para celulares Oi e Fixo de qualquer operadora e/ou excederem o limite mensal em ligações local e LDN para outras operadoras de e 1.000 (um mil) minutos e/ou excederem o limite mensal de 90 (noventa) minutos para ligações de longa distância internacional para a oferta Oi Mais Celular TOP.
+• Também poderá ser considerado uso inadequado o envio de mais de 1.500 (mil e quinhentos) mensagens de texto para outras operadoras e/ou até 3.000 (três mil) SMS para qualquer operadora, incluisivo Oi, para qualquer uma das três ofertas mencionadas.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="528" y="155" width="272" height="205" uuid="38e1cc87-e340-4f0e-918f-72ee00877dd7"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Oi Velox 3G
+• Oferta destinada para clientes que desejam um plano de dados com tecnologia 3G para acesso a internet móvel em seu laptop ou tablet.
+• O acesso à Internet associado poderá ser realizado em velocidade de até 1 Mbps apenas nas áreas com cobertura móvel 3G da Oi. Para demais áreas de cobertura Oi, onde não houver cobertura 3G, o serviço será prestado através da rede EDGE ou GPRS, variando conforme a disponibilidade do serviço. Após atingir o consumo da franquia, a velocidade de conexão será reduzida para até 64 Kbps .
+• Para maiores informações sobre a área de cobertura 3G dentro de cada Estado, acesse www.oi.com.br/cobertura.
+Oi Internet Móvel 4G
+• Oferta destinada para clientes que desejam um plano de dados com tecnologia 4G para acesso a internet móvel em seu laptop ou tablet.
+• O acesso à Internet associado poderá ser realizado em velocidade de até 5 Mbps apenas nas áreas com cobertura móvel 4G da Oi. Para demais áreas de cobertura Oi, onde não houver cobertura 4G, o serviço será prestado através da rede 3G, EDGE ou GPRS, variando conforme a disponibilidade do serviço. Após atingir o consumo da franquia, a velocidade de conexão será reduzida para até 64 Kbps .
+• Para maiores informações sobre a área de cobertura 4G dentro de cada estado, acesse www.oi.com.br/cobertura.
+Oi Somente Dados
+• Oferta destinada para clientes que desejam um plano de dados com tecnologia 2G para o segmento de telemetria ou POS.
+• O tráfego da franquia não utilizado em um mês fica disponível para a utilização do cliente por até dois meses seguintes, desde que o cliente esteja adimplente com o pagamento do seu Plano.
+• Após consumo da franquia de dados contratada será cobrado o tráfego de excedente à franquia conforme tarifa por Kbyte descrita.
+• O trafégo de linhas discada e os SMS enviados pelo cliente serão cobrados a parte conforme tarifa definida.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="1" y="155" width="274" height="222" uuid="d37bb17e-db7e-446e-b7f1-2f961f677b6d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[• Oferta disponivel para clientes que desejam um plano controlado, com franquias individuais e em reais com o bloqueio após a utilização da franquia contratada.
+• Franquia de dados para acesso à internet a partir da estação móvel ativada na Oferta. Pacote compatível com tecnologia 4G, 3G e 2G de acordo com a disponibilidade de rede. Após o esgotamento da franquia do pacote haverá redução de velocidade de download para até 64 Kbps.
+•O Módulo Intragrupo Local não está disponível para realizar ligações locais para celulares do mesmo CNPJ que estejam cadastrados no Plano Oi Conta Total Profissional (OCT). Estas chamadas serão descontadas da franquia.
+Oi Mais Celular Controle
+• As ligações originadas dentro do Módulo Intragrupo não utilizarão o saldo de recargas em reais realizadas pelo cliente 
+Oi Mais Celular Controle Avançado
+• As ligações originadas dentro do Módulo Intragrupo não utilizarão as franquias em reais do Pacote contratado.
+• O serviço de Intrarrede Nacional estará disponível em até 24 horas após a ativação (desbloqueio da linha) .  O serviço de Intrarrede Nacional é disponibilizado sob forma de um bônus de R$7.000 (sete mil reais), válido para ligações locais e LDN (com o uso do CSP 31 ou 14) destinadas a terminais móveis da Oi e/ou Fixos de qualquer operadora (exceto SP), bem como envio de SMS para móveis de qualquer operadora. 
+• Quando as linhas do serviço de Intrarrede Nacional estiverem em roaming (Fora da área de Registro):
+• As chamadas locais Oi-Oi serão consumidas do bônus; 
+• As chamadas de longa distância Oi-Oi e Oi-Fixo e SMS somente serão realizadas se houver saldo de Franquia ou Recarga;
+• Poderá ser entendido como inadequado o uso dos benefícios acima do limite de 10.000 (dez mil) minutos para voz, por linha, durante 3 meses consecutivos e 1.500 (mil e quinhentos) SMS para outras operadoras, por linha, mensais para as ofertas. Hipóteses estas que sujeitarão a análise específica por parte da Oi, a fim de apurar a ocorrência de utilização ou consumo fraudulento podendo o cliente perder os benefícios da oferta.
+• O serviço de Intrarrede Nacional não está disponível para realizar ligações de longa distância nacional para terminais fixos do Estado de São Paulo;
+• Quando as estações móveis estiverem em roaming (Fora da área de Registro), o consumo do bônus e a utilização das chamadas e SMS obedecerão às seguintes regras:
+• As chamadas locais para celulares Oi; chamadas locais para terminais Fixo de qualquer operadora e o envio de SMS para estações móveis de qualquer operadora no mesmo Código Nacional (CN) onde a chamada é originada serão consumidas do bônus;]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="420" width="800" height="1" uuid="a9169b9f-5743-4b1b-8bea-6aa2d4d5976b"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="387" width="368" height="8" uuid="facbd15a-5411-4f44-8860-6a3f9450936a"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obs: Este documento somente é valido como pedido de venda se o mesmo estiver com todos os campos preenchidos e devidamente assinado.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="403" width="56" height="8" uuid="6b5dcb73-2e0d-4769-8ec8-4f77187c0b99"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Solicitação:  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="403" width="270" height="8" uuid="e2da1076-a199-496f-b5c4-446a80e2ee79"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________________/__________________/__________________]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="27" y="429" width="24" height="8" backcolor="#FFFFFF" uuid="a692839c-b9d0-4aa3-b5da-e34c5d19e8e9">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="27" y="445" width="24" height="8" backcolor="#FFFFFF" uuid="f47f7656-d5a7-4803-9a75-ecbf58926939">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="52" y="429" width="182" height="8" uuid="cfc53f52-87d3-4a28-8c57-08343f81cbc6"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sim, Confirmo que recebi uma cópia deste documento.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="52" y="445" width="14" height="8" uuid="8378200a-4707-4e12-abd2-d139539853b3"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="74" y="445" width="24" height="8" backcolor="#FFFFFF" uuid="c65b1998-1dc5-4297-b550-5bfdd0f2f17c">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="99" y="445" width="185" height="8" uuid="ca909822-6c3a-4b40-917e-0fc6ed7a9c0c"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Não        Deseja receber mensagens sobre nossas promoções, benefícios ou serviços? ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="430" width="24" height="8" uuid="cf290890-9b81-448f-8d6d-2673dc4350e4"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="74" y="446" width="24" height="8" uuid="4520c587-346f-4b7b-b3d2-4ce07506cbd5"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="470" width="780" height="8" uuid="da0efff8-6119-4c36-908b-6f393cd7e239"/>
+				<textElement textAlignment="Justified">
+					<font fontName="fontCalibri" size="5.5" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Declaro, para os devidos fins, que recebi toda a documentação obrigatória (como Contrato de Prestação do Serviço, descritivo do Plano de Serviço e Sumário da Oferta), li, compreendi e estou de acordo com todas as cláusulas e condições nela estabelecidas. Declaro ainda estar ciente das condições de cobertura oferecidas pela operadora.
+
+]]></text>
+			</staticText>
+			<line>
+				<reportElement x="27" y="496" width="311" height="1" uuid="7ac9d469-5ac2-4ea2-9c16-5823a1143431">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.3" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="27" y="530" width="311" height="1" uuid="7e064e21-bcd4-4e7e-b8eb-1a9ca85fb741">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.3" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="489" y="496" width="311" height="1" uuid="b14c296c-1621-44f1-9953-24fd5b68e20e">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.3" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="489" y="530" width="311" height="1" uuid="a25695bb-b7d3-470f-ab00-3c233be5b8df">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.3" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="27" y="496" width="311" height="10" uuid="957b6275-2d61-4449-9521-b4142ecdf702"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontCalibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="530" width="311" height="10" uuid="005f2c5e-09df-49fc-8a56-8eda80589680"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontCalibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="496" width="311" height="10" uuid="4497e767-7a0f-4f23-8e65-eda3026daf02"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontCalibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="530" width="311" height="10" uuid="4e8a9c98-3544-48df-a928-41a7229e0b8f"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontCalibri" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante Legal]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="26" y="522" width="311" height="8" uuid="9c883dbc-ea1f-4230-8303-10b35e431123"/>
+				<textElement textAlignment="Center">
+					<font fontName="Lucida Console" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nucpfreplegal}.substring( 0, 3)+'.'+$F{nucpfreplegal}.substring( 3, 6 )+'.'+$F{nucpfreplegal}.substring( 6, 9 )+'-'+$F{nucpfreplegal}.substring(9, 11 )]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="7" width="800" height="8" backcolor="#CCCCCC" uuid="85f3afbd-2e6c-41a7-ae4a-13ce07da8045">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="2" y="7" width="178" height="8" uuid="27c3cea8-ef56-4bd2-956d-5f9a52284d5d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="6" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[OBSERVAÇÕES GERAIS]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="venda")
@@ -33,21 +34,27 @@ public class Venda implements ModelInterface {
 	private Integer idSituacao;
 	private String tpVenda;
 	
+	@Transient
+	private List<VendaDocumento> documentosGerados; 
+	
+	@Transient
+	private List<VendaDocumento> documentosInseridos; 
+	
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="idVenda")
     private List<VendaItem> itens;
     
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
-	private Usuario consultor;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
-	private Usuario usuario;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
-	private SituacaoVenda situacao;
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
+//	private Usuario consultor;
+//
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "idUsuario", insertable = false, updatable = false)
+//	private Usuario usuario;
+//
+//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+//	@JoinColumn(name = "idSituacao", insertable = false, updatable = false)
+//	private SituacaoVenda situacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
@@ -55,9 +62,9 @@ public class Venda implements ModelInterface {
 
 	public Venda() {
 		setItens(new ArrayList<VendaItem>());
-		setConsultor(new Usuario());
-		setUsuario(new Usuario());
-		setSituacao(new SituacaoVenda());
+//		setConsultor(new Usuario());
+//		setUsuario(new Usuario());
+//		setSituacao(new SituacaoVenda());
 		setEmpresa(new Empresa());
 	}
 	
@@ -136,29 +143,29 @@ public class Venda implements ModelInterface {
 		this.idSituacao = idSituacao;
 	}
 
-	public Usuario getConsultor() {
-		return consultor;
-	}
-
-	public void setConsultor(Usuario consultor) {
-		this.consultor = consultor;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
-	public SituacaoVenda getSituacao() {
-		return situacao;
-	}
-
-	public void setSituacao(SituacaoVenda situacao) {
-		this.situacao = situacao;
-	}
+//	public Usuario getConsultor() {
+//		return consultor;
+//	}
+//
+//	public void setConsultor(Usuario consultor) {
+//		this.consultor = consultor;
+//	}
+//
+//	public Usuario getUsuario() {
+//		return usuario;
+//	}
+//
+//	public void setUsuario(Usuario usuario) {
+//		this.usuario = usuario;
+//	}
+//
+//	public SituacaoVenda getSituacao() {
+//		return situacao;
+//	}
+//
+//	public void setSituacao(SituacaoVenda situacao) {
+//		this.situacao = situacao;
+//	}
 	
 	public Integer getQtItens() {
 		return getItens().size();
@@ -171,6 +178,22 @@ public class Venda implements ModelInterface {
 			}
 		}
 		return qtItensPortabilidade;
+	}
+
+	public List<VendaDocumento> getDocumentosGerados() {
+		return documentosGerados;
+	}
+
+	public void setDocumentosGerados(List<VendaDocumento> documentosGerados) {
+		this.documentosGerados = documentosGerados;
+	}
+
+	public List<VendaDocumento> getDocumentosInseridos() {
+		return documentosInseridos;
+	}
+
+	public void setDocumentosInseridos(List<VendaDocumento> documentosInseridos) {
+		this.documentosInseridos = documentosInseridos;
 	}
 	
 	

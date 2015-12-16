@@ -145,6 +145,7 @@
 			<version>5.1.37</version>
 		</dependency>
 
+
 	
 		<!-- Test -->
 		<dependency>
@@ -163,6 +164,16 @@
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>6.2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports-fonts</artifactId>
+			<version>6.0.0</version>
+		</dependency>	 	
+		<dependency>
+		  <groupId>fontesProjetoOiSul</groupId>
+		  <artifactId>fontesProjetoOiSul</artifactId>
+		  <version>0.0.1</version>
 		</dependency>
 
 	</dependencies>

@@ -1,6 +1,5 @@
 package br.com.oisul.spring.service.empresa;
 
-import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.oisul.spring.dao.empresa.EmpresaDAO;
@@ -10,7 +9,6 @@ import br.com.oisul.spring.service.GenericServiceImpl;
 
 public class EmpresaServiceImpl extends GenericServiceImpl implements EmpresaService {
 
-	private Logger LOG = Logger.getLogger(GenericService.class);
 	private EmpresaDAO empresaDAO;
 	
 	public void setEmpresaDAO(EmpresaDAO empresaDAO) {
@@ -21,7 +19,6 @@ public class EmpresaServiceImpl extends GenericServiceImpl implements EmpresaSer
 	@Transactional
 	public void saveEmpresa(Empresa empresa) {
 		this.empresaDAO.saveEntity(empresa);
-		LOG.info(empresa.getIdEmpresa());
 	}
 
 	@Override

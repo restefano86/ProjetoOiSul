@@ -1,6 +1,5 @@
 package br.com.oisul.spring.service.contato;
 
-import org.apache.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.oisul.spring.dao.contato.ContatoDAO;
@@ -10,7 +9,6 @@ import br.com.oisul.spring.utils.EmailUtils;
 
 public class ContatoServiceImpl  extends GenericServiceImpl implements ContatoService {
 
-	private Logger LOG = Logger.getLogger(ContatoServiceImpl.class);
 	private ContatoDAO contatoDAO;
 	
 	public void setContatoDAO(ContatoDAO contatoDAO) {
@@ -38,7 +36,7 @@ public class ContatoServiceImpl  extends GenericServiceImpl implements ContatoSe
 	     	conteudo.append(contato.getDeMensagem());
 			EmailUtils.enviaEmail(EmailUtils.CONTATO_EMAIL_SITE, conteudo.toString(), assunto);
 		} catch(Exception e) {
-			LOG.error(e.getMessage(), e);
+			e.printStackTrace();
 			throw e;
 		}
 	}

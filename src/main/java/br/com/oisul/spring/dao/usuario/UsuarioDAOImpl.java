@@ -1,6 +1,5 @@
 package br.com.oisul.spring.dao.usuario;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 
 import br.com.oisul.spring.dao.GenericDAOImpl;

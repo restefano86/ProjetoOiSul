@@ -32,7 +32,7 @@ public class UsuarioController extends DefaultController {
 	public String listPersons(Model model) {
 		model.addAttribute("usuario", new Usuario());
 		RelContrato rel = new RelContrato();
-		rel.geraRelatorio();
+		rel.geraRelatorio(20);
 		System.out.println("Gerou o relatório");
 		return "usuario";
 	}

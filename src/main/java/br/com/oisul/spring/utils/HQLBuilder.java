@@ -1,9 +1,8 @@
 package br.com.oisul.spring.utils;
 
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -34,6 +33,13 @@ public class HQLBuilder {
 		query = session.createQuery(hql.toString());
 		addParametrosNaQuery();
 		return query.uniqueResult();
+	}
+	
+	@SuppressWarnings("rawtypes")
+	public List list(){
+		query = session.createQuery(hql.toString());
+		addParametrosNaQuery();
+		return query.list();
 	}
 	
 	private void addParametrosNaQuery(){

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-16T14:51:22 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relOiInformacoesMaisCelular" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="b6867324-0659-46ac-84f3-bd64fb86813a">
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PROJETOOISUL"/>
+	<queryString>
+		<![CDATA[select 
+consultor.nuCpf as cpfConsultor, 
+consultor.nome as nmConsultor, 
+empresa.nmreplegal as nmRepLegal, 
+empresa.nucpfreplegal as cpfRepLegal,
+NOW() as dtAtual
+from venda venda
+left join usuario consultor on venda.idconsultor  = consultor.idusuario
+left join empresa empresa on venda.idempresa = empresa.idempresa
+where venda.idVenda = 20]]>
+	</queryString>
+	<field name="cpfConsultor" class="java.lang.String"/>
+	<field name="nmConsultor" class="java.lang.String"/>
+	<field name="nmRepLegal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cpfRepLegal" class="java.lang.String"/>
+	<field name="dtAtual" class="java.sql.Timestamp"/>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="780" backcolor="rgba(255, 255, 255, 0.0)" uuid="08549e81-ed88-4a6e-a14c-f17f95441378">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.4"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="12" forecolor="#000000" backcolor="#000000" uuid="0fd8a6e4-e5ea-4348-a5aa-5b269c208e93">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="0" width="250" height="10" forecolor="#FFFFFF" uuid="f0a36b95-c06f-48a9-be5a-51e4159ff778"/>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="fontCalibri" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Informações Oi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="16" width="526" height="467" isPrintInFirstWholeBand="true" uuid="576a1ce7-f1ac-44d1-805d-d2bd06e38659"/>
+				<textElement textAlignment="Justified" markup="html">
+					<font fontName="FonteOi" size="8" isBold="false"/>
+					<paragraph lineSpacing="Proportional" lineSpacingSize="1.25"/>
+				</textElement>
+				<text><![CDATA[1. O pedido do CLIENTE consiste em __________________ ficha(s) de pedido.
+<br/>2. O prazo de vigência do presente documento será de 12 meses de fidelização conforme indicado nas fichas de Contratação e inicia-se em até 07 (sete) dias contados do recebimento, pela Oi, do presente instrumento 
+<br/>assinado pelo cliente, podendo ser renovado por igual período, a critério da Oi, salvo comunicação em contrário pelas partes.
+<br/>3. As Estações Móveis são entregues ativadas e acompanhadas da Nota Fiscal. Por medida de segurança, as linhas estão bloqueadas até a confirmação de recebimento pelo CLIENTE à Oi , através do Atendimento 
+<br/>Empresarial Oi. Caso não as receba no prazo de até 15 (quinze) dias úteis a partir da data de assinatura do contrato, entre em contato com a Oi. O faturamento iniciará transcorridos 15 (quinze) dias da data de emissão da 
+<br/>Nota Fiscal.
+<br/>4. O valor mensal passará a importância constante do presente instrumento, a ser computada a partir da incidência das condições aqui pactuadas, sem prejuízo do pagamento de eventuais valores anteriormente 
+<br/>contratados, até o início da vigência do presente instrumento. Os valores informados na ficha de pedido são promocionais, e podem ser alterados e reajustados na forma da legislação em vigor. Valores brutos, com 
+<br/>tributos incluídos.
+<br/>5. Será Concedido aos clientes Oi Velox 3G , Oi Internet Móvel (4G), Oi Pacote de dados 3G e Oi Internet pra Celular (4G) adimplentes acesso ilimitado e gratuito ao serviço Oi WiFi, por tempo limitado (a Oi comunicará o 
+<br/>término da oferta).
+<br/>6. Para consultar a cobertura de sinal 3G ou 4G da sua região ou de interesse, visite o site da Oi (http://www.oi.com.br/cobertura). Para mais informações sobre roaming, consumo de franquia ou qualquer outra dúvida 
+<br/>relacionada ao serviço de Internet Móvel, visite o site da Oi (www.oi.com.br) ou fale com a Central de Atendimento Oi pelo 0800 031 0800
+<br/>7. A utilização dos pacotes ora contratados, tanto de voz quanto de dados, é válido apenas no território nacional. Os minutos seguem a regra atual de preços. Os serviços utilizados em roaming internacional serão 
+<br/>cobrados separadamente. Antes de viajar consulte os valores através do atendimento Empresarial Oi.
+<br/>8. O CLIENTE, abaixo qualificado, através de seu(s) representante(s) legal(is) infra-assinado(s), declara neste ato, para os devidos fins de direito, ter pleno conhecimento de que a presente FICHA DE PEDIDO DE 
+<br/>CONTRATAÇÃO DE SERVIÇO é o instrumento hábil pelo qual adere aos termos e condições dos Contratos que regem o SMP, o(s) plano(s) de serviços e os serviços adicionais contratados, os quais também encontram-se no 
+<br/>documento Cláusulas e Condições Contratuais, no site da Oi, disponível em www.oi.com.br., dispensando assinatura da Oi.
+<br/>9. As cláusulas, itens e subitens constantes do Contrato de Adesão ao SMP (mencionado no item acima) e Termo(s) de Adesão à Oferta (conjuntamente denominados "Contrato"), que não forem objeto de alteração pelo 
+<br/>presente instrumento, permanecem inalterados e em vigor, e são para todos os efeitos legais neste ato ratificados. Além disso, as condições constantes neste instrumento, passam a fazer parte integrante do Contrato, 
+<br/>como se nele estivesse escrito.
+<br/>9.01 As multas rescisórias são aplicadas até o 12º mês de ativação do acesso na oferta. As multas são cobradas por acesso e o valor consta no Contrato SMP referente a oferta do plano de serviço escolhido pelo cliente.
+<br/>10. O CLIENTE informa que: (a) Foi informado sobre a área de cobertura Oi. (b) Está sujeito a análise de crédito, disponibilidade de estoque dos aprelhos e/ou dispositivos e respectivas condições de pagamento acordas 
+<br/>conforme a oferta contratada. (c) Concorda com as condições comerciais constantes neste formulário. (d) Está ciente de que será responsável pelo pagamento dos valores acordados neste formulário e os valores 
+<br/>comerciais acordados. (e) Os dados constantes acima são verdadeiros e corretos, obrigando-se a informar a Oi quaisquer alterações. Alteração na quantidade de acessos, pacote de minutos, serviços opcionais poderá 
+<br/>alterar os valores ora acordados. (f) Adere integralmente aos termos do Contrato mencionado no item 10 acima.
+<br/>11. É vedado ao CLIENTE comercializar o serviço e os acessórios necessários à sua fruição, sob pena de indenizar a Oi Móvel S.A. e de incorrer nas sanções previstas pela legislação e regulamentação vigente, inclusive o 
+<br/>disposto nos artigos 183 e 184 da Lei 9472/97, se caracterizada a prática de crime ou ilícito. 
+<br/><b>12. A Oi, dentro das determinações legais, normas aplicáveis e termos do Contrato de Prestação do Serviço Móvel Pessoal, poderá suspender ou cancelar, imediatamente, os benefícios 
+<br/>desta oferta, caso constate consumo ou utilização fraudulenta e/ou indevida dos mesmos. Por uso indevido, considera-se a utilização para fins que não sejam de comunicação pessoal e 
+<br/>individual, sendo vedada qualquer utilização desta oferta para comercialização, revenda clandestina, envio de spam, uso do SIM CARD em Black Box entre outras práticas definidas na Lei 
+<br/>9.472/97. Hipóteses estas que sujeitarão a análise específica por parte da Oi, a fim de apurar a ocorrência de utilização, consumo fraudulento ou utilização fora da politica de uso indicada 
+<br/>por cada Plano/Oferta, podendo o cliente perder os benefícios da oferta.</b>
+<br/>13. A Oi se reserva o direito de descontinuar a oferta e extinguir o Contrato do SMP, e consequentemente todos os benefícios associados, se identificadas as hipóteses definidas no Regulamento, exemplificativamente:
+   <br/>13.01-Utilização dos chips em equipamentos como GSM Box, Blackbox e equipamentos similares.
+   <br/>13.02-Uso estático (sem mobilidade) do aparelho celular em cerca de 60% do tráfego originado pelo CLIENTE e recebimento de ligações em proporção inferior a 33% do volume originado, por mês.
+   <br/>Nestas hipóteses, alternativamente à extinção do Contrato SMP, é facultado à Oi propor preços compatíveis com o perfil de tráfego gerado pelo CLIENTE. 
+<br/>14. Para portabilidade que requeira número provisório (Subnum); caso o Cliente não solicite o desbloqueio do número provisório, o faturamento da assinatura do plano será iniciada após 15 dias de emissão da nota fiscal, 
+<br/>por medida de segurança, o chip somente será desbloqueado a pedido do Cliente. O desbloqueio a pedido do número Oi provisório, iniciará o faturamento.
+<br/>15. As condições comerciais (preços, descontos e aparelhos), estabelecidas neste documento, são válidas apenas para esta contratação. A ativação de linhas e/ou serviços estão sujeitos ao oferecimento de novas 
+<br/>condições comerciais. Os preços poderão variar de acordo com a oferta escolhida pelo cliente.
+<br/>16. O valor dos aparelhos incluem todos os tributos incidentes. Possíveis variações de alíquotas, inclusive de substituição tributária interestadual, não estão contempladas nesses valores.
+<br/>17. Para mais informações sobre roaming, consumo de franquia ou qualquer outra dúvida relacionada ao serviço de Internet Móvel, visite o site da Oi (www.oi.com.br) ou fale com a Central de Atendimento Oi pelo  <b>0800</b> 
+<br/><b>031 0800</b>
+<br/>
+<br/>Obs: Este documento somente é valido como pedido de venda se o mesmo estiver com todos os campos preenchidos e devidamente assinado.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="509" width="528" height="1" uuid="d0543757-b0c5-4dee-9f0e-95a6223fdf2c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="12" y="475" width="518" height="10" uuid="757aecf0-5b4d-40dd-a9c4-79187391ed20"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obs: Este documento somente é valido como pedido de venda se o mesmo estiver com todos os campos preenchidos e devidamente assinado.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="490" width="56" height="9" uuid="6999b3e2-fa20-4630-9459-4b97dece62fc"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data de Solicitação:  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="491" width="270" height="8" uuid="9bfd8164-d7fc-4b5e-8fcb-c6d177e95dc8"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[__________\_______\__________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="518" width="14" height="14" uuid="ff757834-aa56-4273-ad64-3b9cac342b36">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="542" width="14" height="14" uuid="cc38184b-db74-4dc4-8b35-31adeef3d09f">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="520" width="160" height="10" uuid="1f45931c-64a1-4c61-a76a-a0139ad65350"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sim, Confirmo que recebi uma cópia deste documento.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="544" width="10" height="10" uuid="fe15afa0-5ada-4060-9ec0-183198c183cb"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="544" width="204" height="10" uuid="d5b03f66-91ff-47a9-bf9b-74a66abe1029"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Não       Deseja receber mensagens sobre nossas promoções, benefícios ou serviços? ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="50" y="542" width="14" height="14" uuid="58109448-c0b4-4626-a6dd-990ee4158c4b">
+					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="543" width="8" height="10" uuid="1b094301-084c-4a09-bed9-f2f9d86ee1a3"/>
+				<textElement textAlignment="Left">
+					<font fontName="fontCalibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="25" y="519" width="8" height="10" uuid="90789636-6cb2-403b-a6f4-4860afe8dd11"/>
+				<textElement textAlignment="Left">
+					<font fontName="fontCalibri" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="566" width="518" height="20" uuid="542eedbd-970b-475d-9d59-23650b78fa06"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Declaro, para os devidos fins, que recebi toda a documentação obrigatória (como Contrato de Prestação do Serviço, descritivo do Plano de Serviço e Sumário da Oferta), li, compreendi e estou de acordo com todas as cláusulas e condições nela estabelecidas. Declaro ainda estar ciente das condições de cobertura oferecidas pela operadora.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="596" width="54" height="10" uuid="fd6d451c-3909-4d68-a0ca-d25b68179922"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nome do Consultor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="78" y="599" width="168" height="8" uuid="7ed61127-16b5-4c65-8151-a5ec7a3f1911"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="620" width="94" height="10" uuid="d5aac666-c7ad-47f7-9a8b-42b1e6226cb2"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Telefone Comercial do Consultor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="108" y="623" width="168" height="8" uuid="272f96ba-4f93-4e14-b139-11b60df2dae7"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="598" width="54" height="10" uuid="fe21d157-290b-4db0-8968-d54b866fe4bf"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do Consultor:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="601" width="168" height="8" uuid="52831a6b-7b68-4366-8521-4a3fa18718f6"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="645" width="94" height="10" uuid="856e675c-457a-46b6-99f8-1e3cd18774ba"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Local e data da Solicitação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="648" width="227" height="8" uuid="1522c210-a739-4386-a33d-c92110fc3683"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="644" width="134" height="10" uuid="d5c50a36-c7f8-4026-a922-7daefbf7bdba"/>
+				<textElement textAlignment="Justified">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[,             de                                    de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="684" width="254" height="8" uuid="7d708c29-68e2-454e-9172-81e11354c731"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="690" width="250" height="12" uuid="f8ac70de-2b68-481b-9d17-a9a6efcfe902"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="715" width="250" height="23" uuid="2a8d2ef1-080f-4c17-922b-17c49257dba4"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nome Completo 
+e legível do cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="732" width="254" height="8" uuid="fa13e9bd-5bfd-4fb4-82bb-f1146b363224"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="746" width="250" height="23" uuid="feeb10d9-256c-448e-a0fe-1b8594e56283"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante
+legal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="762" width="254" height="8" uuid="4240548f-c3fd-4206-be75-ca9078bae4bf"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="684" width="254" height="8" uuid="874ba67e-abb5-47ba-bfc5-ed7c2c4c7f74"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="690" width="250" height="12" uuid="23f02dd4-ae34-44b9-9c34-77094ee31da5"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="715" width="250" height="23" uuid="ab2b772d-f919-4cb1-ab27-8c467ac42cff"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nome Completo 
+e legível do cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="732" width="254" height="8" uuid="1abac478-f195-4f25-9dac-7ff6b5c5fcc0"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="746" width="250" height="23" uuid="238e8109-ed52-42c9-8a16-fb0f4c0fac4f"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante
+legal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="762" width="254" height="8" uuid="7532ec2a-bf37-4f67-b54b-9d1eaf2baf66"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_______________________________________________________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="77" y="756" width="164" height="12" uuid="4c95a78e-a1e0-4ffe-970e-23ea7642893c"/>
+				<textElement textAlignment="Left">
+					<font fontName="Lucida Console"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfRepLegal}.substring( 0, 3)+'.'+$F{cpfRepLegal}.substring( 3, 6 )+'.'+$F{cpfRepLegal}.substring( 6, 9 )+'-'+$F{cpfRepLegal}.substring(9, 11 )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="726" width="205" height="12" uuid="fb517de0-4938-43b9-83a6-20c84459a889"/>
+				<textElement textAlignment="Left">
+					<font fontName="Lucida Console"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmRepLegal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

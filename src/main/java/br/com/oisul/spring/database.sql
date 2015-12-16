@@ -80,7 +80,7 @@ CREATE TABLE `usuario` (
 
 CREATE TABLE `venda` (
   `idvenda` int(11) NOT NULL AUTO_INCREMENT,
-  `idconsutor` int(11) DEFAULT NULL,
+  `idconsultor` int(11) DEFAULT NULL,
   `idusuario` int(11) DEFAULT NULL,
   `idempresa` int(11) DEFAULT NULL,
   `dtcadastro` datetime DEFAULT NULL,
@@ -90,10 +90,10 @@ CREATE TABLE `venda` (
   `tpvenda` varchar(1) DEFAULT NULL,
   PRIMARY KEY (`idvenda`,`dtcontratogerado`),
   KEY `fk_venda_usuario_idx` (`idusuario`),
-  KEY `fo_venda_consultor_idx` (`idconsutor`),
+  KEY `fo_venda_consultor_idx` (`idconsultor`),
   KEY `fk_venda_empresa_idx` (`idempresa`),
   KEY `fk_venda_situacao_idx` (`idsituacao`),
-  CONSTRAINT `fk_venda_consultor` FOREIGN KEY (`idconsutor`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_venda_consultor` FOREIGN KEY (`idconsultor`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venda_empresa` FOREIGN KEY (`idempresa`) REFERENCES `empresa` (`idempresa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venda_situacao` FOREIGN KEY (`idsituacao`) REFERENCES `situacaovenda` (`idsituacaovenda`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_venda_usuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -116,3 +116,10 @@ CREATE TABLE `vendaitem` (
   CONSTRAINT `fk_vendaitem_produto` FOREIGN KEY (`idproduto`) REFERENCES `produto` (`idProduto`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_vendaitem_venda` FOREIGN KEY (`idvenda`) REFERENCES `venda` (`idvenda`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+INSERT INTO `projetooisul`.`produto` (`codigoOi`, `vlPlano`, `dePlano`) VALUES (1, '1', '19.22', 'Oi Mais Celular Controle');
+INSERT INTO `projetooisul`.`produto` (`codigoOi`, `vlPlano`, `dePlano`) VALUES (2, '2', '39.22', 'Oi Mais Celular Controle Avançado');
+INSERT INTO `projetooisul`.`produto` (`codigoOi`, `vlPlano`, `dePlano`) VALUES (3, '3', '89.00', 'Oi Mais Celular');
+INSERT INTO `projetooisul`.`produto` (`codigoOi`, `vlPlano`, `dePlano`) VALUES (4, '4', '129.00', 'Oi Mais Celular Avançado');
+INSERT INTO `projetooisul`.`produto` (`codigoOi`, `vlPlano`, `dePlano`) VALUES (5, '5', '349.00', 'Oi Mais Celular Top');

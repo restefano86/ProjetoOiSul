@@ -16,43 +16,4 @@
 			<%@include file="rodape.jsp" %> 
 		</div>
 	</body>
-	<script>
-
-		function salvarProximo(){
-			$("#empresa").submit();
-		}
-
-		$.validate({lang : 'pt'}); 
-
-		$(".fmtCnpj").keypress(function(){
-			if(this.value.length == 14 && isNumber(this.value)){
-				this.value = formataCNPJ(this.value);
-			}
-		});
-
-		$(".fmtCpf").keypress(function(){
-			if(this.value.length == 11 && isNumber(this.value)){
-				this.value = formataCPF(this.value);
-			}
-		});
-
-		$(".fmtCep").keypress(function(){
-			if(this.value.length == 8 && isNumber(this.value)){
-				this.value = formataCEP(this.value);
-			}
-		});
-
-		$(".fmtTelefone").keypress(function(){
-			if(this.value.length == 8 && isNumber(this.value)){
-				this.value = formataTelefone(this.value);
-			}
-		});
-
-		function proximaEtapa(){
-			abreLink('aquisicaoPasso3');
-		}
-		function etapaAnterior(){
-			abreLink('aquisicaoPasso1');
-		}
-	</script>
 </html>

@@ -5,4 +5,6 @@ import br.com.oisul.spring.model.Venda;
 
 public interface VendaDAO extends GenericDAO<Integer, Venda> {
 	
+	public Venda getVendaFetchById(Integer idVenda) throws Exception;
+	
 }
