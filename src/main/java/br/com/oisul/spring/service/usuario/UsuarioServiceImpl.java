@@ -47,6 +47,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional
+	public void alteraSenha(Usuario usuario) throws Exception{
+		try {
+			usuarioDAO.saveEntity(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
+
+	}
+	@Override
+	@Transactional
 	public Usuario getUsuarioById(Integer id) {
 		return this.usuarioDAO.getEntityById(id);
 	}

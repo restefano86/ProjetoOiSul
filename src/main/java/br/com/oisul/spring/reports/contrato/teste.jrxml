@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
+<!-- 2015-12-19T02:18:46 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="teste" columnCount="2" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryNewPage="true" uuid="b703b09c-e509-4086-9b1b-87a4a623d151">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PROJETOOISUL"/>
+	<queryString>
+		<![CDATA[select 
+CONCAT('P',perfilvenda.nuperfil) as dePerfil,
+perfilvenda.nuDDD as nuDDD,
+vendaitem.nuportabilidade as nuAcesso,
+operadora.nmoperadora as deDoadora,
+produto.codigoOi as dePlanoDestino,
+1 as codServico
+from vendaitem vendaitem
+inner join perfilvenda perfilvenda on vendaitem.nuddd = perfilvenda.nuddd and vendaitem.fltipochip = perfilvenda.fltipochip and vendaitem.idproduto = perfilvenda.idproduto and perfilvenda.idvenda = vendaitem.idvenda
+inner join operadora operadora on vendaitem.idoperadora = operadora.idoperadora
+inner join produto produto on vendaitem.idproduto = produto.idproduto
+where vendaitem.idvenda = 47]]>
+	</queryString>
+	<field name="codServico" class="java.lang.String">
+		<fieldDescription><![CDATA[codServico]]></fieldDescription>
+	</field>
+	<field name="deDoadora" class="java.lang.String">
+		<fieldDescription><![CDATA[deDoadora]]></fieldDescription>
+	</field>
+	<field name="nuDDD" class="java.lang.String">
+		<fieldDescription><![CDATA[nuDDD]]></fieldDescription>
+	</field>
+	<field name="nuAcesso" class="java.lang.String">
+		<fieldDescription><![CDATA[nuAcesso]]></fieldDescription>
+	</field>
+	<field name="dePerfil" class="java.lang.String">
+		<fieldDescription><![CDATA[dePerfil]]></fieldDescription>
+	</field>
+	<field name="dePlanoDestino" class="java.lang.String">
+		<fieldDescription><![CDATA[dePlanoDestino]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="79" y="0" width="100" height="20" uuid="378fe255-0634-444d-8991-5f32baf8ea17"/>
+				<text><![CDATA[idvenda]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="44" splitType="Immediate">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<rectangle>
+				<reportElement x="0" y="0" width="79" height="36" uuid="58cb7bf6-6993-4bcd-8bcb-d43acdcfb75f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="79" y="0" width="79" height="36" uuid="4e98bd79-60e7-4af9-b7e9-116529804e7a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="158" y="0" width="79" height="36" uuid="65abdf29-9718-434a-aa33-a80b28ce6053"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement positionType="FixRelativeToBottom" x="160" y="3" width="76" height="30" uuid="82eda5d7-dff4-4301-9993-542e5221828b"/>
+				<textFieldExpression><![CDATA[$F{deDoadora}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

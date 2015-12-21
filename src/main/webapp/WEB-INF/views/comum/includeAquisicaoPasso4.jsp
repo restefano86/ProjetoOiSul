@@ -10,17 +10,19 @@
 	<input type="button" id="btGerarContratos" class="btn btn-primary" title="Gerar Contrato" value="Gerar Contrato" /> 
 	<BR><br><br>
 		
-		<div style="font-size: 16pt">
-			<span style="font-size: 12pt">
-				A Venda foi gerada com sucesso. <br>
-				Agora você deve fazer o download de todos os documentos abaixo, imprimi-los e assiná-los.<br>
-				Após ter feito isso, prossiga para a próxima etapa e siga as instruções.<BR><BR>
-			</span>
+		<div style="font-size: 14pt">
+			<c:if test="${not empty venda.documentosGerados}" >
+				<span style="font-size: 12pt">
+					A Venda foi gerada com sucesso. <br>
+					Agora você deve fazer o download de todos os documentos abaixo, imprimi-los e assiná-los.<br>
+					Após ter feito isso, prossiga para a próxima etapa e siga as instruções.<BR><BR>
+				</span>
+			</c:if>
 		    <c:forEach items="${venda.documentosGerados}" var="docGerado">
-		    	<a href="visualizarDocumentoVenda?idVendaDocumento=${docGerado.idVendaDocumento}">${docGerado.nmDocumento}</a><BR>
+		    	<a href="visualizarDocumentoVenda?idVendaDocumento=${docGerado.idVendaDocumento}" target="_blank">${docGerado.nmDocumento}</a><BR>
 	    	</c:forEach>
 	    	<c:if test="${not empty venda.documentosGerados}">
-	    		<a href="/ProjetoOiSul/resources/files/termoPortabilidade.pdf">termoPortabilidade.pdf</a>
+	    		<a href="/ProjetoOiSul/resources/files/termoPortabilidade.pdf"  target="_blank">termoPortabilidade.pdf</a>
 	    	</c:if>
     	</div>
     	

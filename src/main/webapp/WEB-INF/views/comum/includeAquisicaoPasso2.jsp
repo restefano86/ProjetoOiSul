@@ -169,7 +169,7 @@
 				   <option value="1">1</option>
 				   <option value="4">4</option>
 				   <option value="10">10</option>
-				   <option value="14">14</option>
+				   <option value="14" selected="selected">14</option>
 				</select> 						 		
 				</td>
 			</tr>
@@ -196,6 +196,7 @@
 			$("#dadosCobranca select").removeAttr("disabled");
 		}
 		$("#dadosCobrancaMesmoEmpresa").removeAttr("disabled");
+		$("#nuDiaVencimento").removeAttr("disabled");
 	}
 
 	function salvarProximo(){
@@ -204,6 +205,10 @@
 
 $(function(){
 	$.validate({lang : 'pt'}); 
+	if(!$("#deEnderecoCob").val()){
+		$("#dadosCobrancaMesmoEmpresa").attr("checked", true);
+		preecheDadosCobranca($("#dadosCobrancaMesmoEmpresa")[0]);
+	}
 
 	$(".fmtCnpj").keypress(function(){
 		if(this.value.length == 14 && isNumber(this.value)){

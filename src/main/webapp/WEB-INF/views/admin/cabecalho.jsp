@@ -8,7 +8,7 @@
 		<div class="btn-group" role="group" aria-label="...">
 		  <button type="button" class="btn btn-default" onclick="abreLink('admin');">Home</button>
 		  <button type="button" class="btn btn-default" onclick="abreLink('aquisicaoAdminPasso0');">Cadastrar nova venda</button>
-		  <button type="button" class="btn btn-default" onclick="abreLink('abrirConPedidoConsultor');">Meus Pedidos</button>
+		  <button type="button" class="btn btn-default" onclick="abreLink('abrirConPedidoConsultor');">Minhas Vendas</button>
 		  <button type="button" class="btn btn-default" onclick="abreLink('abrirAlterarSenha');">Alterar Senha</button>
 		 
 		  <!-- 

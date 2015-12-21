@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T14:52:30 -->
+<!-- 2015-12-21T12:55:28 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relContratoMovel" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0296d7e7-7d1c-4468-980a-a3be43aae2fb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
@@ -42,34 +42,57 @@ empresa.nucpfreplegal,
 produtoPerfil1.codigoOi as p1Codigo,
 perfil1.nuddd as p1Ddd,
 perfil1.qtacessos as p1QtAcessos,
-perfil1.qtacessos * produtoPerfil1.vlPlano as p1VlTotal,
+produtoPerfil1.vlPlano as p1VlTotal,
 tipochipPerfil1.decontrato as p1TipoChip,
 produtoPerfil2.codigoOi as p2Codigo,
 perfil2.nuddd as p2Ddd,
 perfil2.qtacessos as p2QtAcessos,
-perfil2.qtacessos * produtoPerfil2.vlPlano as p2VlTotal,
+produtoPerfil2.vlPlano as p2VlTotal,
 tipochipPerfil2.decontrato as p2TipoChip,
 produtoPerfil3.codigoOi as p3Codigo,
 perfil3.nuddd as p3Ddd,
 perfil3.qtacessos as p3QtAcessos,
-perfil3.qtacessos * produtoPerfil3.vlPlano as p3VlTotal,
+produtoPerfil3.vlPlano as p3VlTotal,
 tipochipPerfil3.decontrato as p3TipoChip,
 produtoPerfil4.codigoOi as p4Codigo,
 perfil4.nuddd as p4Ddd,
 perfil4.qtacessos as p4QtAcessos,
-perfil4.qtacessos * produtoPerfil4.vlPlano as p4VlTotal,
+produtoPerfil4.vlPlano as p4VlTotal,
 tipochipPerfil4.decontrato as p4TipoChip,
 produtoPerfil5.codigoOi as p5Codigo,
 perfil5.nuddd as p5Ddd,
 perfil5.qtacessos as p5QtAcessos,
-perfil5.qtacessos * produtoPerfil5.vlPlano as p5VlTotal,
+produtoPerfil5.vlPlano as p5VlTotal,
 tipochipPerfil5.decontrato as p5TipoChip,
 produtoPerfil6.codigoOi as p6Codigo,
 perfil6.nuddd as p6Ddd,
 perfil6.qtacessos as p6QtAcessos,
-perfil6.qtacessos * produtoPerfil6.vlPlano as p6VlTotal,
+produtoPerfil6.vlPlano as p6VlTotal,
 tipochipPerfil6.decontrato as p6TipoChip,
-produtoPerfil1.vlPlano
+produtoPerfil1.vlPlano,
+(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as qtAcessos,
+(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') as qtAcessosPortados,
+IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, 'X', '') as possuiAcessosPortados,
+IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, '', 'X') as naoPossuiAcessosPortados,
+IF(empresa.nudiavencimento = '1', 'X', '') as vencimento1,
+IF(empresa.nudiavencimento = '4', 'X', '') as vencimento4,
+IF(empresa.nudiavencimento = '10', 'X', '') as vencimento10,
+IF(empresa.nudiavencimento = '14', 'X', '') as vencimento14,
+IF(perfil1.nuddd > 0, 'R$1,00', '') as p1VlChip,
+IF(perfil1.nuddd > 0, 'À Vista', '') as p1FormaPagto,
+IF(perfil2.nuddd > 0, 'R$1,00', '') as p2VlChip,
+IF(perfil2.nuddd > 0, 'À Vista', '') as p2FormaPagto,
+IF(perfil3.nuddd > 0, 'R$1,00', '') as p3VlChip,
+IF(perfil3.nuddd > 0, 'À Vista', '') as p3FormaPagto,
+IF(perfil4.nuddd > 0, 'R$1,00', '') as p4VlChip,
+IF(perfil4.nuddd > 0, 'À Vista', '') as p4FormaPagto,
+IF(perfil5.nuddd > 0, 'R$1,00', '') as p5VlChip,
+IF(perfil5.nuddd > 0, 'À Vista', '') as p5FormaPagto,
+IF(perfil6.nuddd > 0, 'R$1,00', '') as p6VlChip,
+IF(perfil6.nuddd > 0, 'À Vista', '') as p6FormaPagto,
+DAY(now()) as dia,
+MONTH(now()) as mes,
+YEAR(now()) as ano
 FROM venda venda
 inner join empresa empresa on venda.idempresa = empresa.idempresa 
 left join perfilvenda perfil1 on venda.idvenda = perfil1.idvenda and perfil1.nuperfil = 1 
@@ -90,7 +113,7 @@ left join tipochip tipochipPerfil5 on perfil5.fltipochip = tipochipPerfil5.fltip
 left join perfilvenda perfil6 on venda.idvenda = perfil6.idvenda and perfil6.nuperfil = 6 
 left join produto produtoPerfil6 on perfil6.idproduto = produtoPerfil6.idproduto
 left join tipochip tipochipPerfil6 on perfil6.fltipochip = tipochipPerfil6.fltipochip
-where venda.idvenda = 20]]>
+where venda.idvenda = 66]]>
 	</queryString>
 	<field name="idUsuario" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -193,6 +216,31 @@ where venda.idvenda = 20]]>
 	<field name="vlPlano" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="qtAcessos" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qtAcessosPortados" class="java.lang.String"/>
+	<field name="vencimento1" class="java.lang.String"/>
+	<field name="vencimento4" class="java.lang.String"/>
+	<field name="vencimento10" class="java.lang.String"/>
+	<field name="vencimento14" class="java.lang.String"/>
+	<field name="p1VlChip" class="java.lang.String"/>
+	<field name="p1FormaPagto" class="java.lang.String"/>
+	<field name="p2VlChip" class="java.lang.String"/>
+	<field name="p2FormaPagto" class="java.lang.String"/>
+	<field name="p3VlChip" class="java.lang.String"/>
+	<field name="p3FormaPagto" class="java.lang.String"/>
+	<field name="p4VlChip" class="java.lang.String"/>
+	<field name="p4FormaPagto" class="java.lang.String"/>
+	<field name="p5VlChip" class="java.lang.String"/>
+	<field name="p5FormaPagto" class="java.lang.String"/>
+	<field name="p6VlChip" class="java.lang.String"/>
+	<field name="p6FormaPagto" class="java.lang.String"/>
+	<field name="possuiAcessosPortados" class="java.lang.String"/>
+	<field name="naoPossuiAcessosPortados" class="java.lang.String"/>
+	<field name="dia" class="java.lang.String"/>
+	<field name="mes" class="java.lang.String"/>
+	<field name="ano" class="java.lang.String"/>
 	<detail>
 		<band height="480" splitType="Stretch">
 			<rectangle>
@@ -272,7 +320,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<staticText>
 				<reportElement x="52" y="38" width="130" height="8" uuid="8057e5b1-3f1e-4f77-8468-fdd2d9bc69da"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<text><![CDATA[VALORANCE]]></text>
 			</staticText>
@@ -286,7 +334,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<staticText>
 				<reportElement x="480" y="38" width="130" height="8" uuid="d1263a45-d088-413e-91e2-a92793fa7f55"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<text><![CDATA[1033292/1480]]></text>
 			</staticText>
@@ -340,7 +388,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<textField>
 				<reportElement x="40" y="55" width="379" height="8" uuid="b0b7176b-e07a-498c-98a3-d6cbf1681c40"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{derazaosocial}]]></textFieldExpression>
 			</textField>
@@ -699,7 +747,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				<text><![CDATA[Telefone do Gestor:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="137" width="78" height="10" backcolor="#FFFFFF" uuid="88f86d76-acb9-458d-a06a-b939cc9c784a">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="137" width="66" height="10" backcolor="#FFFFFF" uuid="88f86d76-acb9-458d-a06a-b939cc9c784a">
 					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
 				</reportElement>
 				<graphicElement>
@@ -714,7 +762,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				<text><![CDATA[Telefones para Contato:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" x="78" y="137" width="228" height="10" backcolor="#FFFFFF" uuid="92435529-4dbd-47b6-9e50-57bdc0712c83">
+				<reportElement positionType="FixRelativeToBottom" x="66" y="137" width="240" height="10" backcolor="#FFFFFF" uuid="92435529-4dbd-47b6-9e50-57bdc0712c83">
 					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
 					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
 				</reportElement>
@@ -1365,7 +1413,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="196" y="236" width="9" height="8" uuid="988672bf-988e-4186-af76-4b93e93df492"/>
+				<reportElement x="208" y="236" width="9" height="8" uuid="988672bf-988e-4186-af76-4b93e93df492"/>
 				<textElement>
 					<font fontName="FonteOi" size="7"/>
 				</textElement>
@@ -1381,14 +1429,14 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="244" y="236" width="9" height="8" uuid="609c9a5f-fc12-4276-84c7-cc1a6d9b6bcb"/>
+				<reportElement x="256" y="236" width="9" height="8" uuid="609c9a5f-fc12-4276-84c7-cc1a6d9b6bcb"/>
 				<textElement>
 					<font fontName="FonteOi" size="7"/>
 				</textElement>
 				<text><![CDATA[Não]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="276" y="236" width="90" height="8" uuid="73053fc8-5db3-4fb0-96b2-79c8ad42e3a3"/>
+				<reportElement x="289" y="236" width="90" height="8" uuid="73053fc8-5db3-4fb0-96b2-79c8ad42e3a3"/>
 				<textElement>
 					<font fontName="FonteOi" size="7"/>
 				</textElement>
@@ -2228,14 +2276,14 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<textField>
 				<reportElement x="243" y="67" width="548" height="8" uuid="73f7d583-8839-4d20-aefb-e505b5cfcbe1"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{deendereco}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
 				<reportElement x="525" y="55" width="144" height="8" isPrintInFirstWholeBand="true" uuid="36c501c4-ff85-4b84-9f14-ac1b0e7c546e"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucnpj}.substring( 0, 2 )+'.'+$F{nucnpj}.substring( 2, 5 )+'.'+$F{nucnpj}.substring( 5, 8 )+'/'+$F{nucnpj}.substring( 8, 12 )+'-'+$F{nucnpj}.substring( 12, 14 )]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{nucnpj}.substring( 0, 3 )]]></patternExpression>
@@ -2243,28 +2291,28 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<textField>
 				<reportElement x="20" y="79" width="157" height="8" uuid="caaf424e-bec8-48be-bec6-dfbeb92c7da9"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmbairro}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="203" y="79" width="114" height="8" uuid="58c09bec-a0c3-43a1-a8a2-5e71d0f6014f"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucep}.substring( 0, 2 )+'.'+$F{nucep}.substring( 2, 5 )+'-'+$F{nucep}.substring( 5, 8 )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="350" y="79" width="240" height="8" uuid="bf47c501-b7b2-4098-888d-4cac1d278242"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmmunicipio}]]></textFieldExpression>
 			</textField>
 			<textField pattern="">
 				<reportElement x="610" y="79" width="144" height="8" isPrintInFirstWholeBand="true" uuid="12983c0d-8505-476c-a159-1d06ace24755"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{deuf}]]></textFieldExpression>
 				<patternExpression><![CDATA[$F{nucnpj}.substring( 0, 3 )]]></patternExpression>
@@ -2272,315 +2320,315 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 			<textField>
 				<reportElement x="334" y="88" width="12" height="8" uuid="98cd8dcf-918b-400f-a627-2ee765015d73"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cobMesmoReceita}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="382" y="88" width="12" height="8" uuid="89281e05-b88c-49b5-ab03-aa37b0b178a7"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cobDifReceita}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="39" y="99" width="741" height="8" uuid="266aac6a-66c7-41b7-be56-e408dc8fcffa"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{deenderecocob}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="20" y="109" width="157" height="8" uuid="3ee346f1-34ca-495f-a14f-2f42c9d5582b"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmbairrocob}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="320" y="109" width="108" height="8" uuid="0e433784-0731-45a2-8b37-380e276e44ba"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucepcob}.substring( 0, 2 )+'.'+$F{nucepcob}.substring( 2, 5 )+'-'+$F{nucepcob}.substring( 5, 8 )]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="450" y="109" width="177" height="8" uuid="9f2ae33f-3115-4932-ba0d-882571cddbaf"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmmunicipiocob}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="651" y="109" width="138" height="8" uuid="e75948d8-e613-4df0-9268-58e285bf452a"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{deufcob}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="167" y="119" width="426" height="8" uuid="622a4712-f5cd-4d74-a034-6363b65f5b59"/>
+				<reportElement x="177" y="119" width="426" height="8" uuid="622a4712-f5cd-4d74-a034-6363b65f5b59"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmgestorconta}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="621" y="119" width="114" height="8" uuid="f8ca08d3-2a63-4b29-aec0-0e35b851a8d5"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucpfgestorconta}.substring( 0, 3)+'.'+$F{nucpfgestorconta}.substring( 3, 6 )+'.'+$F{nucpfgestorconta}.substring( 6, 9 )+'-'+$F{nucpfgestorconta}.substring(9, 11 )]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="20" y="129" width="234" height="8" uuid="a2370eeb-8522-4da9-a4b5-83adad218b81"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{deemailgestorconta}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="497" y="129" width="177" height="8" uuid="ad9ffd0a-6f35-49e3-9226-8b69e984a959"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["("+$F{nudddfixo}+")"+$F{nutelfixo}.substring( 0,4)+"-"+$F{nutelfixo}.substring( 4,8)]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="94" y="139" width="177" height="8" uuid="c8033782-7fa9-4445-a016-3150f69d4f1d"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["("+$F{nudddfixo}+")"+$F{nutelfixo}.substring( 0,4)+"-"+$F{nutelfixo}.substring( 4,8)]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="629" y="139" width="131" height="8" uuid="df873586-7d54-42df-bd16-8a96405e6488"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA["("+$F{nudddcelular}+")"+$F{nutelcelular}.substring( 0,4)+"-"+$F{nutelcelular}.substring( 4,8)]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="75" y="149" width="426" height="8" uuid="27e7b9dc-ee2c-4c46-a451-406cc9fdda05"/>
-				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+				<reportElement x="66" y="236" width="18" height="8" uuid="27e7b9dc-ee2c-4c46-a451-406cc9fdda05"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nmreplegal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{qtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="603" y="149" width="114" height="8" uuid="f2cc4e15-4163-4435-8f1b-d913c5169c61"/>
 				<textElement>
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucpfreplegal}.substring( 0, 3)+'.'+$F{nucpfreplegal}.substring( 3, 6 )+'.'+$F{nucpfreplegal}.substring( 6, 9 )+'-'+$F{nucpfreplegal}.substring(9, 11 )]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="258" width="59" height="7" uuid="8f035f13-d565-4d0b-a8ca-dd0f04777d61"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p1Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="258" width="87" height="7" uuid="544bf8d7-eda9-4d40-80a3-0f7c4e787de1"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p1Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="258" width="65" height="7" uuid="3fc47fc8-60f2-492b-9af3-bfa524ffd217"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p1QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="258" width="65" height="7" uuid="db8ccd6b-0258-4897-9c4f-14edb4001b94"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p1VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="258" width="141" height="7" uuid="c5886c1a-a075-471b-ba66-29f710d92b0e"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p1TipoChip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="266" width="59" height="7" uuid="30eda6ca-42d5-4f55-a696-271f905d82bf"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p2Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="274" width="59" height="7" uuid="8458ee52-07c9-4047-b7d9-51f674afd622"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p3Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="282" width="59" height="7" uuid="e8173135-1e67-48dd-910d-a2575452e73e"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p4Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="290" width="59" height="7" uuid="de575db0-c886-4186-9ad4-aea08eb53854"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p5Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="41" y="298" width="59" height="7" uuid="c786a010-c320-4fe8-af4e-8ff3ca8e63fe"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p6Codigo}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="266" width="87" height="7" uuid="b62f2e07-4cae-4045-83d0-22bf68982294"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p2Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="274" width="87" height="7" uuid="9b60585d-d723-4204-8c95-219733950f4d"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p3Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="282" width="87" height="7" uuid="13abe2dd-5819-4059-810e-58246383759e"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p4Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="290" width="87" height="7" uuid="4343b1ca-d597-4116-8883-1d48a03830ae"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p5Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="100" y="298" width="87" height="7" uuid="e6024fff-095b-4769-8f79-e3d0cdd20cb7"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p6Ddd}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="266" width="65" height="7" uuid="bed8620a-b41c-4639-b265-c9d13b7a8cd7"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p2QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="274" width="65" height="7" uuid="defe8c5b-41ad-4d19-9863-62e2b89bf05c"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p3QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="282" width="65" height="7" uuid="7bf5a7d9-2726-4ea9-ba43-6e90ee4c30ef"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p4QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="290" width="65" height="7" uuid="f2940c2f-95c5-4c65-b276-f1b85239e5df"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p5QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="187" y="298" width="65" height="7" uuid="09dccbf6-78b1-49db-b827-a5696200da45"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p6QtAcessos}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="266" width="65" height="7" uuid="93339a4f-ee0d-4820-82a3-5017e6a0f360"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p2VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="274" width="65" height="7" uuid="dc911c7d-eb9a-40e1-a40e-516bfbc33d18"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p3VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="282" width="65" height="7" uuid="f2b6853d-8673-4290-90aa-a9b2c5b2cad1"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p4VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="290" width="65" height="7" uuid="e17b558d-4d1f-4d30-b277-520c686040e4"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p5VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0.00" isBlankWhenNull="true">
 				<reportElement x="252" y="298" width="65" height="7" uuid="bc34fc01-366f-4634-bee6-ea2a8c5b6d0c"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p6VlTotal}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="266" width="141" height="7" uuid="3e224fb4-31b2-484e-87e4-72d7bfec8a57"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p2TipoChip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="274" width="141" height="7" uuid="03f4fff5-9ad1-4b38-92dc-f56307c162b7"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p3TipoChip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="282" width="141" height="7" uuid="72d5a393-4a02-45b3-a476-38f2508b6341"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p4TipoChip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="290" width="141" height="7" uuid="28dd269c-edd2-4c67-90ba-d0c85fb3e88d"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p5TipoChip}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
 				<reportElement x="420" y="298" width="141" height="7" uuid="d66d6c0f-d9c3-4d1b-ab69-cd9fff9e536b"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{p6TipoChip}]]></textFieldExpression>
 			</textField>
@@ -2605,6 +2653,146 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				</textElement>
 				<text><![CDATA[X]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="576" y="178" width="7" height="8" uuid="80676c8a-ab49-4504-86f2-5bb10fd7a48d"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vencimento1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="619" y="178" width="7" height="8" uuid="a2662641-6709-4fc7-aeff-8e0648fab13f"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vencimento4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="660" y="178" width="7" height="8" uuid="5a58c79e-059b-42f3-a43f-8265d9216f59"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vencimento10}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="702" y="178" width="7" height="8" uuid="995aed17-23f5-489f-a668-0750d6b9ecdf"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{vencimento14}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="258" width="57" height="7" uuid="4d7b40f0-1540-463e-9b1e-b186de9042b6"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="258" width="91" height="7" uuid="1afea264-87b7-4060-9fe5-b066f12d902a"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p1FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="266" width="57" height="7" uuid="1e6236e5-ab4e-4a3a-8966-be7b79141077"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="266" width="91" height="7" uuid="0581f920-85da-416e-97ad-397f1c23ba13"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p2FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="275" width="57" height="7" uuid="c4fc1759-9f21-4a9a-bdf7-c7e949592621"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="275" width="91" height="7" uuid="8d767512-7372-4c93-8997-8c30d530bfe1"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p3FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="283" width="57" height="7" uuid="4fe75cec-01cf-436b-a802-fa2aaec73d53"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="283" width="91" height="7" uuid="17d30979-28bf-46ee-ae63-486f1ddb3926"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p4FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="290" width="57" height="7" uuid="2d6e3d4b-7ac3-40d0-b256-69a033d2f90b"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="290" width="91" height="7" uuid="85ed2a09-a97d-4af4-8474-e7860b499a58"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p5FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="561" y="298" width="57" height="7" uuid="7a8fc901-a47a-403c-a568-b7b8c7e0ecc4"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6VlChip}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="618" y="298" width="91" height="7" uuid="4f176ec5-7099-40cc-abd7-2bef56710fa3"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{p6FormaPagto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="346" y="236" width="18" height="8" uuid="ffd67f3f-44d3-4c3f-8322-cff65da1305c"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtAcessosPortados}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="185" y="237" width="18" height="8" uuid="f0682cd4-1329-42c9-a676-97d6fe3be2af"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{possuiAcessosPortados}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="233" y="237" width="18" height="8" uuid="b9642021-a597-48d6-a235-97043e07d90a"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{naoPossuiAcessosPortados}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="149" width="114" height="8" uuid="c37ee5d3-8817-44e0-a0b6-678a2f46c8b2"/>
+				<textElement>
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nmreplegal}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="554">
 			<rectangle>
@@ -2949,7 +3137,7 @@ Oi Mais Celular Controle Avançado
 			<textField>
 				<reportElement x="26" y="522" width="311" height="8" uuid="9c883dbc-ea1f-4230-8303-10b35e431123"/>
 				<textElement textAlignment="Center">
-					<font fontName="Lucida Console" size="7"/>
+					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nucpfreplegal}.substring( 0, 3)+'.'+$F{nucpfreplegal}.substring( 3, 6 )+'.'+$F{nucpfreplegal}.substring( 6, 9 )+'-'+$F{nucpfreplegal}.substring(9, 11 )]]></textFieldExpression>
 			</textField>
@@ -2969,6 +3157,27 @@ Oi Mais Celular Controle Avançado
 				</textElement>
 				<text><![CDATA[OBSERVAÇÕES GERAIS]]></text>
 			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="88" y="403" width="59" height="7" uuid="993f96af-28ab-488f-85e8-11628979b51a"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="157" y="403" width="59" height="7" uuid="fb3f8a1e-e5c8-4de4-8839-ceba2753c9fb"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="234" y="403" width="59" height="7" uuid="ab930236-a3e6-4a2e-9143-6ff27b83debb"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 </jasperReport>

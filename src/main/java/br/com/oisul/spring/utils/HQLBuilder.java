@@ -25,8 +25,10 @@ public class HQLBuilder {
 	}
 	
 	public void appendFiltro(String appendHql, Object valor){
-		hql.append(appendHql).append(" ");
-		parametros.put(parametros.size(), valor);
+		if(valor != null){
+			hql.append(appendHql).append(" ");
+			parametros.put(parametros.size(), valor);
+		}
 	}
 	
 	public Object uniqueResult(){

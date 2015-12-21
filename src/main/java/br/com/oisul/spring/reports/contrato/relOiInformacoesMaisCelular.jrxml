@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T14:51:22 -->
+<!-- 2015-12-21T12:59:50 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relOiInformacoesMaisCelular" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="b6867324-0659-46ac-84f3-bd64fb86813a">
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
 	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
@@ -19,11 +19,13 @@ consultor.nuCpf as cpfConsultor,
 consultor.nome as nmConsultor, 
 empresa.nmreplegal as nmRepLegal, 
 empresa.nucpfreplegal as cpfRepLegal,
-NOW() as dtAtual
+DAY(now()) as dia,
+MONTH(now()) as mes,
+YEAR(now()) as ano
 from venda venda
 left join usuario consultor on venda.idconsultor  = consultor.idusuario
 left join empresa empresa on venda.idempresa = empresa.idempresa
-where venda.idVenda = 20]]>
+where venda.idVenda = 64]]>
 	</queryString>
 	<field name="cpfConsultor" class="java.lang.String"/>
 	<field name="nmConsultor" class="java.lang.String"/>
@@ -31,7 +33,9 @@ where venda.idVenda = 20]]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="cpfRepLegal" class="java.lang.String"/>
-	<field name="dtAtual" class="java.sql.Timestamp"/>
+	<field name="dia" class="java.lang.String"/>
+	<field name="mes" class="java.lang.String"/>
+	<field name="ano" class="java.lang.String"/>
 	<detail>
 		<band height="802" splitType="Stretch">
 			<rectangle>
@@ -385,16 +389,37 @@ legal:]]></text>
 			<textField>
 				<reportElement x="77" y="756" width="164" height="12" uuid="4c95a78e-a1e0-4ffe-970e-23ea7642893c"/>
 				<textElement textAlignment="Left">
-					<font fontName="Lucida Console"/>
+					<font fontName="fontLucidaConsole"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cpfRepLegal}.substring( 0, 3)+'.'+$F{cpfRepLegal}.substring( 3, 6 )+'.'+$F{cpfRepLegal}.substring( 6, 9 )+'-'+$F{cpfRepLegal}.substring(9, 11 )]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="77" y="726" width="205" height="12" uuid="fb517de0-4938-43b9-83a6-20c84459a889"/>
 				<textElement textAlignment="Left">
-					<font fontName="Lucida Console"/>
+					<font fontName="fontLucidaConsole"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{nmRepLegal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="187" y="644" width="23" height="12" uuid="a03f2ec0-ab7c-4936-892c-8a5aa567fca1"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="218" y="644" width="55" height="12" uuid="ea65ea43-5bbc-44b4-8776-87033bab824a"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="644" width="57" height="12" uuid="5bba41c3-6fd5-4842-b08f-25e376771aae"/>
+				<textElement textAlignment="Center">
+					<font fontName="fontLucidaConsole"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

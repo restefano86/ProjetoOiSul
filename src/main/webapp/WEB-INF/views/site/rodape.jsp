@@ -7,7 +7,7 @@
 				Fone: (48) 3222-0000
 			</td>
 			<td width="33%" style="text-align: center">
-				Agente Autorizado Oi - Valorance<br>
+				Franquia Oi Empresas - PR/SC<br>
 				Planos Corporativos<br>
 				Fixo e Móvel
 			</td>

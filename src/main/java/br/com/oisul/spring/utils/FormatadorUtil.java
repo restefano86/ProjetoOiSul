@@ -4,6 +4,8 @@ import java.text.ParseException;
 
 import javax.swing.text.MaskFormatter;
 
+import org.apache.commons.lang.StringUtils;
+
 public class FormatadorUtil {
 	
 
@@ -13,9 +15,9 @@ public class FormatadorUtil {
 		}
 		return "";
 	}
-	public static String formataCpf(Long cpf){
-		if(cpf != null && cpf > 0){
-			return format("###.###.###-##", completaZerosAEsquerda(cpf, 11));
+	public static String formataCpf(String cpf){
+		if(StringUtils.isNotEmpty(cpf)){
+			return format("###.###.###-##", cpf);
 		}
 		return "";
 	}
@@ -26,16 +28,16 @@ public class FormatadorUtil {
 		return "";
 		
 	}
-	public static String formataCnpj(Long cnpj){
-		if(cnpj != null && cnpj > 0){
-			return format("##.###.###/####-##", completaZerosAEsquerda(cnpj, 14));
+	public static String formataCnpj(String cnpj){
+		if(cnpj != null){
+			return format("##.###.###/####-##", cnpj);
 		} 
 		return "";
 	}
 
-	public static Long desformataCpf(String cpfFmt){
+	public static String desformataCpf(String cpfFmt){
 		if (cpfFmt != null) {
-			return Long.parseLong(cpfFmt.replaceAll("[^\\d]", ""));
+			return cpfFmt.replaceAll("[^\\d]", "");
 		}
 		return null;
 	}
@@ -45,9 +47,9 @@ public class FormatadorUtil {
 		}
 		return null;
 	}
-	public static Long desformataCnpj(String cnpjFmt){
+	public static String desformataCnpj(String cnpjFmt){
 		if (cnpjFmt != null) {
-			return Long.parseLong(cnpjFmt.replaceAll("[^\\d]", ""));
+			return cnpjFmt.replaceAll("[^\\d]", "");
 		}
 		return null;
 	}

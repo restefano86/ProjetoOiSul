@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,10 +19,12 @@ public class RelContrato {
 	
 	@SuppressWarnings("rawtypes")
 	public byte[] geraRelatorio(Integer idVenda){
+		Connection connection = null;
+		Statement stmt = null;
 		
 		try {
-			Connection connection = DatabaseUtils.getConnection();
-			Statement stmt= connection.createStatement();
+			connection = DatabaseUtils.getConnection();
+			stmt= connection.createStatement();
 			StringBuilder sql = new StringBuilder();
 			sql.append("SELECT  ");
 			sql.append("venda.idUsuario, ");
@@ -51,34 +54,57 @@ public class RelContrato {
 			sql.append("produtoPerfil1.codigoOi as p1Codigo, ");
 			sql.append("perfil1.nuddd as p1Ddd, ");
 			sql.append("perfil1.qtacessos as p1QtAcessos, ");
-			sql.append("perfil1.qtacessos * produtoPerfil1.vlPlano as p1VlTotal, ");
+			sql.append("produtoPerfil1.vlPlano as p1VlTotal, ");
 			sql.append("tipochipPerfil1.decontrato as p1TipoChip, ");
 			sql.append("produtoPerfil2.codigoOi as p2Codigo, ");
 			sql.append("perfil2.nuddd as p2Ddd, ");
 			sql.append("perfil2.qtacessos as p2QtAcessos, ");
-			sql.append("perfil2.qtacessos * produtoPerfil2.vlPlano as p2VlTotal, ");
+			sql.append("produtoPerfil2.vlPlano as p2VlTotal, ");
 			sql.append("tipochipPerfil2.decontrato as p2TipoChip, ");
 			sql.append("produtoPerfil3.codigoOi as p3Codigo, ");
 			sql.append("perfil3.nuddd as p3Ddd, ");
 			sql.append("perfil3.qtacessos as p3QtAcessos, ");
-			sql.append("perfil3.qtacessos * produtoPerfil3.vlPlano as p3VlTotal, ");
+			sql.append("produtoPerfil3.vlPlano as p3VlTotal, ");
 			sql.append("tipochipPerfil3.decontrato as p3TipoChip, ");
 			sql.append("produtoPerfil4.codigoOi as p4Codigo, ");
 			sql.append("perfil4.nuddd as p4Ddd, ");
 			sql.append("perfil4.qtacessos as p4QtAcessos, ");
-			sql.append("perfil4.qtacessos * produtoPerfil4.vlPlano as p4VlTotal, ");
+			sql.append("produtoPerfil4.vlPlano as p4VlTotal, ");
 			sql.append("tipochipPerfil4.decontrato as p4TipoChip, ");
 			sql.append("produtoPerfil5.codigoOi as p5Codigo, ");
 			sql.append("perfil5.nuddd as p5Ddd, ");
 			sql.append("perfil5.qtacessos as p5QtAcessos, ");
-			sql.append("perfil5.qtacessos * produtoPerfil5.vlPlano as p5VlTotal, ");
+			sql.append("produtoPerfil5.vlPlano as p5VlTotal, ");
 			sql.append("tipochipPerfil5.decontrato as p5TipoChip, ");
 			sql.append("produtoPerfil6.codigoOi as p6Codigo, ");
 			sql.append("perfil6.nuddd as p6Ddd, ");
 			sql.append("perfil6.qtacessos as p6QtAcessos, ");
-			sql.append("perfil6.qtacessos * produtoPerfil6.vlPlano as p6VlTotal, ");
+			sql.append("produtoPerfil6.vlPlano as p6VlTotal, ");
 			sql.append("tipochipPerfil6.decontrato as p6TipoChip, ");
-			sql.append("produtoPerfil1.vlPlano ");
+			sql.append("produtoPerfil1.vlPlano, ");
+			sql.append("(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as qtAcessos, ");
+			sql.append("(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') as qtAcessosPortados, ");
+			sql.append("IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, 'X', '') as possuiAcessosPortados, ");
+			sql.append("IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, '', 'X') as naoPossuiAcessosPortados, ");
+			sql.append("IF(empresa.nudiavencimento = '1', 'X', '') as vencimento1, ");
+			sql.append("IF(empresa.nudiavencimento = '4', 'X', '') as vencimento4, ");
+			sql.append("IF(empresa.nudiavencimento = '10', 'X', '') as vencimento10, ");
+			sql.append("IF(empresa.nudiavencimento = '14', 'X', '') as vencimento14, ");
+			sql.append("IF(perfil1.nuddd > 0, 'R$1,00', '') as p1VlChip, ");
+			sql.append("IF(perfil1.nuddd > 0, 'À Vista', '') as p1FormaPagto, ");
+			sql.append("IF(perfil2.nuddd > 0, 'R$1,00', '') as p2VlChip, ");
+			sql.append("IF(perfil2.nuddd > 0, 'À Vista', '') as p2FormaPagto, ");
+			sql.append("IF(perfil3.nuddd > 0, 'R$1,00', '') as p3VlChip, ");
+			sql.append("IF(perfil3.nuddd > 0, 'À Vista', '') as p3FormaPagto, ");
+			sql.append("IF(perfil4.nuddd > 0, 'R$1,00', '') as p4VlChip, ");
+			sql.append("IF(perfil4.nuddd > 0, 'À Vista', '') as p4FormaPagto, ");
+			sql.append("IF(perfil5.nuddd > 0, 'R$1,00', '') as p5VlChip, ");
+			sql.append("IF(perfil5.nuddd > 0, 'À Vista', '') as p5FormaPagto, ");
+			sql.append("IF(perfil6.nuddd > 0, 'R$1,00', '') as p6VlChip, ");
+			sql.append("IF(perfil6.nuddd > 0, 'À Vista', '') as p6FormaPagto,  ");
+			sql.append("DAY(now()) as dia, ");
+			sql.append("MONTH(now()) as mes, ");
+			sql.append("YEAR(now()) as ano ");
 			sql.append("FROM venda venda ");
 			sql.append("inner join empresa empresa on venda.idempresa = empresa.idempresa  ");
 			sql.append("left join perfilvenda perfil1 on venda.idvenda = perfil1.idvenda and perfil1.nuperfil = 1 "); 
@@ -109,12 +135,15 @@ public class RelContrato {
 			JRResultSetDataSource relResult = new JRResultSetDataSource(rs);
 			@SuppressWarnings("unchecked")
 			JasperPrint jpPrint = JasperFillManager.fillReport(is, new HashMap(), relResult);
-			JasperExportManager.exportReportToPdfFile(jpPrint, "c:/java/relContratoMovel"+(new Date()).getTime()+".pdf");
+//			JasperExportManager.exportReportToPdfFile(jpPrint, "c:/java/relContratoMovel"+(new Date()).getTime()+".pdf");
 			JasperExportManager.exportReportToPdfStream(jpPrint, out);
 			return out.toByteArray();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try { connection.close();} catch (SQLException e) {}
+			try { stmt.close(); } catch (SQLException e) {}
 		}
 		return null;
 		

@@ -7,6 +7,8 @@ import br.com.oisul.spring.model.VendaDocumento;
 
 public interface VendaDocumentoDAO extends GenericDAO<Integer, VendaDocumento>  {
 
-	public List<VendaDocumento> findVendaDocumentosNoFilesByVenda(Integer idVenda);
+	public List<VendaDocumento> findVendaDocumentosGeradosNoFilesByVenda(Integer idVenda);
+	
+	public List<VendaDocumento> findVendaDocumentosInseridosNoFilesByVenda(Integer idVenda);
 	
 }

@@ -19,5 +19,13 @@ public class UsuarioDAOImpl extends GenericDAOImpl<Integer, Usuario> implements 
 		hql.appendFiltro("and usuario.isAtivado = ?", "S");
 		return (Usuario) hql.uniqueResult();
 	}
+	
+	public Usuario findUsuarioById(Integer idUsuario){
+		Session session = this.sessionFactory.getCurrentSession();
+		HQLBuilder hql = new HQLBuilder(session);
+		hql.append("from Usuario usuario");
+		hql.append("where usuario.idUsuario = "+idUsuario);
+		return (Usuario) hql.uniqueResult();
+	}
 
 }

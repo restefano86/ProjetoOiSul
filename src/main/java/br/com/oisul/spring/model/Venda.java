@@ -46,15 +46,18 @@ public class Venda implements ModelInterface {
     
 //	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
-//	private Usuario consultor;
+    @Transient
+	private Usuario consultor;
 //
 //	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
 //	@JoinColumn(name = "idUsuario", insertable = false, updatable = false)
-//	private Usuario usuario;
+    @Transient
+	private Usuario usuario;
 //
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-//	@JoinColumn(name = "idSituacao", insertable = false, updatable = false)
-//	private SituacaoVenda situacao;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idSituacao", insertable = false, updatable = false)
+    @Transient
+	private SituacaoVenda situacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
@@ -64,7 +67,7 @@ public class Venda implements ModelInterface {
 		setItens(new ArrayList<VendaItem>());
 //		setConsultor(new Usuario());
 //		setUsuario(new Usuario());
-//		setSituacao(new SituacaoVenda());
+		setSituacao(new SituacaoVenda());
 		setEmpresa(new Empresa());
 	}
 	
@@ -194,6 +197,30 @@ public class Venda implements ModelInterface {
 
 	public void setDocumentosInseridos(List<VendaDocumento> documentosInseridos) {
 		this.documentosInseridos = documentosInseridos;
+	}
+
+	public Usuario getConsultor() {
+		return consultor;
+	}
+
+	public void setConsultor(Usuario consultor) {
+		this.consultor = consultor;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public SituacaoVenda getSituacao() {
+		return situacao;
+	}
+
+	public void setSituacao(SituacaoVenda situacao) {
+		this.situacao = situacao;
 	}
 	
 	

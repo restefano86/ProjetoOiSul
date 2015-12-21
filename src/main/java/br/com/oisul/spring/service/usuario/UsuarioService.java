@@ -14,4 +14,6 @@ public interface UsuarioService {
 	
 	public void updateUsuario(Usuario usuario);
 	
+	public void alteraSenha(Usuario usuario) throws Exception;
+	
 }

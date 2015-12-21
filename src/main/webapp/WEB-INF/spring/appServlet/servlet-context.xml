@@ -28,6 +28,10 @@
 	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
     	<beans:property name="jndiName" value="java:jboss/datasources/MySQLDS"/>
 	</beans:bean>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<beans:property name="maxUploadSize" value="1000000"/>
+	</beans:bean>
 
 	<!--<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
@@ -114,6 +118,7 @@
 		<beans:property name="empresaDAO" ref="empresaDAO"></beans:property>
 		<beans:property name="perfilVendaDAO" ref="perfilVendaDAO"></beans:property>
 		<beans:property name="vendaDocumentoDAO" ref="vendaDocumentoDAO"></beans:property>
+		<beans:property name="usuarioDAO" ref="usuarioDAO"></beans:property>
 	</beans:bean>
 	<beans:bean id="situacaoVendaService" class="br.com.oisul.spring.service.situacaovenda.SituacaoVendaServiceImpl">
 		<beans:property name="situacaoVendaDAO" ref="situacaoVendaDAO"></beans:property>

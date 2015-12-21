@@ -14,6 +14,8 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import br.com.oisul.spring.controllers.site.DefaultController;
 import br.com.oisul.spring.exceptions.BusinessException;
@@ -42,6 +44,22 @@ public class AquisicaoAdminController extends DefaultController {
 	@Qualifier(value="vendaService")
 	public void setVendaService(VendaService service){
 		this.vendaService = service;
+	}
+
+	@RequestMapping(value = "/editarAquisicaoAdmin", method = RequestMethod.GET)
+	public String editarAquisicaoAdmin(Model model, HttpServletRequest request) {
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		Integer idVenda = Integer.parseInt(request.getParameter("idVenda"));
+		try {
+			Venda venda = vendaService.findVendaEdicao(idVenda);
+			request.getSession().setAttribute("venda",venda);
+			model.addAttribute("venda", venda);
+			return UrlsAdmin.AQUISICAO_PASSO_4.url;
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+		}
+		return UrlsAdmin.AQUISICAO_PASSO_0.url;
 	}
 
 	@RequestMapping(value = "/aquisicaoAdminPasso0", method = RequestMethod.GET)
@@ -107,20 +125,20 @@ public class AquisicaoAdminController extends DefaultController {
 	
 	@RequestMapping(value = "/aquisicaoAdminPasso4", method = RequestMethod.GET)
 	public String aquisicaoPasso4(Model model,@ModelAttribute("empresa") Empresa empresa, HttpServletRequest request) {
-		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		return UrlsAdmin.AQUISICAO_PASSO_4.url;
 	}
 	
 	@RequestMapping(value = "/aquisicaoAdminPasso5", method = RequestMethod.GET)
 	public String aquisicaoPasso5(Model model, HttpServletRequest request) {
-		if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		return UrlsAdmin.AQUISICAO_PASSO_5.url;
 	}
 	
 	@RequestMapping(value = "/geraContratoAdmin", method = RequestMethod.GET)
 	public String geraContratoAdmin(Model model, HttpServletRequest request) {
 		try {
-			if(!validateLogin(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+			if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 			Venda venda = (Venda) request.getSession().getAttribute("venda");
 			Usuario usuarioSessao = (Usuario) request.getSession().getAttribute("usuario");
 			if(venda.getIdUsuario() == null){
@@ -133,6 +151,7 @@ public class AquisicaoAdminController extends DefaultController {
 			vendaService.geraDocumentosNovaVenda(venda);
 			request.getSession().setAttribute("venda", venda);
 			model.addAttribute("venda", venda);
+			addMensagemSucesso(model, "Documentos gerados com sucesso.");
 		} catch (BusinessException e) {
 			addMensagemAviso(model, e.getMessage());
 			e.printStackTrace();
@@ -146,6 +165,7 @@ public class AquisicaoAdminController extends DefaultController {
 	@RequestMapping(value = "/visualizarDocumentoVenda", method = RequestMethod.GET)
 	public String visualizarDocumentoVenda(Model model, HttpServletRequest request, HttpServletResponse response) {
 		try {
+			if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 			Integer idVendaDocumento = Integer.parseInt(request.getParameter("idVendaDocumento"));
 			VendaDocumento vendaDocumento = vendaService.getVendaDocumentoByVisualizacao(idVendaDocumento);
 			String mimeType= URLConnection.guessContentTypeFromName(vendaDocumento.getNmDocumento());
@@ -165,6 +185,39 @@ public class AquisicaoAdminController extends DefaultController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@RequestMapping(value = "/adicionarVendaDocumentoAdmin", method = RequestMethod.POST)
+	public String adicionarVendaDocumentoAdmin(Model model, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			MultipartFile multipartFile = multipartRequest.getFile("file");
+			Venda venda = (Venda) request.getSession().getAttribute("venda");
+			byte[] file = multipartFile.getBytes();
+			String filename = multipartFile.getOriginalFilename();
+			vendaService.adicionaArquivo(venda, file, filename);
+			addMensagemSucesso(model, "Arquivo adicionado com sucesso.");
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+		}
+		return UrlsAdmin.AQUISICAO_PASSO_5.url;
+	}
+	
+	@RequestMapping(value = "/finalizarVendaAdmin", method = RequestMethod.GET)
+	public String finalizarVendaAdmin(Model model, HttpServletRequest request, HttpServletResponse response) {
+		try {
+			if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+			Venda vendaSessao = (Venda) request.getSession().getAttribute("venda");
+			vendaService.finalizaVenda(vendaSessao);
+			addMensagemSucesso(model, "A venda foi finalizada com sucesso.");
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+			addMensagemErroGenerica(model);
+		}
+		return UrlsAdmin.AQUISICAO_PASSO_0.url;
 	}
 	
 }

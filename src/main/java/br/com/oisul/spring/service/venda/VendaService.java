@@ -17,4 +17,11 @@ public interface VendaService {
 	
 	public VendaDocumento getVendaDocumentoByVisualizacao(Integer idVendaDocumento) throws Exception;
 
+	public Venda findVendaEdicao(Integer idVenda) throws Exception;
+	
+	public List<Venda> findTopVendas(Venda venda, Integer limite) throws Exception;
+
+	public void adicionaArquivo(Venda venda, byte[] file, String filename) throws Exception;
+
+	public void finalizaVenda(Venda venda) throws Exception;
 }

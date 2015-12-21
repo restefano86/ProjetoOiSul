@@ -97,9 +97,9 @@
 	
 			<select id="matrizOperadora" class="form-control selectOperadora" style="width: 100px;">
 			   <option value="">--</option>
-			   <option value="1">Vivo</option>
+			   <option value="1">Tim</option>
 			   <option value="2">Claro</option>
-			   <option value="3">Tim</option>
+			   <option value="3">Vivo</option>
 			</select> 						 		
 		</div>
 	</div>

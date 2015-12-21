@@ -1,44 +1,449 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-16T12:47:59 -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relTermoPortabilidade" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f096b29e-cc83-41df-b70b-5f9e73049af4">
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+<!-- 2015-12-21T13:35:55 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relTermoPortabilidade" columnCount="2" pageWidth="595" pageHeight="842" columnWidth="270" columnSpacing="14" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f096b29e-cc83-41df-b70b-5f9e73049af4">
+	<property name="com.jaspersoft.studio.unit." value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="cm"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="cm"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PROJETOOISUL"/>
 	<queryString>
-		<![CDATA[]]>
+		<![CDATA[select 
+CONCAT('P',perfilvenda.nuperfil) as dePerfil,
+perfilvenda.nuDDD as nuDDD,
+vendaitem.nuportabilidade as nuAcesso,
+operadora.nmoperadora as deDoadora,
+produto.codigoOi as dePlanoDestino,
+1 as codServico,
+DAY(now()) as dia,
+MONTH(now()) as mes,
+YEAR(now()) as ano,
+empresa.nmreplegal as nmRepLegal, 
+empresa.nucpfreplegal as cpfRepLegal
+from vendaitem vendaitem
+inner join venda venda on vendaitem.idvenda = venda.idvenda
+inner join empresa empresa on venda.idempresa = empresa.idempresa
+left join perfilvenda perfilvenda on vendaitem.nuddd = perfilvenda.nuddd and vendaitem.fltipochip = perfilvenda.fltipochip and vendaitem.idproduto = perfilvenda.idproduto and perfilvenda.idvenda = vendaitem.idvenda
+left join operadora operadora on vendaitem.idoperadora = operadora.idoperadora
+left join produto produto on vendaitem.idproduto = produto.idproduto
+where vendaitem.nuportabilidade is not null
+and vendaitem.idvenda = 64]]>
 	</queryString>
-	<detail>
-		<band height="780">
+	<field name="codServico" class="java.lang.String">
+		<fieldDescription><![CDATA[codServico]]></fieldDescription>
+	</field>
+	<field name="deDoadora" class="java.lang.String">
+		<fieldDescription><![CDATA[deDoadora]]></fieldDescription>
+	</field>
+	<field name="nuDDD" class="java.lang.String">
+		<fieldDescription><![CDATA[nuDDD]]></fieldDescription>
+	</field>
+	<field name="nuAcesso" class="java.lang.String">
+		<fieldDescription><![CDATA[nuAcesso]]></fieldDescription>
+	</field>
+	<field name="dePerfil" class="java.lang.String">
+		<fieldDescription><![CDATA[dePerfil]]></fieldDescription>
+	</field>
+	<field name="dePlanoDestino" class="java.lang.String">
+		<fieldDescription><![CDATA[dePlanoDestino]]></fieldDescription>
+	</field>
+	<field name="ano" class="java.lang.String">
+		<fieldDescription><![CDATA[ano]]></fieldDescription>
+	</field>
+	<field name="mes" class="java.lang.String">
+		<fieldDescription><![CDATA[mes]]></fieldDescription>
+	</field>
+	<field name="cpfRepLegal" class="java.lang.String">
+		<fieldDescription><![CDATA[cpfRepLegal]]></fieldDescription>
+	</field>
+	<field name="dia" class="java.lang.String">
+		<fieldDescription><![CDATA[dia]]></fieldDescription>
+	</field>
+	<field name="nmRepLegal" class="java.lang.String">
+		<fieldDescription><![CDATA[nmRepLegal]]></fieldDescription>
+	</field>
+	<background>
+		<band height="798">
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="780" backcolor="rgba(255, 255, 255, 0.0)" uuid="73a45621-341a-4f77-b693-84af6d6ef032">
-					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
-					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
-				</reportElement>
+				<reportElement x="0" y="0" width="547" height="785" uuid="83842b82-c419-4f9b-825d-dcd1b9ca2db2"/>
 				<graphicElement>
-					<pen lineWidth="0.4"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
+		</band>
+	</background>
+	<pageHeader>
+		<band height="47">
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" x="9" y="0" width="529" height="12" forecolor="#000000" backcolor="#000000" uuid="1205613f-4784-462a-94c7-9e80248c9cf1">
-					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
-					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+				<reportElement x="0" y="0" width="547" height="11" backcolor="#000000" uuid="6d6f5b98-12d1-424b-949d-ec95e200c249">
 					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
 				</reportElement>
 				<graphicElement>
-					<pen lineWidth="0.2"/>
+					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="2" width="250" height="10" forecolor="#FFFFFF" uuid="13625090-684c-48c3-a822-7165d84b0b41"/>
-				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font fontName="tw_cent_mt_regular" size="7" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
+				<reportElement x="1" y="1" width="213" height="11" forecolor="#FFFFFF" uuid="25371237-0d6e-44e2-b2a5-ce2ec9b8e5f8"/>
+				<textElement>
+					<font fontName="FonteOi" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FICHA COMPLEMENTAR DE PORTABILIDADE OI]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" x="9" y="215" width="529" height="12" forecolor="#000000" backcolor="#000000" uuid="b4dbb81c-fff6-42c7-9d99-ae13f05d72d8">
+				<reportElement x="0" y="27" width="30" height="20" backcolor="#CCCCCC" uuid="f348e750-dc1e-4cd4-a0ae-c8d360df31ac"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="dae56d34-2f63-41a3-bfc7-e09fb1862305"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="27" width="45" height="20" backcolor="#CCCCCC" uuid="7b52e593-7f7d-4355-8a93-0cc454fb6c4d"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="284" y="27" width="30" height="20" backcolor="#CCCCCC" uuid="de60dff9-9223-4434-85f2-f6e52bdd0710"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="77" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="4ed4798c-e1f6-47e1-a0eb-24f243cbcc24"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="124" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="74e13c7d-12ab-4a2b-8c2b-28cbe3fff94e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="171" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="71840b40-6123-4930-b44c-e761de32995b"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="314" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="5aabecce-dd82-4efa-b6fc-62ba2438b7a2"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="361" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="e2a92dd9-82a8-49f6-894e-0abfb8809731"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="408" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="6f1f2748-9efa-4f4a-903c-46b19e34047e"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="455" y="27" width="47" height="20" backcolor="#CCCCCC" uuid="44d37d1a-f06c-4b30-b303-45ddaaf92618"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="502" y="27" width="45" height="20" backcolor="#CCCCCC" uuid="fc7e27f5-811e-4c6c-9214-5798b7a83e43"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="33" width="29" height="11" forecolor="#000000" uuid="f64d4242-f4c3-4803-a4b4-21daff5f9fff"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="33" width="47" height="11" forecolor="#000000" uuid="f363d7a2-beb9-4f77-90eb-6035aaeccbcd"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DDD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="33" width="47" height="11" forecolor="#000000" uuid="7a4f4653-82ad-4629-b0f7-da759bd4a77f"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Doadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="33" width="47" height="11" forecolor="#000000" uuid="fdc29f54-2fc5-4fba-8000-c35167c68277"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7.5" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número do Acesso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="170" y="33" width="46" height="11" forecolor="#000000" uuid="78e13955-b0da-4217-bc5f-dccba47ee123"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Plano de Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="33" width="45" height="11" forecolor="#000000" uuid="38bbca63-0832-4372-8645-864547598957"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cód Serviços]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="33" width="29" height="11" forecolor="#000000" uuid="3926608c-5a25-4168-85d9-ddf3fdd44f13"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perfil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="33" width="47" height="11" forecolor="#000000" uuid="a059c1df-939f-4e04-bb38-bf6a763b8c68"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[DDD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="361" y="33" width="47" height="11" forecolor="#000000" uuid="2f82f77f-3c74-458e-bd06-fe306c7a8a35"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Número do Acesso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="408" y="33" width="47" height="11" forecolor="#000000" uuid="54db4469-0711-4299-bbba-c15f08e22141"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Doadora]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="33" width="46" height="11" forecolor="#000000" uuid="5acb1930-68a9-4118-96ee-be96531abf0b"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Plano de Destino]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="33" width="45" height="11" forecolor="#000000" uuid="477a66ee-cabb-49a3-b651-53f806823c21"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="7" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Cód Serviços]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20">
+			<rectangle>
+				<reportElement x="0" y="0" width="30" height="20" backcolor="#FFFFFF" uuid="e01e51fb-3530-4b07-a02b-6fd1d1206067"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="30" y="0" width="47" height="20" backcolor="#FFFFFF" uuid="b7a143f4-5cae-41bd-8d1b-7ed31e42d0eb"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="218" y="0" width="45" height="20" backcolor="#FFFFFF" uuid="ab47eceb-0c5c-42c6-8771-124aa7ea31a1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="77" y="0" width="47" height="20" backcolor="#FFFFFF" uuid="1b649ce7-63e4-4c6f-aa4e-a7aebe81ca94"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="124" y="0" width="47" height="20" backcolor="#FFFFFF" uuid="629f5711-da44-4187-8779-e34c47eca370"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement x="171" y="0" width="47" height="20" backcolor="#FFFFFF" uuid="be2eca37-f272-4fcb-9192-c2188f1b4c4b"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="124" y="5" width="47" height="12" uuid="669e11d5-2d30-470e-be3f-4b67909cb022"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deDoadora}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="30" y="5" width="47" height="12" uuid="0c55cd2b-d5e7-41e8-b69f-fd6f30bb14fa"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nuDDD}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="1" y="5" width="29" height="12" uuid="4c261806-6a24-48dc-9a45-8754d4bb02ef"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dePerfil}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="77" y="5" width="47" height="12" uuid="6596162a-a27f-496c-a073-8984cf3fa65b"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nuAcesso}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="171" y="5" width="47" height="12" uuid="a22a9fd8-bdbb-40a3-bfb7-ac8806243872"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dePlanoDestino}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="451">
+			<rectangle>
+				<reportElement x="0" y="10" width="547" height="11" backcolor="#000000" uuid="d0040b70-5ea8-48b8-bf08-1a87b788bacb">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="11" width="213" height="11" forecolor="#FFFFFF" uuid="409757dd-86fa-4ebf-8f94-a00a81a8072d"/>
+				<textElement>
+					<font fontName="FonteOi" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[1. Serviços Opcionais]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="21" width="547" height="30" backcolor="#FFFFFF" uuid="d1c5b190-67d1-4efa-9493-e3b46977ff01"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="22" width="546" height="22" forecolor="#000000" uuid="d365c651-d6ec-4667-b208-b754aaf234ca"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Códigos: 1 - Oi mais celular  Controle + 100MB (4G); 2 -  Oi Mais Celular Controle Avançado + 500MB (4G); 3 - Oi Mais Celular + 5GB (4G); 4 - Oi Mais Celular Avançado + 15GB; 5 - Oi Mais Celular TOP; 6 - Oi Velox 3G; 7 - Oi Internet Móvel 4G;  8 - Oi Somente Dados]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="51" width="547" height="11" backcolor="#000000" uuid="209cac99-5739-45e1-bb02-9558bc4c750c">
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="52" width="213" height="11" forecolor="#FFFFFF" uuid="527c33a8-900b-4599-87f6-7bed4e58d821"/>
+				<textElement>
+					<font fontName="FonteOi" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Disposições Gerais]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="62" width="547" height="82" backcolor="#FFFFFF" uuid="7a16f6b5-0dee-4ab3-a6a4-ac0f0ce338b4"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="63" width="546" height="81" forecolor="#000000" uuid="372cefc4-726e-4590-a63b-5088d48dc2fc"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7.6" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Informações complementares e obrigatórias à Ficha de Contratação nas negociações com portabilidade.
+Após o recebimento do chip, o Cliente deverá realizar o desbloqueio de sua linha através do Atendimento Oi, será gerado um número provisório que será ativado dentro das condições comerciais do Plano de Serviço contratado. Uma vez ativada a linha com o número provisório Oi é iniciado o processo de portabilidade.  A substituição do número provisório pelo número portado ocorrerá após o cumprimento dos requisitos de portabilidade e da janela de portabilidade. Entende-se por janela de portabilidade o momento que acontece a portabilidade, a operadora doadora cancela o númerodo do Cliente e a operadora receptora faz a ativação do número do Cliente. Esta ação ocorrerá automaticamente, de forma sistêmica, e durará aproximadamente 2 horas, conforme prazo estipulado no Regulamento Geral de Portabilidade, aprovado pela Resolução n° 460/07 da ANATEL.  
+Caso o Cliente não solicite o desbloqueio do número provisório, o faturamento da assinatura do plano será iniciada após 15 dias de emissão da nota fiscal, por medida de segurança, o chip somente será desbloquado a pedido do Cliente. O desbloqueio a pedido do número Oi provisório, iniciará o faturamento.
+Caso a portabilidade seja recusada e cancelada, o Cliente terá a opção de manter o número provisório dentro das condições estabelecidas no plano contratado. Nesta hipótese, caso o Cliente queira encerrar o Contrato de SMP com a Oi, não haverá cobrança de multa, a Oi apenas cobrará do Cliente eventual tráfego utilizado, conforme as regras dispostas e aplicáveis do Contrato que rege o SMP.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="147" width="494" height="11" forecolor="#000000" uuid="72003864-db5a-4908-a8b6-dc3b760ea207"/>
+				<textElement>
+					<font fontName="FonteOi" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Obs: Este documento somente é valido como pedido de venda se o mesmo estiver com todos os campos preenchidos e devidamente assinado.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="178" width="56" height="11" forecolor="#000000" uuid="027366b7-8179-462c-807b-9e1fe7e980e1"/>
+				<textElement textAlignment="Right">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Data da Solicitação:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="179" width="270" height="8" uuid="52b09874-cf6a-4482-bbe9-109b47c877a9"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________\_________\____________]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="203" width="547" height="1" uuid="efcfbd46-4e19-4b93-8208-68276d9deaf1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="214" width="546" height="21" forecolor="#000000" uuid="5a3cd83a-89cc-4734-8b28-8d6bc75aa974"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Declaro, para os devidos fins, que recebi toda a documentação obrigatória (como Contrato de Prestação do Serviço, descritivo do Plano de Serviço e Sumário da Oferta), li, compreendi e estou de acordo com todas as cláusulas e condições nela estabelecidas. Declaro ainda estar ciente das condições de cobertura oferecidas pela operadora.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="32" y="245" width="13" height="9" backcolor="#FFFFFF" uuid="0e89f9b2-f93a-41cc-b36e-c3005481a7f3">
 					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
-					<property name="com.jaspersoft.studio.unit.width" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="33" y="275" width="12" height="11" backcolor="#FFFFFF" uuid="75a231a7-cb09-49b4-ae89-58a199183590">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
+					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.2"/>
+				</graphicElement>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="FixRelativeToBottom" x="68" y="275" width="12" height="11" backcolor="#FFFFFF" uuid="446ca5dd-357f-428e-b8b9-0d5a2418fc98">
+					<property name="com.jaspersoft.studio.unit.x" value="cm"/>
 					<property name="com.jaspersoft.studio.unit.height" value="cm"/>
 				</reportElement>
 				<graphicElement>
@@ -46,13 +451,150 @@
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="13" y="217" width="250" height="10" forecolor="#FFFFFF" uuid="0fbc5dec-b8e0-467a-ab76-bcc9c7ff5fbd"/>
-				<textElement textAlignment="Left" verticalAlignment="Top">
-					<font fontName="tw_cent_mt_regular" size="7" isBold="false"/>
-					<paragraph lineSpacing="Single"/>
+				<reportElement x="46" y="244" width="160" height="12" uuid="1dedc893-9948-4c16-a146-a83a06eebb37"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
 				</textElement>
-				<text><![CDATA[1- Serviços opcionais]]></text>
+				<text><![CDATA[Sim, Confirmo que recebi uma cópia deste documento.]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="81" y="275" width="291" height="12" uuid="85746cb6-440a-4ecd-a55b-511401db4971"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Não               Deseja receber mensagens sobre nossas promoções, benefícios ou serviços? ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="46" y="275" width="16" height="12" uuid="28f8ae31-ba35-4cf3-b0d8-efdca78faeca"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sim]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="272" width="14" height="16" uuid="e68ad5e5-d2da-4e91-a08b-39ce5a2421c3"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="241" width="14" height="16" uuid="b4e73657-d844-4506-96dc-42415b72f0d8"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="14" isBold="false"/>
+				</textElement>
+				<text><![CDATA[x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="339" width="250" height="12" uuid="c17236c4-d809-4667-b422-8628e2517fe5"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="332" width="280" height="8" uuid="17730b1b-7593-43b2-9202-af6a20868053"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="339" width="250" height="12" uuid="1f545da6-397f-4a0f-9ae1-d152719fb7a7"/>
+				<textElement textAlignment="Center">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Assinatura do Representante Legal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="332" width="261" height="8" uuid="de5d902f-3d4c-4a3d-8d7f-3a0b1dd3e3a6"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="379" width="280" height="8" uuid="de62a033-4cbb-4166-91e3-bcf45d9acfcd"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="365" width="250" height="12" uuid="71569794-7e03-402f-88d4-513c52cbd750"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nome Completo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="418" width="280" height="8" uuid="2846b97a-3827-465d-a90c-55117074a0e8"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[___________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="402" width="250" height="12" uuid="9052ec5c-a8fc-47d6-884f-ea276b733237"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante Legal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="379" width="261" height="8" uuid="e1236c77-4db0-4b23-94a8-a0166e149bc7"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="418" width="261" height="8" uuid="b9e5a3d4-d048-45aa-9274-e172f1d07bc7"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[_________________________________________________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="354" width="250" height="12" uuid="b210894b-06c6-467a-bb53-8172005d3b3d"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Nome Completo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="397" width="250" height="28" uuid="c85c5ae9-7916-44c7-b54d-bd4b406bd816"/>
+				<textElement textAlignment="Left">
+					<font fontName="FonteOi" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CPF do Representante 
+Legal:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="59" y="172" width="35" height="15" uuid="41c512b7-58e1-4858-821c-31e0a0599baf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{dia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="172" width="35" height="15" uuid="27809deb-70e9-43fa-a2f4-6b8b9ea3e3f8"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{mes}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="172" width="44" height="15" uuid="7079eea3-7e6a-4353-8efa-ca98dde47d2c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="368" width="188" height="15" uuid="0709b17f-6725-4941-8e9f-40343b77c358"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{nmRepLegal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="92" y="410" width="188" height="15" uuid="5fd66271-1b9a-4cfe-ba5b-4ee5c6203622"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$F{cpfRepLegal}.substring( 0, 3)+'.'+$F{cpfRepLegal}.substring( 3, 6 )+'.'+$F{cpfRepLegal}.substring( 6, 9 )+'-'+$F{cpfRepLegal}.substring(9, 11 )]]></textFieldExpression>
+			</textField>
 		</band>
-	</detail>
+	</pageFooter>
 </jasperReport>

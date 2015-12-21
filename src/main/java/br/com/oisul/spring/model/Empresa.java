@@ -21,9 +21,9 @@ public class Empresa implements ModelInterface {
 
 	private Integer idUsuario;
 	private String deRazaoSocial;
-	private Long nuCnpj;
+	private String nuCnpj;
 	private String nmRepLegal;
-	private Long nuCpfRepLegal;
+	private String nuCpfRepLegal;
 	private Integer nuDiaVencimento;
 	private String deEndereco;
 	private String nmBairro;
@@ -41,7 +41,7 @@ public class Empresa implements ModelInterface {
 	private String deUfCob;
 	private Integer nuCepCob;
 	private String nmGestorConta;
-	private Long nuCpfGestorConta;
+	private String nuCpfGestorConta;
 	private String deEmailGestorConta;
 	
 	public Integer getIdEmpresa() {
@@ -62,10 +62,10 @@ public class Empresa implements ModelInterface {
 	public void setDeRazaoSocial(String deRazaoSocial) {
 		this.deRazaoSocial = deRazaoSocial;
 	}
-	public Long getNuCnpj() {
+	public String getNuCnpj() {
 		return nuCnpj;
 	}
-	public void setNuCnpj(Long nuCnpj) {
+	public void setNuCnpj(String nuCnpj) {
 		this.nuCnpj = nuCnpj;
 	}
 	public String getNuCnpjFmt() {
@@ -82,10 +82,10 @@ public class Empresa implements ModelInterface {
 	public void setNmRepLegal(String nmRepLegal) {
 		this.nmRepLegal = nmRepLegal;
 	}
-	public Long getNuCpfRepLegal() {
+	public String getNuCpfRepLegal() {
 		return nuCpfRepLegal;
 	}
-	public void setNuCpfRepLegal(Long nuCpfRepLegal) {
+	public void setNuCpfRepLegal(String nuCpfRepLegal) {
 		this.nuCpfRepLegal = nuCpfRepLegal;
 	}
 	public String getNuCpfRepLegalFmt() {
@@ -222,10 +222,10 @@ public class Empresa implements ModelInterface {
 	public void setNmGestorConta(String nmGestorConta) {
 		this.nmGestorConta = nmGestorConta;
 	}
-	public Long getNuCpfGestorConta() {
+	public String getNuCpfGestorConta() {
 		return nuCpfGestorConta;
 	}
-	public void setNuCpfGestorConta(Long nuCpfGestorConta) {
+	public void setNuCpfGestorConta(String nuCpfGestorConta) {
 		this.nuCpfGestorConta = nuCpfGestorConta;
 	}
 	public String getDeEmailGestorConta() {

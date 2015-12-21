@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.reports.contrato.RelContrato;
+import br.com.oisul.spring.reports.contrato.RelTermoPortabilidade;
 import br.com.oisul.spring.service.usuario.UsuarioService;
 import br.com.oisul.spring.utils.UrlsAdmin;
 import br.com.oisul.spring.utils.UrlsSite;
@@ -38,8 +39,16 @@ public class UsuarioController extends DefaultController {
 	}
 	
 	@RequestMapping(value = "/abrirCadUsuarioSite", method = RequestMethod.GET)
-	public String testeBanana(Model model) {
+	public String abrirCadUsuarioSite(Model model) {
 		model.addAttribute("usuario", new Usuario());
+		return "site/cadastro";
+	}
+	
+	@RequestMapping(value = "/testeRelatorio", method = RequestMethod.GET)
+	public String testeRelatorio(Model model) {
+		model.addAttribute("usuario", new Usuario());
+		RelTermoPortabilidade rel = new RelTermoPortabilidade();
+		rel.geraRelatorio(47);
 		return "site/cadastro";
 	}
 	
@@ -55,6 +64,22 @@ public class UsuarioController extends DefaultController {
 			addMensagemErroGenerica(model);
 		}
 		return "site/cadastro";
+	}
+
+	@RequestMapping(value= "/alterarSenha", method = RequestMethod.POST)
+	public String alterarSenha(Model model, @ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){
+		try {
+			Usuario usrSessao = (Usuario) request.getSession().getAttribute("usuario");
+			usrSessao.setSenha(usuario.getSenha());
+			usuario = usrSessao;
+			usuarioService.alteraSenha(usuario);
+			request.getSession().setAttribute("usuario", usuario);
+			usuario = new Usuario();
+			addMensagemSucesso(model, "Senha alterada com sucesso;");
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+		}
+		return "admin/alterarSenha";
 	}
 
 	@RequestMapping(value = "/confirmarUsuario", method = RequestMethod.GET)
