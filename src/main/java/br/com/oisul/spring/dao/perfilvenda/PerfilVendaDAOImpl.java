@@ -17,7 +17,7 @@ public class PerfilVendaDAOImpl extends GenericDAOImpl<Integer, PerfilVenda> imp
 		Session session = this.sessionFactory.getCurrentSession();
 		HQLBuilder hql = new HQLBuilder(session);
 		hql.append("from PerfilVenda perfil");
-		hql.appendFiltro("where perfil.idvenda = ?", idVenda);
+		hql.appendFiltro("where perfil.idVenda = ?", idVenda);
 		return (List<PerfilVenda>) hql.list();
 	}
 

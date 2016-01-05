@@ -1,4 +1,4 @@
-package br.com.oisul.spring.reports.contrato;
+package br.com.oisul.spring.reports.contrato.movel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -130,7 +130,7 @@ public class RelContrato {
 			ResultSet rs = stmt.executeQuery(sql.toString());
 			
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			InputStream is = this.getClass().getResourceAsStream("/br/com/oisul/spring/reports/contrato/relContratoMovel.jasper");
+			InputStream is = this.getClass().getResourceAsStream("/br/com/oisul/spring/reports/contrato/movel/relContratoMovel.jasper");
 			
 			JRResultSetDataSource relResult = new JRResultSetDataSource(rs);
 			@SuppressWarnings("unchecked")

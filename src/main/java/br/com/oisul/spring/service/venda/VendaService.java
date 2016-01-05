@@ -13,11 +13,15 @@ public interface VendaService {
 	
 	public void geraDocumentosNovaVenda(Venda venda) throws Exception;
 	
-	public void validaPerfisVenda(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException;
+	public void validaPerfisVendaMovel(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException;
+
+	public void validaPerfisVendaFixo(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException;
 	
 	public VendaDocumento getVendaDocumentoByVisualizacao(Integer idVendaDocumento) throws Exception;
 
 	public Venda findVendaEdicao(Integer idVenda) throws Exception;
+	
+	public Venda findVendaByRelContratoFixo(Integer idVenda) throws Exception;
 	
 	public List<Venda> findTopVendas(Venda venda, Integer limite) throws Exception;
 

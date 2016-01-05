@@ -13,6 +13,9 @@ import br.com.oisul.spring.utils.FormatadorUtil;
 @Entity
 @Table(name="vendaitem")
 public class VendaItem implements ModelInterface, Cloneable {
+	
+	public static final String FL_PORTABILIDADE_SIM = "S";
+	public static final String FL_PORTABILIDADE_NAO = "N";
 
 	@Id 
     @Column(name="idvendaitem", unique=true, nullable=false)
@@ -26,6 +29,7 @@ public class VendaItem implements ModelInterface, Cloneable {
 	private String flPortabilidade;
 	private Integer nuPortabilidade;
 	private Integer idOperadora;
+	private Integer idProdutoBL;
 	
 	
 	public Integer getIdVendaItem() {
@@ -94,6 +98,12 @@ public class VendaItem implements ModelInterface, Cloneable {
     public VendaItem clone() throws CloneNotSupportedException {  
         VendaItem clonado = (VendaItem) super.clone();  
         return clonado;  
-    }  
+    }
+	public Integer getIdProdutoBL() {
+		return idProdutoBL;
+	}
+	public void setIdProdutoBL(Integer idProdutoBL) {
+		this.idProdutoBL = idProdutoBL;
+	}  
 
 }

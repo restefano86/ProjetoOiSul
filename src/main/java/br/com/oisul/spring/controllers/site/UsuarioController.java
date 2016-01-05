@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.oisul.spring.model.Usuario;
-import br.com.oisul.spring.reports.contrato.RelContrato;
-import br.com.oisul.spring.reports.contrato.RelTermoPortabilidade;
+import br.com.oisul.spring.model.Venda;
+import br.com.oisul.spring.reports.contrato.fixo.RelContratoFixo;
+import br.com.oisul.spring.reports.contrato.movel.RelContrato;
+import br.com.oisul.spring.reports.contrato.movel.RelTermoPortabilidade;
 import br.com.oisul.spring.service.usuario.UsuarioService;
 import br.com.oisul.spring.utils.UrlsAdmin;
 import br.com.oisul.spring.utils.UrlsSite;
@@ -46,9 +48,16 @@ public class UsuarioController extends DefaultController {
 	
 	@RequestMapping(value = "/testeRelatorio", method = RequestMethod.GET)
 	public String testeRelatorio(Model model) {
-		model.addAttribute("usuario", new Usuario());
-		RelTermoPortabilidade rel = new RelTermoPortabilidade();
-		rel.geraRelatorio(47);
+		try {
+			
+//		model.addAttribute("usuario", new Usuario());
+//		RelTermoPortabilidade rel = new RelTermoPortabilidade();
+//		rel.geraRelatorio(47);
+		RelContratoFixo relContratoFixo = new RelContratoFixo();
+		relContratoFixo.geraRelatorio(new Venda());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "site/cadastro";
 	}
 	

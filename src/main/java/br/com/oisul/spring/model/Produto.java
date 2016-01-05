@@ -9,6 +9,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name="produto")
 public class Produto implements ModelInterface {
+	
+	public static final String TP_MOVEL = "M";
+	public static final String TP_FIXO = "F";
+	public static final String TP_BANDALARGA = "B";
 
 	@Id 
     @Column(name="idproduto", unique=true, nullable=false)

@@ -2,7 +2,6 @@
 <img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso2.jpg" class="topAquisicao" >
 
 <h2 class="tituloAquisicao">Preencha o cadastro com os dados da empresa.</h2>
-
 <form:form action="aquisicaoAdminPasso3" commandName="empresa">
 
 <form:hidden path="idEmpresa"/>
@@ -81,7 +80,15 @@
 	</table>
 	
 	<br>
-	<h2 style="float: left;">Endereço da Empresa</h2><span class="destaque" style="padding-top: 22px; padding-left: 5px; float: left; font-style: italic;">(Deve ser o mesmo registrado na Receita Federal)</span>
+	
+	<c:choose>
+		<c:when test="${sessionScope.venda.isVendaFixo}">
+			<h2 style="float: left;">Endereço de Instalação</h2>
+		</c:when>  
+		<c:otherwise>
+			<h2 style="float: left;">Endereço da Empresa</h2><span class="destaque" style="padding-top: 22px; padding-left: 5px; float: left; font-style: italic;">(Deve ser o mesmo registrado na Receita Federal)</span>
+		</c:otherwise>
+	</c:choose>
 	
 	<table width="800px">
 		<tr>
@@ -126,7 +133,14 @@
 				<input type="checkbox" id="dadosCobrancaMesmoEmpresa" onchange="preecheDadosCobranca(this);"/>
 			</td>
 			<td colspan="3" style="padding: 8 0 10 0; text-decoration: underline;">
-				<span style="font-size: 10pt; padding: 10px;">Preencher os dados de cobrança com os mesmos dados da empresa.</span>
+				<c:choose>
+					<c:when test="${sessionScope.venda.isVendaFixo}">
+						<span style="font-size: 10pt; padding: 10px;">Será conforme o endereço da empresa (Receita Federal)?</span>
+					</c:when>  
+					<c:otherwise>
+						<span style="font-size: 10pt; padding: 10px;">Preencher os dados de cobrança com os mesmos dados da empresa.</span>
+					</c:otherwise>
+				</c:choose>
 			</td> 
 		</tr>
 		<tr>

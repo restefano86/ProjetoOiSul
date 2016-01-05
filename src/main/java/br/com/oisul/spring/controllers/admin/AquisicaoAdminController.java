@@ -23,6 +23,7 @@ import br.com.oisul.spring.model.Empresa;
 import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.model.Venda;
 import br.com.oisul.spring.model.VendaDocumento;
+import br.com.oisul.spring.reports.contrato.fixo.RelContratoFixo;
 import br.com.oisul.spring.service.empresa.EmpresaService;
 import br.com.oisul.spring.service.venda.VendaService;
 import br.com.oisul.spring.utils.UrlsAdmin;
@@ -72,20 +73,36 @@ public class AquisicaoAdminController extends DefaultController {
 	@RequestMapping(value = "/aquisicaoAdminPasso1", method = RequestMethod.GET)
 	public String aquisicaoPasso1(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
-		Venda vendaSessao = (Venda) request.getSession().getAttribute("venda");
-		if(vendaSessao != null){
-			model.addAttribute("venda", vendaSessao);
+		Venda vendaSessao = getVendaSessao(request);
+		if(Venda.TP_VENDA_FIXO.equals(vendaSessao.getTpVenda())){
+			return aquisicaoAdminPasso1Fixo(model, request);
 		}
+		vendaSessao.setTpVenda(Venda.TP_VENDA_MOVEL);
+		setVendaSessao(vendaSessao, request);
+		model.addAttribute("venda", vendaSessao);
 		return UrlsAdmin.AQUISICAO_PASSO_1.url;
+	}
+	@RequestMapping(value = "/aquisicaoAdminPasso1Fixo", method = RequestMethod.GET)
+	public String aquisicaoAdminPasso1Fixo(Model model, HttpServletRequest request) {
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		Venda vendaSessao = getVendaSessao(request);
+		vendaSessao.setTpVenda(Venda.TP_VENDA_FIXO);
+		setVendaSessao(vendaSessao, request);
+		model.addAttribute("venda", vendaSessao);
+		return UrlsAdmin.AQUISICAO_PASSO_1_FIXO.url;
 	}
 	
 	@RequestMapping(value = "/aquisicaoAdminPasso2", method = RequestMethod.POST)
 	public String aquisicaoPasso2(Model model, @ModelAttribute("venda") Venda venda, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		try {
-			Venda vendaSessao = (Venda) request.getSession().getAttribute("venda");
+			Venda vendaSessao = getVendaSessao(request);
 			vendaSessao.setItens(venda.getItens());
-			vendaService.validaPerfisVenda(venda.getItens());
+			if(Venda.TP_VENDA_MOVEL.equals(vendaSessao.getTpVenda())){
+				vendaService.validaPerfisVendaMovel(venda.getItens());
+			} else {
+				vendaService.validaPerfisVendaFixo(venda.getItens());
+			}
 			Empresa empresa = empresaService.findEmpresaByUsuario(getIdUsuarioFromSession(request));
 			model.addAttribute("empresa", vendaSessao.getEmpresa());
 			return UrlsAdmin.AQUISICAO_PASSO_2.url;
@@ -220,4 +237,24 @@ public class AquisicaoAdminController extends DefaultController {
 		return UrlsAdmin.AQUISICAO_PASSO_0.url;
 	}
 	
+	private Venda getVendaSessao(HttpServletRequest request){
+		return (Venda) request.getSession().getAttribute("venda");
+	}
+	
+	private void setVendaSessao(Venda venda, HttpServletRequest request){
+		request.setAttribute("venda", venda);
+	}
+
+	@RequestMapping(value = "/testeContratoFixo", method = RequestMethod.GET)
+	public String testeContratoFixo(Model model) {
+		try {
+			Venda venda = vendaService.findVendaByRelContratoFixo(64);
+			RelContratoFixo relContratoFixo = new RelContratoFixo();
+			relContratoFixo.geraRelatorio(venda);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "site/cadastro";
+	}
+
 }

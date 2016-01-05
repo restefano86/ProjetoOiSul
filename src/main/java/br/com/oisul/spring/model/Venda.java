@@ -19,6 +19,9 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="venda")
 public class Venda implements ModelInterface {
+	
+	public static final String TP_VENDA_FIXO = "F";
+	public static final String TP_VENDA_MOVEL = "M";
 
 	@Id 
     @Column(name="idvenda", unique=true, nullable=false)
@@ -223,7 +226,9 @@ public class Venda implements ModelInterface {
 		this.situacao = situacao;
 	}
 	
-	
+	public boolean getIsVendaFixo(){
+		return TP_VENDA_FIXO.equals(getTpVenda());
+	}
 	
 	
 	

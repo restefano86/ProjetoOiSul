@@ -1,4 +1,4 @@
-package br.com.oisul.spring.reports.contrato;
+package br.com.oisul.spring.reports.contrato.movel;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -76,7 +76,7 @@ public class RelTermoPortabilidade {
 			}
 			
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			InputStream is = this.getClass().getResourceAsStream("/br/com/oisul/spring/reports/contrato/relTermoPortabilidade.jasper");
+			InputStream is = this.getClass().getResourceAsStream("/br/com/oisul/spring/reports/contrato/movel/relTermoPortabilidade.jasper");
 			
 			RelPortabilidadeDTO dtoFake = new RelPortabilidadeDTO();
 			dtoFake.setDia(relPortabilidadeDTO.getDia());

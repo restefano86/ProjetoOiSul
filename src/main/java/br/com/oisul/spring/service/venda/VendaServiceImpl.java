@@ -19,9 +19,9 @@ import br.com.oisul.spring.model.PerfilVenda;
 import br.com.oisul.spring.model.Venda;
 import br.com.oisul.spring.model.VendaDocumento;
 import br.com.oisul.spring.model.VendaItem;
-import br.com.oisul.spring.reports.contrato.RelContrato;
-import br.com.oisul.spring.reports.contrato.RelOiInformacoesMaisCelular;
-import br.com.oisul.spring.reports.contrato.RelTermoPortabilidade;
+import br.com.oisul.spring.reports.contrato.movel.RelContrato;
+import br.com.oisul.spring.reports.contrato.movel.RelOiInformacoesMaisCelular;
+import br.com.oisul.spring.reports.contrato.movel.RelTermoPortabilidade;
 
 @Service
 public class VendaServiceImpl implements VendaService {
@@ -119,21 +119,28 @@ public class VendaServiceImpl implements VendaService {
 			perfilVendaDAO.deleteEntity(perfilBanco);
 		}
 		
-		List<PerfilVenda> listaPerfis = this.geraPerfisVenda(venda.getItens());
+		List<PerfilVenda> listaPerfis = this.geraPerfisVendaMovel(venda.getItens());
 		for (PerfilVenda perfilVenda : listaPerfis) {
-			perfilVenda.setIdvenda(venda.getIdVenda());
+			perfilVenda.setIdVenda(venda.getIdVenda());
 		}
 		perfilVendaDAO.saveAllEntity(listaPerfis);
 	}
 	
-	public void validaPerfisVenda(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
-		List<PerfilVenda> perfis = geraPerfisVenda(vendaItens);
+	public void validaPerfisVendaMovel(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
+		List<PerfilVenda> perfis = geraPerfisVendaMovel(vendaItens);
 		if(perfis.size() > 6){
 			throw new BusinessException("Os acessos cadastrados compreendem uma quantidade de perfis maior do que a quantidade suporteda pelo contrato. Entre em contato com a empresa para maiores informações sobre como proceder");
 		}
 	}
 
-	public List<PerfilVenda> geraPerfisVenda(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
+	public void validaPerfisVendaFixo(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
+		List<PerfilVenda> perfis = geraPerfisVendaFixo(vendaItens);
+		if(perfis.size() > 5){
+			throw new BusinessException("Os acessos cadastrados compreendem uma quantidade de perfis maior do que a quantidade suporteda pelo contrato. Entre em contato com a empresa para maiores informações sobre como proceder");
+		}
+	}
+
+	public List<PerfilVenda> geraPerfisVendaMovel(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
 		List<PerfilVenda> listPerfil = new ArrayList<PerfilVenda>();
 		
 		List<VendaItem> itensClonados = new ArrayList<VendaItem>();
@@ -156,26 +163,88 @@ public class VendaServiceImpl implements VendaService {
 		   
 		PerfilVenda perfil = new PerfilVenda();   
 		for (VendaItem item : itensClonados) {
-			boolean isMesmoProduto = item.getIdProduto().equals(perfil.getIdproduto());
-			boolean isMesmoDdd = item.getNuDdd().equals(perfil.getNuddd());
-			boolean isMesmoTipoChip = item.getFlTipoChip().equals(perfil.getFltipochip());
+			boolean isMesmoProduto = item.getIdProduto().equals(perfil.getIdProduto());
+			boolean isMesmoDdd = item.getNuDdd().equals(perfil.getNuDdd());
+			boolean isMesmoTipoChip = item.getFlTipoChip().equals(perfil.getFlTipoChip());
 			if(isMesmoProduto && isMesmoDdd && isMesmoTipoChip){
-				perfil.setQtacessos(perfil.getQtacessos()+1);
+				perfil.setQtAcessos(perfil.getQtAcessos()+1);
 			} else {
-				if(perfil.getIdproduto()!= null){
+				if(perfil.getIdProduto()!= null){
 					perfil.setNuPerfil(listPerfil.size()+1);
 					listPerfil.add(perfil);
 					perfil = new PerfilVenda();
 				}
 				perfil = new PerfilVenda();
-				perfil.setIdproduto(item.getIdProduto());
-				perfil.setNuddd(item.getNuDdd());
-				perfil.setFltipochip(item.getFlTipoChip());
-				perfil.setQtacessos(1);
+				perfil.setIdProduto(item.getIdProduto());
+				perfil.setNuDdd(item.getNuDdd());
+				perfil.setFlTipoChip(item.getFlTipoChip());
+				perfil.setQtAcessos(1);
 			}
 		}
 		perfil.setNuPerfil(listPerfil.size()+1);
 		listPerfil.add(perfil); 
+		return listPerfil;
+	}
+
+	public List<PerfilVenda> geraPerfisVendaFixo(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
+		List<PerfilVenda> listPerfil = new ArrayList<PerfilVenda>();
+		
+		List<VendaItem> itensClonados = new ArrayList<VendaItem>();
+		for (VendaItem item : vendaItens) {
+			itensClonados.add(item.clone());
+		}
+		
+		Collections.sort(itensClonados, new Comparator<VendaItem>() {
+			@Override
+			public int compare(VendaItem i1, VendaItem i2) {
+				int c;
+				c = i1.getFlPortabilidade().compareTo(i2.getFlPortabilidade());
+				if (c == 0)
+					c = i1.getIdProduto().compareTo(i2.getIdProduto());
+				if (c == 0)
+					c = i1.getNuDdd().compareTo(i2.getNuDdd());
+				if (c == 0)
+					if(i1.getIdProdutoBL() == null && i2.getIdProdutoBL() == null){
+						c = 0;
+					} else if(i1.getIdProdutoBL() == null && i2.getIdProdutoBL() != null){
+						c = 1;
+					} else if(i1.getIdProdutoBL() != null && i2.getIdProdutoBL() == null){
+						c = -1;
+					} else {
+						c = i1.getIdProdutoBL().compareTo(i2.getIdProdutoBL());
+					}
+				return c;
+			}
+		});
+		   
+		PerfilVenda perfil = new PerfilVenda();   
+		for (VendaItem item : itensClonados) {
+			boolean isMesmoProduto = item.getIdProduto().equals(perfil.getIdProduto());
+			boolean isMesmoDdd = item.getNuDdd().equals(perfil.getNuDdd());
+			boolean isMesmoProtudoBL = (item.getIdProdutoBL() == null && perfil.getIdProdutoBL() == null) || (item.getIdProdutoBL() != null && item.getIdProdutoBL().equals(perfil.getIdProdutoBL()));
+			boolean isPortabilidade = VendaItem.FL_PORTABILIDADE_SIM.equals(item.getFlPortabilidade());
+			if(!isPortabilidade && isMesmoProduto && isMesmoDdd && isMesmoProtudoBL){
+				perfil.setQtAcessos(perfil.getQtAcessos()+1);
+			} else {
+				if(perfil.getIdProduto()!= null){
+					perfil.setNuPerfil(listPerfil.size()+1);
+					listPerfil.add(perfil);
+					perfil = new PerfilVenda();
+				}
+				perfil = new PerfilVenda();
+				perfil.setIdProduto(item.getIdProduto());
+				perfil.setNuDdd(item.getNuDdd());
+				perfil.setIdProdutoBL(item.getIdProdutoBL());
+				perfil.setQtAcessos(1);
+			}
+		}
+		perfil.setNuPerfil(listPerfil.size()+1);
+		listPerfil.add(perfil); 
+		System.out.println("##############################################################");
+		for (PerfilVenda p : listPerfil) {
+			System.out.println(p.getNuPerfil()+"-"+p.getIdProduto()+"-"+p.getNuDdd()+"-"+p.getIdProdutoBL()+"-"+p.getQtAcessos());
+		}
+		System.out.println("##############################################################");
 		return listPerfil;
 	}
 
@@ -188,6 +257,12 @@ public class VendaServiceImpl implements VendaService {
 	public Venda findVendaEdicao(Integer idVenda) throws Exception{
 		Venda venda = vendaDAO.getVendaFetchById(idVenda);
 		venda.setDocumentosGerados(vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda()));
+		return venda;
+	}
+	
+	@Transactional	
+	public Venda findVendaByRelContratoFixo(Integer idVenda) throws Exception{
+		Venda venda = vendaDAO.getVendaFetchById(idVenda);
 		return venda;
 	}
 	

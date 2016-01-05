@@ -11,6 +11,6 @@ Na <span class="destaque">Etapa 4</span> você será solicitado a enviar para o si
 <BR><BR><BR>
 <div style="text-align: center; width: 100%">
 	<input type="button" id="btGerarContratos" class="btn btn-primary" title="Nova Venda Móvel" value="Nova Venda Móvel" onclick="proximaEtapa();"/>
-	<input type="button" id="btGerarContratos" class="btn btn-disable" title="Nova Venda Fixo" value="Nova Venda Fixo" onclick="alert('Venda de planos Fixo estarão disponíveis através do sistema em breve!')"/>
+	<input type="button" id="btGerarContratos" class="btn btn-primary" title="Nova Venda Fixo" value="Nova Venda Fixo" onclick="proximaEtapaFixo();"/>
 </div> 
 <BR><BR><BR>

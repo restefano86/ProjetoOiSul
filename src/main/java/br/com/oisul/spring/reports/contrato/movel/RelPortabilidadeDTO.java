@@ -1,4 +1,4 @@
-package br.com.oisul.spring.reports.contrato;
+package br.com.oisul.spring.reports.contrato.movel;
 
 public class RelPortabilidadeDTO {
 	private String dePerfil;

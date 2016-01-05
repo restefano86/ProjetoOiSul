@@ -5,4 +5,7 @@
 	function proximaEtapa(){
 		abreLink('aquisicaoAdminPasso1');
 	}
+	function proximaEtapaFixo(){
+		abreLink('aquisicaoAdminPasso1Fixo');
+	}
 </script>

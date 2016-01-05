@@ -13,67 +13,21 @@ public class PerfilVenda implements ModelInterface {
 	@Id 
     @Column(name="idperfilvenda", unique=true, nullable=false)
 	@GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-	private Integer idperfilvenda;
+	private Integer idPerfilVenda;
 	
-	private Integer idproduto;
-	private Integer idvenda;
-	private Integer nuddd;
-	private Integer qtacessos;
-	private String fltipochip;
+	private Integer idProduto;
+	private Integer idVenda;
+	private Integer nuDdd;
+	private Integer qtAcessos;
+	private String flTipoChip;
 	private Integer nuPerfil;
+	private Integer idProdutoBL;
 	
 	@Override
 	public Integer getId() {
-		return getIdperfilvenda();
+		return getIdPerfilVenda();
 	}
 
-	public Integer getIdperfilvenda() {
-		return idperfilvenda;
-	}
-
-	public void setIdperfilvenda(Integer idperfilvenda) {
-		this.idperfilvenda = idperfilvenda;
-	}
-
-	public Integer getNuddd() {
-		return nuddd;
-	}
-
-	public void setNuddd(Integer nuddd) {
-		this.nuddd = nuddd;
-	}
-
-	public Integer getQtacessos() {
-		return qtacessos;
-	}
-
-	public void setQtacessos(Integer qtacessos) {
-		this.qtacessos = qtacessos;
-	}
-
-	public String getFltipochip() {
-		return fltipochip;
-	}
-
-	public void setFltipochip(String fltipochip) {
-		this.fltipochip = fltipochip;
-	}
-
-	public Integer getIdproduto() {
-		return idproduto;
-	}
-
-	public void setIdproduto(Integer idproduto) {
-		this.idproduto = idproduto;
-	}
-
-	public Integer getIdvenda() {
-		return idvenda;
-	}
-
-	public void setIdvenda(Integer idvenda) {
-		this.idvenda = idvenda;
-	}
 
 	public Integer getNuPerfil() {
 		return nuPerfil;
@@ -81,6 +35,76 @@ public class PerfilVenda implements ModelInterface {
 
 	public void setNuPerfil(Integer nuPerfil) {
 		this.nuPerfil = nuPerfil;
+	}
+
+
+	public Integer getIdPerfilVenda() {
+		return idPerfilVenda;
+	}
+
+
+	public void setIdPerfilVenda(Integer idPerfilVenda) {
+		this.idPerfilVenda = idPerfilVenda;
+	}
+
+
+	public Integer getIdProduto() {
+		return idProduto;
+	}
+
+
+	public void setIdProduto(Integer idProduto) {
+		this.idProduto = idProduto;
+	}
+
+
+	public Integer getIdVenda() {
+		return idVenda;
+	}
+
+
+	public void setIdVenda(Integer idVenda) {
+		this.idVenda = idVenda;
+	}
+
+
+	public Integer getNuDdd() {
+		return nuDdd;
+	}
+
+
+	public void setNuDdd(Integer nuDdd) {
+		this.nuDdd = nuDdd;
+	}
+
+
+	public Integer getQtAcessos() {
+		return qtAcessos;
+	}
+
+
+	public void setQtAcessos(Integer qtAcessos) {
+		this.qtAcessos = qtAcessos;
+	}
+
+
+	public String getFlTipoChip() {
+		return flTipoChip;
+	}
+
+
+	public void setFlTipoChip(String flTipoChip) {
+		this.flTipoChip = flTipoChip;
+	}
+
+
+	public Integer getIdProdutoBL() {
+		return idProdutoBL;
+	}
+
+
+	public void setIdProdutoBL(Integer idProdutoBL) {
+		this.idProdutoBL = idProdutoBL;
 	}
 	
 

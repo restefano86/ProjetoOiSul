@@ -4,6 +4,7 @@ public enum UrlsAdmin {
 	HOME("admin/index"),
 	AQUISICAO_PASSO_0("admin/aquisicaoAdminPasso0"),
 	AQUISICAO_PASSO_1("admin/aquisicaoAdminPasso1"),
+	AQUISICAO_PASSO_1_FIXO("admin/aquisicaoAdminPasso1Fixo"),
 	AQUISICAO_PASSO_2("admin/aquisicaoAdminPasso2"),
 	AQUISICAO_PASSO_3("admin/aquisicaoAdminPasso3"),
 	AQUISICAO_PASSO_4("admin/aquisicaoAdminPasso4"),
