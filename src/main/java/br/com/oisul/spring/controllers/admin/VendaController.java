@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.oisul.spring.controllers.site.DefaultController;
+import br.com.oisul.spring.model.Usuario;
 import br.com.oisul.spring.model.Venda;
 import br.com.oisul.spring.service.empresa.EmpresaService;
 import br.com.oisul.spring.service.venda.VendaService;
@@ -34,7 +35,10 @@ public class VendaController extends DefaultController  {
 	public String aquisicaoAdminPasso0(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		try {
-			List<Venda> listaVendas = vendaService.findTopVendas(new Venda(), 100);
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+			Venda venda = new Venda();
+			venda.setIdConsultor(usuario.getIdUsuario());
+			List<Venda> listaVendas = vendaService.findTopVendas(venda, 100);
 			model.addAttribute("listaVendas", listaVendas);
 		} catch (Exception e) {
 			addMensagemErroGenerica(model);

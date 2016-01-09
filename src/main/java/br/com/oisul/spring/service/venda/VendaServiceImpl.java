@@ -82,6 +82,7 @@ public class VendaServiceImpl implements VendaService {
 			vendaDocumentoDAO.deleteEntity(docto);
 		}
 		//salva contrato
+		System.out.println("####### PREPARANDO PARA GERAR CONTRATO");
 		RelContrato relContrato = new RelContrato();
 		byte[] fileRelContrato = relContrato.geraRelatorio(venda.getIdVenda());
 		VendaDocumento vendaDocumento = new VendaDocumento();
@@ -90,8 +91,10 @@ public class VendaServiceImpl implements VendaService {
 		vendaDocumento.setNmDocumento("fichaPedidoEmpresarial.pdf");
 		vendaDocumento.setFile(fileRelContrato);
 		vendaDocumentoDAO.saveEntity(vendaDocumento);
+		System.out.println("####### GEROU CONTRATO");
 		
 		//salva docto informações
+		System.out.println("####### PREPARANDO PARA GERAR INFORMAÇÕES");
 		RelOiInformacoesMaisCelular relOiInformacoesMaisCelular = new RelOiInformacoesMaisCelular();
 		byte[] fileRelOiInformacoesMaisCelular = relOiInformacoesMaisCelular.geraRelatorio(venda.getIdVenda());
 		VendaDocumento doctoInfo = new VendaDocumento();
@@ -100,8 +103,10 @@ public class VendaServiceImpl implements VendaService {
 		doctoInfo.setNmDocumento("OiInformacoesMaisCelular.pdf");
 		doctoInfo.setFile(fileRelOiInformacoesMaisCelular);
 		vendaDocumentoDAO.saveEntity(doctoInfo);
+		System.out.println("####### GEROU INFORMAÇÕES");
 		
 		//salva docto portabilidade
+		System.out.println("####### PREPARANDO PARA GERAR TERMO DE PORTABILIDADE");
 		RelTermoPortabilidade relTermoPortabilidade = new RelTermoPortabilidade();
 		byte[] fileRelTermoPortabilidade = relTermoPortabilidade.geraRelatorio(venda.getIdVenda());
 		VendaDocumento doctoPortabilidade = new VendaDocumento();
@@ -110,7 +115,7 @@ public class VendaServiceImpl implements VendaService {
 		doctoPortabilidade.setNmDocumento("OiTermoPortabilidade.pdf");
 		doctoPortabilidade.setFile(fileRelTermoPortabilidade);
 		vendaDocumentoDAO.saveEntity(doctoPortabilidade);
-		
+		System.out.println("####### GEROU TERMO DE PORTABILIDADE");
 		venda.setDocumentosGerados(vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda()));
 	}
 	private void atualizaPerfisVenda(Venda venda) throws BusinessException, CloneNotSupportedException {
