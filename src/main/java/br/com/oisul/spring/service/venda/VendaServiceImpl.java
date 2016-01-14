@@ -19,6 +19,7 @@ import br.com.oisul.spring.model.PerfilVenda;
 import br.com.oisul.spring.model.Venda;
 import br.com.oisul.spring.model.VendaDocumento;
 import br.com.oisul.spring.model.VendaItem;
+import br.com.oisul.spring.reports.contrato.fixo.RelContratoFixo;
 import br.com.oisul.spring.reports.contrato.movel.RelContrato;
 import br.com.oisul.spring.reports.contrato.movel.RelOiInformacoesMaisCelular;
 import br.com.oisul.spring.reports.contrato.movel.RelTermoPortabilidade;
@@ -72,15 +73,22 @@ public class VendaServiceImpl implements VendaService {
 			throw e;
 		}
 	}
+
+	@Override
+	@Transactional		
+	public void geraDocumentosNovaVenda(Venda venda) throws Exception {
+		if(venda.getIsVendaFixo()){
+			geraDocumentosNovaVendaFixo(venda);
+		} else {
+			geraDocumentosNovaVendaMovel(venda);
+		}
+	}
 	
 	@Override
 	@Transactional		
-	public void geraDocumentosNovaVenda(Venda venda) {
+	public void geraDocumentosNovaVendaMovel(Venda venda) {
 
-		List<VendaDocumento> doctosGerados = vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda());
-		for (VendaDocumento docto : doctosGerados) {
-			vendaDocumentoDAO.deleteEntity(docto);
-		}
+		deletaDoctosGeradosVenda(venda);
 		//salva contrato
 		RelContrato relContrato = new RelContrato();
 		byte[] fileRelContrato = relContrato.geraRelatorio(venda.getIdVenda());
@@ -113,13 +121,51 @@ public class VendaServiceImpl implements VendaService {
 		
 		venda.setDocumentosGerados(vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda()));
 	}
+
+	@Override
+	@Transactional		
+	public void geraDocumentosNovaVendaFixo(Venda venda) throws Exception {
+
+		deletaDoctosGeradosVenda(venda);
+		
+		//salva contrato
+		RelContratoFixo relContratoFixo = new RelContratoFixo();
+		Venda vendaBanco = findVendaByRelContratoFixo(venda.getIdVenda());
+		List<PerfilVenda> perfis = perfilVendaDAO.findAllPerfilVendaFetchByIdVenda(venda.getIdVenda());
+		vendaBanco.setPerfis(perfis);
+		byte[] fileRelContratoFixo = relContratoFixo.geraRelatorio(vendaBanco);
+		
+		VendaDocumento vendaDocumento = new VendaDocumento();
+		vendaDocumento.setIdVenda(vendaBanco.getIdVenda());
+		vendaDocumento.setFlOrigem("S");
+		vendaDocumento.setNmDocumento("contratoFixoBandaLarga.pdf");
+		vendaDocumento.setFile(fileRelContratoFixo);
+		vendaDocumentoDAO.saveEntity(vendaDocumento);
+		
+		venda.setDocumentosGerados(vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda()));
+	}
+	
+	private void deletaDoctosGeradosVenda(Venda venda) {
+		List<VendaDocumento> doctosGerados = vendaDocumentoDAO.findVendaDocumentosGeradosNoFilesByVenda(venda.getIdVenda());
+		for (VendaDocumento docto : doctosGerados) {
+			vendaDocumentoDAO.deleteEntity(docto);
+		}
+	}
+	
 	private void atualizaPerfisVenda(Venda venda) throws BusinessException, CloneNotSupportedException {
 		List<PerfilVenda> perfisBanco = perfilVendaDAO.findAllPerfilVendaByIdVenda(venda.getIdVenda());
 		for (PerfilVenda perfilBanco : perfisBanco) {
 			perfilVendaDAO.deleteEntity(perfilBanco);
 		}
 		
-		List<PerfilVenda> listaPerfis = this.geraPerfisVendaMovel(venda.getItens());
+		List<PerfilVenda> listaPerfis;
+		if(venda.getIsVendaFixo()){
+			listaPerfis = this.geraPerfisVendaFixo(venda.getItens());
+		} else {
+			listaPerfis = this.geraPerfisVendaMovel(venda.getItens());
+		}
+			
+		
 		for (PerfilVenda perfilVenda : listaPerfis) {
 			perfilVenda.setIdVenda(venda.getIdVenda());
 		}
@@ -236,6 +282,7 @@ public class VendaServiceImpl implements VendaService {
 				perfil.setNuDdd(item.getNuDdd());
 				perfil.setIdProdutoBL(item.getIdProdutoBL());
 				perfil.setQtAcessos(1);
+				perfil.setFlPortabilidade(item.getFlPortabilidade());
 			}
 		}
 		perfil.setNuPerfil(listPerfil.size()+1);
@@ -281,6 +328,16 @@ public class VendaServiceImpl implements VendaService {
 			vendaDocumento.setFile(file);
 			vendaDocumentoDAO.saveEntity(vendaDocumento);
 			venda.setDocumentosInseridos(vendaDocumentoDAO.findVendaDocumentosInseridosNoFilesByVenda(venda.getIdVenda()));
+		} catch(Exception e){
+			throw e;
+		}
+		
+	}
+	
+	@Transactional
+	public List<VendaDocumento> findVendaDocumentosInseridos(Integer idVenda) throws Exception{
+		try{
+			return vendaDocumentoDAO.findVendaDocumentosInseridosNoFilesByVenda(idVenda);
 		} catch(Exception e){
 			throw e;
 		}

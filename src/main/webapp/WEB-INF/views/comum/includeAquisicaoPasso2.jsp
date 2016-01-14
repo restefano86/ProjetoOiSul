@@ -6,6 +6,12 @@
 
 <form:hidden path="idEmpresa"/>
 
+	<input type="hidden" id="HdeUf" value="${empresa.deUf}" />
+	<input type="hidden" id="HdeUfCob" value="${empresa.deUf}" />
+	<input type="hidden" id="HnuDiaVencimento" value="${empresa.nuDiaVencimento}" />
+	<input type="hidden" id="HflAceitaApenasFixo" value="${empresa.flAceitaApenasFixo}" />
+	<input type="hidden" id="HflAceitaInternetMenor" value="${empresa.flAceitaInternetMenor}" />
+
 	<table width="800px">
 		<tr>
 			<td class="rotulo" width="200px">Razão social*:</td> 
@@ -187,6 +193,30 @@
 				</select> 						 		
 				</td>
 			</tr>
+			<c:if test="${sessionScope.venda.isVendaFixo}">
+			<tr><td colspan="2">&nbsp;</td></tr> 
+			<tr>
+				<td class="rotulo" width="200px">Aceita Apenas Fixo em caso de inviabilidade de internet?</td>
+				<td>
+					<select id="flAceitaApenasFixo" name="flAceitaApenasFixo" class="form-control" style="width: 150px;">
+						   <option value="">Não</option>
+						   <option value="X">Sim</option>
+					</select> 						 		
+				</td>
+			</tr>
+			<tr>
+				<td class="rotulo" width="200px">Aceita velocidade menor de internet?</td>
+				<td>
+					<select id="flAceitaInternetMenor" name="flAceitaInternetMenor" class="form-control" style="width: 150px;">
+						   <option value="">Não</option>
+						   <option value="300 KBPS">300 KBPS</option>
+						   <option value="600 KBPS">600 KBPS</option>
+						   <option value="1 MB">1 MB</option>
+						   <option value="2 MB">2 MB</option>
+					</select> 						 		
+				</td> 	
+			</tr>
+		</c:if>
 	</table>			
 	
 	</form:form> 
@@ -211,6 +241,8 @@
 		}
 		$("#dadosCobrancaMesmoEmpresa").removeAttr("disabled");
 		$("#nuDiaVencimento").removeAttr("disabled");
+		$("#flAceitaApenasFixo").removeAttr("disabled");
+		$("#flAceitaInternetMenor").removeAttr("disabled");
 	}
 
 	function salvarProximo(){
@@ -224,28 +256,36 @@ $(function(){
 		preecheDadosCobranca($("#dadosCobrancaMesmoEmpresa")[0]);
 	}
 
-	$(".fmtCnpj").keypress(function(){
+	$(".fmtCnpj").keyup(function(){
 		if(this.value.length == 14 && isNumber(this.value)){
 			this.value = formataCNPJ(this.value);
 		}
 	});
 
-	$(".fmtCpf").keypress(function(){
+	$(".fmtCpf").keyup(function(){
 		if(this.value.length == 11 && isNumber(this.value)){
 			this.value = formataCPF(this.value);
 		}
 	});
 
-	$(".fmtCep").keypress(function(){
+	$(".fmtCep").keyup(function(){
 		if(this.value.length == 8 && isNumber(this.value)){
 			this.value = formataCEP(this.value);
 		}
 	});
 
-	$(".fmtTelefone").keypress(function(){
+	$(".fmtTelefone").keyup(function(){
 		if(this.value.length == 8 && isNumber(this.value)){
 			this.value = formataTelefone(this.value);
 		}
 	});
+
+	$("#deUf").val($("#HdeUf").val());
+	$("#deUfCob").val($("#HdeUfCob").val());
+	$("#nuDiaVencimento").val($("#HnuDiaVencimento").val());
+	if("${sessionScope.venda.isVendaFixo}" == "true"){
+		$("#flAceitaApenasFixo").val($("#HflAceitaApenasFixo").val());
+		$("#flAceitaInternetMenor").val($("#HflAceitaInternetMenor").val());
+	}
 });
 </script>

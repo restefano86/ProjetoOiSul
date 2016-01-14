@@ -30,7 +30,7 @@
 
 <%@include file="msgs.jsp" %>
 <img alt="aquisicao-passo-0" src="/ProjetoOiSul/resources/images/topAquisicaoPasso1.jpg" class="topAquisicao" >
-
+<h2 class="tituloAquisicao">Os contratos de fixo estão em fase de teste. Por favor, utilize apenas se for solicitado.</h2>
 <h2 class="tituloAquisicao">Selecione os serviços contratados.</h2>
 
 <form:form action="aquisicaoAdminPasso2" commandName="venda">
@@ -74,6 +74,7 @@
 			   <option value="8">Oi Mais Fixo Básico</option>
 			   <option value="9">Oi Mais Fixo Avançado</option>
 			   <option value="10">Oi mais Fixo Top</option>
+			   <option value="22">SOMENTE INTERNET</option>
 			</select> 						 		
 			
 			<select id="matrizSelectDdd" class="form-control selectDdd" style="width: 70px;">
@@ -164,6 +165,10 @@ $(function(){
 		}
 	}
 
+	function selecionouMaisQueUmAcesso(){
+		return $("#qtAcessos").val() > 1 ;
+	}
+
 	function geraLinhaVendaItem(indice, isPortabilidade) {
 		var htmlDiv = '<div id="vendaItem['+indice+']" class="divVendaItem"></div>';
 		$("#divAcessos").append($(htmlDiv));
@@ -249,19 +254,19 @@ $(function(){
 	}
 	
 	copiaPlanoDemais = function(){
-		if(confirm("Deseja preencher os demais acessos com esse mesmo plano?")){
+		if(selecionouMaisQueUmAcesso() && confirm("Deseja preencher os demais acessos com esse mesmo plano?")){
 			$(".selectPlano").val($("#itens\\[0\\]\\.idProduto").val());
 		}
 	}
 	
 	copiaDddDemais = function(){
-		if(confirm("Deseja preencher os demais acessos com esse mesmo DDD?")){
+		if(selecionouMaisQueUmAcesso() && confirm("Deseja preencher os demais acessos com esse mesmo DDD?")){
 			$(".selectDdd").val($("#itens\\[0\\]\\.nuDdd").val());
 		}
 	}
 	
 	copiaChipDemais = function(){
-		if(confirm("Deseja preencher os demais acessos com esse mesmo Tipo de CHIP?")){
+		if(selecionouMaisQueUmAcesso() && confirm("Deseja preencher os demais acessos com esse mesmo Tipo de CHIP?")){
 			$(".selectTipoChip").val($("#itens\\[0\\]\\.flTipoChip").val());
 		}
 	}

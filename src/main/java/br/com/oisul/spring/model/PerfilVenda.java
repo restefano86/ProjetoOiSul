@@ -2,13 +2,20 @@ package br.com.oisul.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="perfilvenda")
 public class PerfilVenda implements ModelInterface {
+	
+	public static final String FL_PORTABILIDADE_S = "S";
+	public static final String FL_PORTABILIDADE_N = "N";
 	
 	@Id 
     @Column(name="idperfilvenda", unique=true, nullable=false)
@@ -22,6 +29,14 @@ public class PerfilVenda implements ModelInterface {
 	private String flTipoChip;
 	private Integer nuPerfil;
 	private Integer idProdutoBL;
+	private String flPortabilidade;
+	
+	@Transient
+	private Produto produto;
+
+	@Transient
+	private Produto produtoBL;
+
 	
 	@Override
 	public Integer getId() {
@@ -105,6 +120,36 @@ public class PerfilVenda implements ModelInterface {
 
 	public void setIdProdutoBL(Integer idProdutoBL) {
 		this.idProdutoBL = idProdutoBL;
+	}
+
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+
+	public Produto getProdutoBL() {
+		return produtoBL;
+	}
+
+
+	public void setProdutoBL(Produto produtoBL) {
+		this.produtoBL = produtoBL;
+	}
+
+
+	public String getFlPortabilidade() {
+		return flPortabilidade;
+	}
+
+
+	public void setFlPortabilidade(String flPortabilidade) {
+		this.flPortabilidade = flPortabilidade;
 	}
 	
 

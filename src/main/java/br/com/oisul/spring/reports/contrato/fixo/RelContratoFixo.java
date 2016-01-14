@@ -1,14 +1,23 @@
 package br.com.oisul.spring.reports.contrato.fixo;
 
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
+import org.apache.pdfbox.cos.COSArray;
+import org.apache.pdfbox.cos.COSDictionary;
 import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.common.PDStream;
+import org.apache.pdfbox.pdmodel.PDDocumentCatalog;
+import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
 import org.springframework.util.StringUtils;
 
+import br.com.oisul.spring.model.PerfilVenda;
 import br.com.oisul.spring.model.Venda;
+import br.com.oisul.spring.model.VendaItem;
 import br.com.oisul.spring.reports.PDFBoxUtils;
+import br.com.oisul.spring.utils.FormatadorUtil;
 
 public class RelContratoFixo {
 	
@@ -52,23 +61,119 @@ public class RelContratoFixo {
 			PDFBoxUtils.setField("nmRepLegal", vendaFixo.getEmpresa().getNmRepLegal(), _pdfDocument);
 			PDFBoxUtils.setField("nuCpfRepLegalFmt", vendaFixo.getEmpresa().getNuCpfRepLegalFmt(), _pdfDocument);
 			
+			int indice = 1;
+			Double vlTotalTaxa = 0d;
+			Double vlTotalAssinatura= 0d;
 			
+			for (PerfilVenda perfil : vendaFixo.getPerfis()) {
+				String produto = "";
+				if(!perfil.getIdProduto().equals(22) && perfil.getIdProdutoBL() != null){
+					produto = "Fixo + Velox";
+				} else if(perfil.getIdProduto().equals(22) && perfil.getIdProdutoBL() != null){
+					produto = "Velox";
+				} else {
+					produto = "Fixo";
+				}
+				
+				vlTotalTaxa += 99 * perfil.getQtAcessos();
+				vlTotalAssinatura += perfil.getProduto().getVlplano() * perfil.getQtAcessos();
+				if(perfil.getIdProdutoBL() != null){	
+					vlTotalAssinatura += perfil.getProdutoBL().getVlplano() * perfil.getQtAcessos();
+				}
+				String lCodigo = perfil.getProduto().getCodigoOi().toString();
+				String qtdAcessos = perfil.getQtAcessos().toString();
+				String lTAD = "99,90";
+				
+				String vlAssinatura;
+				if(perfil.getIdProdutoBL() != null){
+					String vl1 = FormatadorUtil.formataMoeda(perfil.getProduto().getVlplano());
+					String vl2 = FormatadorUtil.formataMoeda(perfil.getProdutoBL().getVlplano());
+					vlAssinatura = vl1+" / "+vl2;
+				} else {
+					vlAssinatura = FormatadorUtil.formataMoeda(perfil.getProduto().getVlplano());
+				}
+				
+				String nuDdd = perfil.getNuDdd().toString();
+				String telefone = "";
+				int indiceLista = indice-1;
+				if(vendaFixo.getItens().get(indiceLista).getNuPortabilidade() != null){
+					telefone = vendaFixo.getItens().get(indiceLista).getNuPortabilidade().toString();
+				}
+				String lPortabilidade = perfil.getFlPortabilidade().equals(PerfilVenda.FL_PORTABILIDADE_S) ? "X" : "";
+				String lVelox = perfil.getIdProdutoBL() != null ? "X" : "";
+				String lOperadora = "";
+				if(vendaFixo.getItens().get(indiceLista) != null && vendaFixo.getItens().get(indiceLista).getIdOperadora() != null){
+					lOperadora = vendaFixo.getItens().get(indiceLista).getOperadora().getNmOperadora();
+				}
+
+				PDFBoxUtils.setField("l"+indice+"Produto", produto, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Codigo", lCodigo, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"QtdAcessos", qtdAcessos, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"TAD", lTAD, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"VlAssinatura", vlAssinatura, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Ddd", telefone.isEmpty()? "" : nuDdd, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Telefone", telefone, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Velox", lVelox, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Portabilidade", lPortabilidade, _pdfDocument);
+				PDFBoxUtils.setField("l"+indice+"Operadora", lOperadora, _pdfDocument);
+				indice++;
+			}
+			PDFBoxUtils.setField("vlTotalTaxas", FormatadorUtil.formataMoeda(vlTotalTaxa), _pdfDocument);
+			PDFBoxUtils.setField("vlTotalAssinatura", FormatadorUtil.formataMoeda(vlTotalAssinatura), _pdfDocument);
 			
+			//ENDEREÇO DE INSTALAÇÃO
+			PDFBoxUtils.setField("aceitaApenasFixoS", vendaFixo.getEmpresa().getFlAceitaApenasFixo().equals("X") ? "X" : "", _pdfDocument);
+			PDFBoxUtils.setField("aceitaApenasFixoN", vendaFixo.getEmpresa().getFlAceitaApenasFixo().equals("X") ? "" : "X", _pdfDocument);
+			PDFBoxUtils.setField("aceitaVelocidadeMenorS", vendaFixo.getEmpresa().getFlAceitaInternetMenor().isEmpty() ? "" : "X", _pdfDocument);
+			PDFBoxUtils.setField("aceitaVelocidadeMenorN", vendaFixo.getEmpresa().getFlAceitaInternetMenor().isEmpty() ? "X" : "", _pdfDocument);
+			PDFBoxUtils.setField("qtVelocidadeMenor", vendaFixo.getEmpresa().getFlAceitaInternetMenor(), _pdfDocument);
 			
-			PDStream pdStream = new PDStream(_pdfDocument);
-			byte[] byteArray = pdStream.getByteArray();
+			PDFBoxUtils.setField("qtBandaLarga", vendaFixo.getQtItens().toString(), _pdfDocument);
+			PDFBoxUtils.setField("velBandaLarga", getVelocidadebandaLarga(vendaFixo), _pdfDocument);
+			PDFBoxUtils.setField("deEndereco", vendaFixo.getEmpresa().getDeEndereco(), _pdfDocument);
+			PDFBoxUtils.setField("nmBairro", vendaFixo.getEmpresa().getNmBairro(), _pdfDocument);
+			PDFBoxUtils.setField("nuCepFmt", vendaFixo.getEmpresa().getNuCepFmt(), _pdfDocument);
+			PDFBoxUtils.setField("nmMunicipio", vendaFixo.getEmpresa().getNmMunicipio(), _pdfDocument);
+			PDFBoxUtils.setField("deUf", vendaFixo.getEmpresa().getDeUf(), _pdfDocument);
 			
-			_pdfDocument.save("C:\\blah\\ContratoFixoBandaLarga"+(new Date()).getTime()+".pdf");
+			//DATA DA SOLICITAÇÃO
+			Calendar calendar = new GregorianCalendar();
+			PDFBoxUtils.setField("dtDia", FormatadorUtil.formataDoisDigitos(calendar.get(Calendar.DAY_OF_MONTH))+"", _pdfDocument);
+			PDFBoxUtils.setField("dtMes", FormatadorUtil.formataDoisDigitos(calendar.get(Calendar.MONTH)+1)+"", _pdfDocument);
+			PDFBoxUtils.setField("dtAno", FormatadorUtil.formataDoisDigitos(calendar.get(Calendar.YEAR))+"", _pdfDocument);
+			PDFBoxUtils.setField("periodoIndiferente", "X", _pdfDocument);
+			
+			ByteArrayOutputStream bout = new ByteArrayOutputStream();
+
+			_pdfDocument.save(bout);
+//			_pdfDocument.save("C:\\blah\\ContratoFixoBandaLarga"+(new Date()).getTime()+".pdf");
 			_pdfDocument.close();
-			
+			return bout.toByteArray();
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}
 
 		
+	}
+
+	private String getQtBandaLarga(Venda vendaFixo) {
+//		Integer qtBandaLarga = 0;
+//		for (VendaItem item : vendaFixo.getItens()) {
+//			qtBandaLarga++;
+//		}
 		return null;
 	}
+	
+	private String getVelocidadebandaLarga(Venda vendaFixo) {
+		for (PerfilVenda perfilVenda : vendaFixo.getPerfis()) {
+			if(perfilVenda.getIdProdutoBL() != null){
+				return perfilVenda.getProdutoBL().getDePlano();
+			}
+		}
+		return "";
+	}
+
 	
 //	private void populateAndCopy(InputStream originalPdf, String targetPdf) throws IOException, COSVisitorException {
 //		_pdfDocument = PDDocument.load(originalPdf);

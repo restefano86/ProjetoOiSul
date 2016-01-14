@@ -21,7 +21,7 @@
 		    <c:forEach items="${venda.documentosGerados}" var="docGerado">
 		    	<a href="visualizarDocumentoVenda?idVendaDocumento=${docGerado.idVendaDocumento}" target="_blank">${docGerado.nmDocumento}</a><BR>
 	    	</c:forEach>
-	    	<c:if test="${not empty venda.documentosGerados}">
+	    	<c:if test="${not empty venda.documentosGerados && !sessionScope.venda.isVendaFixo}">
 	    		<a href="/ProjetoOiSul/resources/files/termoPortabilidade.pdf"  target="_blank">termoPortabilidade.pdf</a>
 	    	</c:if>
     	</div>

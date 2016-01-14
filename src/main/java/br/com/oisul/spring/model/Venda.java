@@ -43,6 +43,9 @@ public class Venda implements ModelInterface {
 	@Transient
 	private List<VendaDocumento> documentosInseridos; 
 	
+	@Transient
+	private List<PerfilVenda> perfis;
+	
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name="idVenda")
     private List<VendaItem> itens;
@@ -228,6 +231,14 @@ public class Venda implements ModelInterface {
 	
 	public boolean getIsVendaFixo(){
 		return TP_VENDA_FIXO.equals(getTpVenda());
+	}
+
+	public List<PerfilVenda> getPerfis() {
+		return perfis;
+	}
+
+	public void setPerfis(List<PerfilVenda> perfis) {
+		this.perfis = perfis;
 	}
 	
 	

@@ -25,12 +25,6 @@ public class AdminController extends DefaultController {
 		return "admin/alterarSenha";
 	}
 
-	@RequestMapping(value = "/abrirConVendas", method = RequestMethod.GET)
-	public String abrirConVendas(Model model, HttpServletRequest request) {
-		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
-		return "admin/conVendas";
-	}
-
 	@RequestMapping(value = "/abrirConUsuarios", method = RequestMethod.GET)
 	public String abrirConUsuarios(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};

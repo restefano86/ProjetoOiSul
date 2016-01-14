@@ -17,6 +17,9 @@ public class VendaDAOImpl extends GenericDAOImpl<Integer, Venda> implements Vend
 		HQLBuilder hql = new HQLBuilder(session);
 		hql.append("from Venda venda");
 		hql.append("inner join fetch venda.itens itens");
+		hql.append("left join fetch itens.operadora operadora");
+		hql.append("left join fetch itens.produto produto");
+		hql.append("left join fetch itens.produtoBL produtoBL");
 //		hql.append("inner join fetch venda.consultor consultor");
 //		hql.append("inner join fetch venda.usuario usuario");
 //		hql.append("inner join fetch venda.situacao situacao");

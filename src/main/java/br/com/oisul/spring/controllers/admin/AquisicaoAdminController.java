@@ -63,6 +63,23 @@ public class AquisicaoAdminController extends DefaultController {
 		return UrlsAdmin.AQUISICAO_PASSO_0.url;
 	}
 
+	@RequestMapping(value = "/editarAquisicaoAdminProvisorio", method = RequestMethod.GET)
+	public String editarAquisicaoAdminProvisorio(Model model, HttpServletRequest request) {
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		Integer idVenda = Integer.parseInt(request.getParameter("idVenda"));
+		try {
+			Venda venda = vendaService.findVendaEdicao(idVenda);
+			venda.setDocumentosInseridos(vendaService.findVendaDocumentosInseridos(idVenda));
+			request.getSession().setAttribute("venda",venda);
+			model.addAttribute("venda", venda);
+			return UrlsAdmin.AQUISICAO_PASSO_5.url;
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+		}
+		return UrlsAdmin.AQUISICAO_PASSO_0.url;
+	}
+
 	@RequestMapping(value = "/aquisicaoAdminPasso0", method = RequestMethod.GET)
 	public String aquisicaoAdminPasso0(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
@@ -191,7 +208,13 @@ public class AquisicaoAdminController extends DefaultController {
 	            mimeType = "application/octet-stream";
 	        }
 	        response.setContentType(mimeType);
-	        response.setHeader("Content-Disposition", String.format("inline; filename=\"" + vendaDocumento.getNmDocumento() +"\""));
+	        
+	        if(response.getContentType().indexOf("pdf") > 0){
+	        	response.setContentType("application/force-download");
+	        	response.setHeader("Content-Transfer-Encoding", "binary");
+	        } 
+        	response.setHeader("Content-Disposition", String.format("inline; filename=\"" + vendaDocumento.getNmDocumento() +"\""));
+	        
 	        ByteArrayInputStream bis = new ByteArrayInputStream(vendaDocumento.getFile());
 	        FileCopyUtils.copy(bis, response.getOutputStream());
 		} catch (BusinessException e) {

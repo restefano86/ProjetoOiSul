@@ -31,9 +31,11 @@ public class VendaController extends DefaultController  {
 
 
 	@RequestMapping(value = "/abrirConPedidoConsultor", method = RequestMethod.GET)
-	public String aquisicaoAdminPasso0(Model model, HttpServletRequest request) {
+	public String abrirConPedidoConsultor(Model model, HttpServletRequest request) {
 		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
 		try {
+			Venda venda = new Venda();
+			venda.setIdConsultor(getIdUsuarioFromSession(request));
 			List<Venda> listaVendas = vendaService.findTopVendas(new Venda(), 100);
 			model.addAttribute("listaVendas", listaVendas);
 		} catch (Exception e) {
@@ -42,6 +44,21 @@ public class VendaController extends DefaultController  {
 		}
 		return UrlsAdmin.ABRIR_PEDIDOS_CONSULTOR.url;
 	}
+	
+	@RequestMapping(value = "/abrirConVendas", method = RequestMethod.GET)
+	public String abrirConVendas(Model model, HttpServletRequest request) {
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		try {
+			List<Venda> listaVendas = vendaService.findTopVendas(new Venda(), 100);
+			model.addAttribute("listaVendas", listaVendas);
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+		}
+		return "admin/conPedidoAdmin";
+	}
+	
+
 
 	
 }

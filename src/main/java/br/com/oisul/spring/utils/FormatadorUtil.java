@@ -1,8 +1,13 @@
 package br.com.oisul.spring.utils;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.Locale;
 
 import javax.swing.text.MaskFormatter;
+import javax.swing.text.NumberFormatter;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -89,5 +94,15 @@ public class FormatadorUtil {
 		return numeroStr;
 	}
 	
+	public static String formataMoeda(Double valor){
+		DecimalFormat formato = new DecimalFormat("##,###,###,##0.00", new DecimalFormatSymbols (new Locale ("pt", "BR")));
+		formato.setMinimumFractionDigits(2); 
+		formato.setParseBigDecimal (true);
+		return formato.format(valor);
+	}
+	
+	public static String formataDoisDigitos(Integer valor){
+		return completaZerosAEsquerda(valor, 2);
+	}
 
 }

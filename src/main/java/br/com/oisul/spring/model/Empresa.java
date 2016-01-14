@@ -43,6 +43,8 @@ public class Empresa implements ModelInterface {
 	private String nmGestorConta;
 	private String nuCpfGestorConta;
 	private String deEmailGestorConta;
+	private String flAceitaApenasFixo;
+	private String flAceitaInternetMenor;
 	
 	public Integer getIdEmpresa() {
 		return idEmpresa;
@@ -253,6 +255,18 @@ public class Empresa implements ModelInterface {
 	@Override
 	public Integer getId() {
 		return getIdEmpresa();
+	}
+	public String getFlAceitaApenasFixo() {
+		return flAceitaApenasFixo;
+	}
+	public void setFlAceitaApenasFixo(String flAceitaApenasFixo) {
+		this.flAceitaApenasFixo = flAceitaApenasFixo;
+	}
+	public String getFlAceitaInternetMenor() {
+		return flAceitaInternetMenor;
+	}
+	public void setFlAceitaInternetMenor(String flAceitaInternetMenor) {
+		this.flAceitaInternetMenor = flAceitaInternetMenor;
 	}
 	
 }

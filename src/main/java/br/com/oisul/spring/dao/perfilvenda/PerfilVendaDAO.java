@@ -8,5 +8,7 @@ import br.com.oisul.spring.model.PerfilVenda;
 public interface PerfilVendaDAO extends GenericDAO<Integer, PerfilVenda> {
 	
 	public List<PerfilVenda> findAllPerfilVendaByIdVenda(Integer idVenda);
+	
+	public List<PerfilVenda> findAllPerfilVendaFetchByIdVenda(Integer idVenda);
 
 }

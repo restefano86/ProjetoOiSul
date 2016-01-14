@@ -28,4 +28,10 @@ public interface VendaService {
 	public void adicionaArquivo(Venda venda, byte[] file, String filename) throws Exception;
 
 	public void finalizaVenda(Venda venda) throws Exception;
+
+	public void geraDocumentosNovaVendaMovel(Venda venda) throws Exception;
+
+	public void geraDocumentosNovaVendaFixo(Venda venda) throws Exception;
+	
+	public List<VendaDocumento> findVendaDocumentosInseridos(Integer idVenda) throws Exception;
 }

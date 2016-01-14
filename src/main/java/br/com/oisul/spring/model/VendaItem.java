@@ -2,8 +2,11 @@ package br.com.oisul.spring.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.util.StringUtils;
@@ -31,6 +34,17 @@ public class VendaItem implements ModelInterface, Cloneable {
 	private Integer idOperadora;
 	private Integer idProdutoBL;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idOperadora", insertable = false, updatable = false)
+	private Operadora operadora;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idProduto", insertable = false, updatable = false)
+	private Produto produto;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "idProdutoBL", insertable = false, updatable = false)
+	private Produto produtoBL;
 	
 	public Integer getIdVendaItem() {
 		return idVendaItem;
@@ -104,6 +118,24 @@ public class VendaItem implements ModelInterface, Cloneable {
 	}
 	public void setIdProdutoBL(Integer idProdutoBL) {
 		this.idProdutoBL = idProdutoBL;
+	}
+	public Operadora getOperadora() {
+		return operadora;
+	}
+	public void setOperadora(Operadora operadora) {
+		this.operadora = operadora;
+	}
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	public Produto getProdutoBL() {
+		return produtoBL;
+	}
+	public void setProdutoBL(Produto produtoBL) {
+		this.produtoBL = produtoBL;
 	}  
 
 }
