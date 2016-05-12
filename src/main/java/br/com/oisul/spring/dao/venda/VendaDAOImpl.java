@@ -34,13 +34,29 @@ public class VendaDAOImpl extends GenericDAOImpl<Integer, Venda> implements Vend
 		List<Venda> vendas = new ArrayList<Venda>();
 		
 		hql.append("from Venda venda");
-//		hql.append("inner join fetch venda.consultor consultor");
+		hql.append("left join fetch venda.consultor consultor");
 //		hql.append("inner join fetch venda.usuario usuario");
 //		hql.append("inner join fetch venda.situacao situacao");
 		hql.append("inner join fetch venda.empresa empresa");
 		hql.append("where 1=1");
 		hql.appendFiltro("and venda.idVenda = ? ", venda.getId());
+		hql.appendFiltro("and venda.dtContratoGerado >= ? ", venda.getDtContratoGerado());
 		hql.appendFiltro("and venda.idConsultor = ? ", venda.getIdConsultor());
+		
+		if(venda.getConsultor().getNome() != null){
+			hql.appendFiltro("and upper(venda.consultor.nome) like upper(?) ", "%"+venda.getConsultor().getNome()+"%");
+		}
+		if(venda.getEmpresa().getDeRazaoSocial() != null){
+			hql.appendFiltro("and upper(venda.empresa.deRazaoSocial) like upper(?) ", "%"+venda.getEmpresa().getDeRazaoSocial()+"%");
+		}
+		
+		if(venda.getSituacao().getDeSituacao() != null){
+			hql.appendFiltro("and upper(venda.situacao.deSituacao) like upper(?) ", "%"+venda.getSituacao().getDeSituacao()+"%");
+		}
+		
+		hql.append("order by venda.dtContratoGerado desc");
+		
+		hql.setMaxResults(limite);
 		
 		vendas = (List<Venda>) hql.list();
 		

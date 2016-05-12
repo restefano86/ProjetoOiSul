@@ -37,17 +37,16 @@ h2{
 	padding: 15px;
 }
 
-td.rotulo{
+.rotulo{
 	vertical-align: text-top;
 	padding-top: 8px;
 	color: black;
 	font-size: 10pt;
 	padding-right: 5px;
-}
-
-.rotulo{
 	text-align: right;
 }
+
+
 
 #menu{
 	background-color: MidnightBlue;	

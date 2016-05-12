@@ -1,5 +1,7 @@
 package br.com.oisul.spring.service.usuario;
 
+import java.util.List;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
@@ -47,6 +49,21 @@ public class UsuarioServiceImpl implements UsuarioService {
 
 	@Override
 	@Transactional
+	public void salvarUsuarioAdmin(Usuario usuario){
+		try {
+			if(usuario.getIdUsuario() != null){
+				this.usuarioDAO.updateEntity(usuario);
+			} else {
+				this.usuarioDAO.addEntity(usuario);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	@Transactional
 	public void alteraSenha(Usuario usuario) throws Exception{
 		try {
 			usuarioDAO.saveEntity(usuario);
@@ -85,8 +102,11 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioDAO.findUsuarioByLogin(usuario);
 	}
 
-	
-
+	@Override
+	@Transactional 
+	public List<Usuario> findUsuario(Usuario usuario){
+		return usuarioDAO.findUsuario(usuario);
+	}
 
 
 }

@@ -8,6 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.util.StringUtils;
+
+import br.com.oisul.spring.utils.FormatadorUtil;
+
 @Entity
 @Table(name="usuario")
 public class Usuario implements ModelInterface{
@@ -15,6 +19,10 @@ public class Usuario implements ModelInterface{
 	public static final String TP_USUARIO_BASICO = "B";
 	public static final String TP_USUARIO_CONSULTOR = "C";
 	public static final String TP_USUARIO_ADMINISTRADOR = "A";
+
+	public static final String TP_USUARIO_BASICO_FMT = "Básico";
+	public static final String TP_USUARIO_CONSULTOR_FMT = "Consultor";
+	public static final String TP_USUARIO_ADMINISTRADOR_FMT = "Admim";
 
 	@Id 
     @Column(name="idusuario", unique=true, nullable=false)
@@ -28,6 +36,7 @@ public class Usuario implements ModelInterface{
      private String telefone;
      private String isAtivado;
      private String tpUsuario;
+     private String nuCpf;
 
     public Usuario() {
     }
@@ -107,7 +116,10 @@ public class Usuario implements ModelInterface{
     }
     
     public void setIsAtivado(String isAtivado) {
-        this.isAtivado = isAtivado;
+        if(isAtivado == null || isAtivado.isEmpty()){
+        	isAtivado = "N";
+        }
+    	this.isAtivado = isAtivado;
     }
 
 	@Override
@@ -125,6 +137,16 @@ public class Usuario implements ModelInterface{
 		this.tpUsuario = tpUsuario;
 	}
 
+	public String getTpUsuarioFmt() {
+		if(isConsultor()){
+			return TP_USUARIO_CONSULTOR_FMT;
+		} else if(isAdmin()){
+			return TP_USUARIO_ADMINISTRADOR_FMT;
+		} else {
+			return TP_USUARIO_BASICO_FMT;
+		}
+	}
+
 	public boolean isConsultor(){
 		if(TP_USUARIO_CONSULTOR.equals(getTpUsuario())){
 			return true;
@@ -137,6 +159,22 @@ public class Usuario implements ModelInterface{
 		}
 		return false;
 	}
+	
+	public String getNuCpf() {
+		return nuCpf;
+	}
+	public void setNuCpf(String nuCpf) {
+		this.nuCpf = nuCpf;
+	}
+	public String getNuCpfFmt() {
+		return FormatadorUtil.formataCpf(nuCpf);
+	}
+	public void setNuCpfFmt(String nuCpfFmt) {
+		if(!StringUtils.isEmpty(nuCpfFmt)){
+			this.nuCpf = FormatadorUtil.desformataCpf(nuCpfFmt);
+		}
+	}
+
 
 
 }

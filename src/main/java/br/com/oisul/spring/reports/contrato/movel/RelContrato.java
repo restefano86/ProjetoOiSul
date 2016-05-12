@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import java.util.HashMap;
 
 import br.com.oisul.spring.utils.DatabaseUtils;
@@ -82,7 +81,7 @@ public class RelContrato {
 			sql.append("produtoPerfil6.vlPlano as p6VlTotal, ");
 			sql.append("tipochipPerfil6.decontrato as p6TipoChip, ");
 			sql.append("produtoPerfil1.vlPlano, ");
-			sql.append("(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as qtAcessos, ");
+			sql.append("(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as totalAcessos, ");
 			sql.append("(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') as qtAcessosPortados, ");
 			sql.append("IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, 'X', '') as possuiAcessosPortados, ");
 			sql.append("IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, '', 'X') as naoPossuiAcessosPortados, ");

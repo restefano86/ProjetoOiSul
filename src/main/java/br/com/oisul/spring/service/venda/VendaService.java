@@ -22,6 +22,8 @@ public interface VendaService {
 	public Venda findVendaEdicao(Integer idVenda) throws Exception;
 	
 	public Venda findVendaByRelContratoFixo(Integer idVenda) throws Exception;
+
+	public Venda findVendaByRelContratoMovel(Integer idVenda) throws Exception;
 	
 	public List<Venda> findTopVendas(Venda venda, Integer limite) throws Exception;
 

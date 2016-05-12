@@ -107,6 +107,7 @@
 			   <option value="3">Vivo</option>
 			</select> 	
 			
+			
 			<select id="matrizSelectPlanoBL" class="form-control selectPlanoBL" style="width: 100px;">
 			   <option value="">NÃO</option>
 			   <option value="12">300 KBPS</option>

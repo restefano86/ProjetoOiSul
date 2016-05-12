@@ -38,8 +38,8 @@ public class GenericDAOImpl<PK, T extends ModelInterface> implements GenericDAO<
 	public T getEntityById(Integer id) {
 		Session session = this.sessionFactory.getCurrentSession();		
 		@SuppressWarnings("unchecked")
-		T entity = (T) session.load(getTypeClass(), new Integer(id));
-		logger.info("Person loaded successfully, Person details="+entity);
+		T entity = (T) session.get(getTypeClass(), new Integer(id));
+		logger.info("Entity loaded successfully, Entity details="+entity);
 		return entity;
 	}
 	

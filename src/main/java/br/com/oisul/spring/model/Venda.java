@@ -1,5 +1,6 @@
 package br.com.oisul.spring.model;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.apache.commons.lang.time.DateUtils;
+
+import br.com.oisul.spring.utils.FormatadorUtil;
 
 @Entity
 @Table(name="venda")
@@ -50,9 +55,9 @@ public class Venda implements ModelInterface {
     @JoinColumn(name="idVenda")
     private List<VendaItem> itens;
     
-//	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-//	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
-    @Transient
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "idConsultor", insertable = false, updatable = false)
+//    @Transient
 	private Usuario consultor;
 //
 //	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
@@ -62,16 +67,17 @@ public class Venda implements ModelInterface {
 //
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idSituacao", insertable = false, updatable = false)
-    @Transient
+//    @Transient
 	private SituacaoVenda situacao;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idEmpresa", insertable = false, updatable = false)
+//	@Transient
 	private Empresa empresa;
 
 	public Venda() {
 		setItens(new ArrayList<VendaItem>());
-//		setConsultor(new Usuario());
+		setConsultor(new Usuario());
 //		setUsuario(new Usuario());
 		setSituacao(new SituacaoVenda());
 		setEmpresa(new Empresa());
@@ -117,6 +123,27 @@ public class Venda implements ModelInterface {
 	}
 	public Date getDtContratoGerado() {
 		return dtContratoGerado;
+	}
+	public String getDtHrContratoGeradoFmt() {
+		if(getDtContratoGerado() != null){
+			return FormatadorUtil.formataDataHora(getDtContratoGerado());
+		} else {
+			return "";
+		}
+	}
+	
+	public void setDtContratoGeradoFmt(String dataFmt) throws Exception {
+		if(dataFmt != null && !dataFmt.isEmpty()){
+			setDtContratoGerado(FormatadorUtil.getDateByString(dataFmt));
+		}
+	}
+	
+	public String getDtContratoGeradoFmt() {
+		if(getDtContratoGerado() != null){
+			return FormatadorUtil.formataData(getDtContratoGerado());
+		} else {
+			return "";
+		}
 	}
 	public void setDtContratoGerado(Date dtContratoGerado) {
 		this.dtContratoGerado = dtContratoGerado;
@@ -241,7 +268,14 @@ public class Venda implements ModelInterface {
 		this.perfis = perfis;
 	}
 	
-	
+	public String getCodPDVByUF(){
+		if("SC".equals(getEmpresa().getDeUf())){
+			return "1033292/1480";
+		} else if("PR".equals(getEmpresa().getDeUf())){
+			return "1036404/0988";
+		}
+		return "";
+	}
 	
 
 }

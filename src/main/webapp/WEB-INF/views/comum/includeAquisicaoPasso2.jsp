@@ -209,10 +209,13 @@
 				<td>
 					<select id="flAceitaInternetMenor" name="flAceitaInternetMenor" class="form-control" style="width: 150px;">
 						   <option value="">Não</option>
-						   <option value="300 KBPS">300 KBPS</option>
-						   <option value="600 KBPS">600 KBPS</option>
 						   <option value="1 MB">1 MB</option>
 						   <option value="2 MB">2 MB</option>
+						   <option value="5 MB">5 MB</option>
+						   <option value="10 MB">10 MB</option>
+						   <option value="15 MB">15 MB</option>
+						   <option value="20 MB">20 MB</option>
+						   <option value="25 MB">25 MB</option>
 					</select> 						 		
 				</td> 	
 			</tr>
@@ -255,30 +258,6 @@ $(function(){
 		$("#dadosCobrancaMesmoEmpresa").attr("checked", true);
 		preecheDadosCobranca($("#dadosCobrancaMesmoEmpresa")[0]);
 	}
-
-	$(".fmtCnpj").keyup(function(){
-		if(this.value.length == 14 && isNumber(this.value)){
-			this.value = formataCNPJ(this.value);
-		}
-	});
-
-	$(".fmtCpf").keyup(function(){
-		if(this.value.length == 11 && isNumber(this.value)){
-			this.value = formataCPF(this.value);
-		}
-	});
-
-	$(".fmtCep").keyup(function(){
-		if(this.value.length == 8 && isNumber(this.value)){
-			this.value = formataCEP(this.value);
-		}
-	});
-
-	$(".fmtTelefone").keyup(function(){
-		if(this.value.length == 8 && isNumber(this.value)){
-			this.value = formataTelefone(this.value);
-		}
-	});
 
 	$("#deUf").val($("#HdeUf").val());
 	$("#deUfCob").val($("#HdeUfCob").val());

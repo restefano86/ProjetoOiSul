@@ -15,12 +15,14 @@ import br.com.oisul.spring.dao.usuario.UsuarioDAO;
 import br.com.oisul.spring.dao.venda.VendaDAO;
 import br.com.oisul.spring.dao.vendadocumento.VendaDocumentoDAO;
 import br.com.oisul.spring.exceptions.BusinessException;
+import br.com.oisul.spring.model.Empresa;
 import br.com.oisul.spring.model.PerfilVenda;
 import br.com.oisul.spring.model.Venda;
 import br.com.oisul.spring.model.VendaDocumento;
 import br.com.oisul.spring.model.VendaItem;
 import br.com.oisul.spring.reports.contrato.fixo.RelContratoFixo;
 import br.com.oisul.spring.reports.contrato.movel.RelContrato;
+import br.com.oisul.spring.reports.contrato.movel.RelContratoMovel;
 import br.com.oisul.spring.reports.contrato.movel.RelOiInformacoesMaisCelular;
 import br.com.oisul.spring.reports.contrato.movel.RelTermoPortabilidade;
 
@@ -61,11 +63,18 @@ public class VendaServiceImpl implements VendaService {
 					item.setIdVenda(venda.getId());
 				}
 			}
-			empresaDAO.saveEntity(venda.getEmpresa());
 			
+			empresaDAO.saveEntity(venda.getEmpresa());
 			venda.setIdEmpresa(venda.getEmpresa().getId());
 			
+			Empresa e = venda.getEmpresa();
+			venda.setEmpresa(null);
+			venda.setUsuario(null);
+			venda.setConsultor(null);
+			venda.setSituacao(null);
 			vendaDAO.saveEntity(venda);
+			venda.setEmpresa(e);
+			
 			atualizaPerfisVenda(venda);
 			
 		} catch (Exception e) {
@@ -86,17 +95,21 @@ public class VendaServiceImpl implements VendaService {
 	
 	@Override
 	@Transactional		
-	public void geraDocumentosNovaVendaMovel(Venda venda) {
+	public void geraDocumentosNovaVendaMovel(Venda venda) throws Exception {
 
 		deletaDoctosGeradosVenda(venda);
 		//salva contrato
-		RelContrato relContrato = new RelContrato();
-		byte[] fileRelContrato = relContrato.geraRelatorio(venda.getIdVenda());
+		RelContratoMovel relContratoMovel = new RelContratoMovel();
+		Venda vendaBanco = findVendaByRelContratoFixo(venda.getIdVenda());
+		List<PerfilVenda> perfis = perfilVendaDAO.findAllPerfilVendaFetchByIdVenda(venda.getIdVenda());
+		vendaBanco.setPerfis(perfis);
+		byte[] fileRelContratoMovel = relContratoMovel.geraRelatorio(vendaBanco);
+		
 		VendaDocumento vendaDocumento = new VendaDocumento();
 		vendaDocumento.setIdVenda(venda.getIdVenda());
 		vendaDocumento.setFlOrigem("S");
 		vendaDocumento.setNmDocumento("fichaPedidoEmpresarial.pdf");
-		vendaDocumento.setFile(fileRelContrato);
+		vendaDocumento.setFile(fileRelContratoMovel);
 		vendaDocumentoDAO.saveEntity(vendaDocumento);
 		
 		//salva docto informações
@@ -152,7 +165,8 @@ public class VendaServiceImpl implements VendaService {
 		}
 	}
 	
-	private void atualizaPerfisVenda(Venda venda) throws BusinessException, CloneNotSupportedException {
+	private void atualizaPerfisVenda(Venda venda) throws BusinessException, CloneNotSupportedException, Exception {
+		try {
 		List<PerfilVenda> perfisBanco = perfilVendaDAO.findAllPerfilVendaByIdVenda(venda.getIdVenda());
 		for (PerfilVenda perfilBanco : perfisBanco) {
 			perfilVendaDAO.deleteEntity(perfilBanco);
@@ -170,6 +184,10 @@ public class VendaServiceImpl implements VendaService {
 			perfilVenda.setIdVenda(venda.getIdVenda());
 		}
 		perfilVendaDAO.saveAllEntity(listaPerfis);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
 	
 	public void validaPerfisVendaMovel(List<VendaItem> vendaItens) throws BusinessException, CloneNotSupportedException{
@@ -309,6 +327,12 @@ public class VendaServiceImpl implements VendaService {
 	
 	@Transactional	
 	public Venda findVendaByRelContratoFixo(Integer idVenda) throws Exception{
+		Venda venda = vendaDAO.getVendaFetchById(idVenda);
+		return venda;
+	}
+	
+	@Transactional	
+	public Venda findVendaByRelContratoMovel(Integer idVenda) throws Exception{
 		Venda venda = vendaDAO.getVendaFetchById(idVenda);
 		return venda;
 	}

@@ -25,10 +25,5 @@ public class AdminController extends DefaultController {
 		return "admin/alterarSenha";
 	}
 
-	@RequestMapping(value = "/abrirConUsuarios", method = RequestMethod.GET)
-	public String abrirConUsuarios(Model model, HttpServletRequest request) {
-		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
-		return "admin/conUsuario";
-	}
 
 }

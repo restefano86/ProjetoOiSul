@@ -34,7 +34,7 @@ public class RelContratoFixo {
 			boolean enderecoCobPreenchido = StringUtils.isEmpty(vendaFixo.getEmpresa().getDeEnderecoCob()) ? false : true;
 			
 			PDFBoxUtils.setField("nmParceiro", "VALORANCE", _pdfDocument);
-			PDFBoxUtils.setField("pdvParceiro", "1033292/1480", _pdfDocument);
+			PDFBoxUtils.setField("pdvParceiro", vendaFixo.getCodPDVByUF(), _pdfDocument);
 			PDFBoxUtils.setField("deRazaoSocial", vendaFixo.getEmpresa().getDeRazaoSocial(), _pdfDocument);
 			PDFBoxUtils.setField("nuCnpjFmt", vendaFixo.getEmpresa().getNuCnpjFmt(), _pdfDocument);
 			PDFBoxUtils.setField("enderecoRFSim", !enderecoCobPreenchido ? "X" : "", _pdfDocument);
@@ -75,7 +75,7 @@ public class RelContratoFixo {
 					produto = "Fixo";
 				}
 				
-				vlTotalTaxa += 99 * perfil.getQtAcessos();
+				vlTotalTaxa += 99.90 * perfil.getQtAcessos();
 				vlTotalAssinatura += perfil.getProduto().getVlplano() * perfil.getQtAcessos();
 				if(perfil.getIdProdutoBL() != null){	
 					vlTotalAssinatura += perfil.getProdutoBL().getVlplano() * perfil.getQtAcessos();

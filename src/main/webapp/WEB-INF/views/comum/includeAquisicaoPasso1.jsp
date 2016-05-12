@@ -62,6 +62,7 @@
 			   <option value="">-- Selecione --</option>
 			   <option value="1">Oi Mais Celular Controle</option>
 			   <option value="2">Oi Mais Celular Controle Avançado</option>
+			   <option value="23">Oi Mais Celular Controle Top</option>
 			   <option value="3">Oi Mais Celular</option>
 			   <option value="4">Oi Mais Celular Avançado</option>
 			   <option value="5">Oi Mais Celular Top</option>

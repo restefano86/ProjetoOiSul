@@ -280,4 +280,19 @@ public class AquisicaoAdminController extends DefaultController {
 		return "site/cadastro";
 	}
 
+	@RequestMapping(value = "/abrirInfoAquisicao", method = RequestMethod.GET)
+	public String abrirInfoAquisicao(Model model, HttpServletRequest request) {
+		if(!validateLoginConsultor(request)){return UrlsSite.CADASTRONAOLOGADO.url;};
+		Integer idVenda = Integer.parseInt(request.getParameter("idVenda"));
+		try {
+			Venda venda = vendaService.findVendaEdicao(idVenda);
+			venda.setDocumentosInseridos(vendaService.findVendaDocumentosInseridos(idVenda));
+			model.addAttribute("venda", venda);
+		} catch (Exception e) {
+			addMensagemErroGenerica(model);
+			e.printStackTrace();
+		}
+		return UrlsAdmin.INFO_AQUISICAO.url;
+	}
+
 }

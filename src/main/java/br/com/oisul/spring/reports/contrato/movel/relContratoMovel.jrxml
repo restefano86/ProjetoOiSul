@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.2.0.final using JasperReports Library version 6.2.0  -->
-<!-- 2015-12-21T12:55:28 -->
+<!-- 2016-01-14T22:22:02 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relContratoMovel" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0296d7e7-7d1c-4468-980a-a3be43aae2fb">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.unit." value="cm"/>
@@ -70,7 +70,7 @@ perfil6.qtacessos as p6QtAcessos,
 produtoPerfil6.vlPlano as p6VlTotal,
 tipochipPerfil6.decontrato as p6TipoChip,
 produtoPerfil1.vlPlano,
-(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as qtAcessos,
+(select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda) as totalAcessos,
 (select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') as qtAcessosPortados,
 IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, 'X', '') as possuiAcessosPortados,
 IF((select count(*) from vendaitem where vendaitem.idvenda = venda.idvenda and vendaitem.flPortabilidade='S') > 0, '', 'X') as naoPossuiAcessosPortados,
@@ -113,7 +113,7 @@ left join tipochip tipochipPerfil5 on perfil5.fltipochip = tipochipPerfil5.fltip
 left join perfilvenda perfil6 on venda.idvenda = perfil6.idvenda and perfil6.nuperfil = 6 
 left join produto produtoPerfil6 on perfil6.idproduto = produtoPerfil6.idproduto
 left join tipochip tipochipPerfil6 on perfil6.fltipochip = tipochipPerfil6.fltipochip
-where venda.idvenda = 66]]>
+where venda.idvenda = 77]]>
 	</queryString>
 	<field name="idUsuario" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -216,7 +216,7 @@ where venda.idvenda = 66]]>
 	<field name="vlPlano" class="java.lang.Float">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="qtAcessos" class="java.lang.Integer">
+	<field name="totalAcessos" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="qtAcessosPortados" class="java.lang.String"/>
@@ -2413,7 +2413,7 @@ Centro, inscrita no CNPJ sob o  n° 33.000.118/0001-79	]]></text>
 				<textElement textAlignment="Center">
 					<font fontName="fontLucidaConsole" size="7"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{qtAcessos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{totalAcessos}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="603" y="149" width="114" height="8" uuid="f2cc4e15-4163-4435-8f1b-d913c5169c61"/>

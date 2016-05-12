@@ -29,6 +29,16 @@ public class DefaultController {
 		return false;
 	}
 
+	protected boolean validateLoginAdmin(HttpServletRequest request){
+		if(request.getSession().getAttribute("usuario") != null){
+			Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+			if(usuario.isAdmin()){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	protected void addMensagemAviso(Model model, String mensagem){
 		model.addAttribute("mensagemAviso", mensagem);
 	}

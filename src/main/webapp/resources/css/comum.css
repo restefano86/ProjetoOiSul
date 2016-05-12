@@ -2,7 +2,36 @@
 	text-align: center;	
 }
 
+.floatLeft{
+	float: left;
+}
+
 .destaque{
 	font-weight: bold;
 	color: #EB3505;
 }
+
+.icoPesquisa, .icoEdicao{
+	cursor: pointer;
+}
+
+.btsConsulta{
+	width: 100%;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.tableCadastro td{
+	padding: 3px;
+}
+
+td.rotulo{
+	vertical-align: text-top;
+	padding-top: 8px;
+}
+
+.tdTextoPequeno{
+	font-size: 10pt;
+	padding: 0 8 0 8 !important;
+}
+

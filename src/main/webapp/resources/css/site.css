@@ -339,10 +339,6 @@ div {
 	text-align: right;
 }
 
-.floatLeft{
-	float: left;
-}
-
 #btLogin {
 	cursor: pointer;
 }
@@ -378,7 +374,4 @@ div {
 	cursor: pointer;
 }
 
-td.rotulo{
-	vertical-align: text-top;
-	padding-top: 8px;
-}
+

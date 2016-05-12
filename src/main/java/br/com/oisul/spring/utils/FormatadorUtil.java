@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 import javax.swing.text.MaskFormatter;
@@ -13,6 +15,8 @@ import org.apache.commons.lang.StringUtils;
 
 public class FormatadorUtil {
 	
+	public static final String FORMATO_DATA_PADRAO = "dd/MM/yyyy";
+	public static final String FORMATO_DATA_HORA_PADRAO = "dd/MM/yyyy HH:mm";
 
 	public static String formataTelefone(Integer nuTelefone){
 		if(nuTelefone != null && nuTelefone > 0){
@@ -104,5 +108,25 @@ public class FormatadorUtil {
 	public static String formataDoisDigitos(Integer valor){
 		return completaZerosAEsquerda(valor, 2);
 	}
+	
+	public static String formataData(Date data){
+		if(data != null){
+			SimpleDateFormat fmt = new SimpleDateFormat(FORMATO_DATA_PADRAO);
+			return fmt.format(data);
+		} else {
+			return "";
+		}
+	}
 
+	public static String formataDataHora(Date data){
+		SimpleDateFormat fmt = new SimpleDateFormat(FORMATO_DATA_HORA_PADRAO);
+		return fmt.format(data);
+	}
+	
+	public static Date getDateByString(String dataStr) throws Exception{
+		SimpleDateFormat fmt = new SimpleDateFormat(FORMATO_DATA_PADRAO);
+		Date data = fmt.parse(dataStr);
+		return data;
+	}
+	
 }

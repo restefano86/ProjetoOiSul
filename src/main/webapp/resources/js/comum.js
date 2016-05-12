@@ -6,7 +6,32 @@ $(function(){
 	$(".fmtNumber").keyup(function(){
 		this.value = this.value.replace(/\D/g,'')
 	});
-})
+	
+	$(".fmtCnpj").keyup(function(){
+		if(this.value.length == 14 && isNumber(this.value)){
+			this.value = formataCNPJ(this.value);
+		}
+	});
+	
+	$(".fmtCpf").keyup(function(){
+		if(this.value.length == 11 && isNumber(this.value)){
+			this.value = formataCPF(this.value);
+		}
+	});
+	
+	$(".fmtCep").keyup(function(){
+		if(this.value.length == 8 && isNumber(this.value)){
+			this.value = formataCEP(this.value);
+		}
+	});
+	
+	$(".fmtTelefone").keyup(function(){
+		if(this.value.length == 8 && isNumber(this.value)){
+			this.value = formataTelefone(this.value);
+		}
+	});
+});
+
 
 function isNumber(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n);
