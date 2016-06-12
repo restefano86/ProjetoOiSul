@@ -79,10 +79,6 @@ public class RelContratoMovel {
 			int indice = 0;
 			for (PerfilVenda perfil : vendaMovel.getPerfis()) {
 				qtAcessos += perfil.getQtAcessos();
-				if("S".equals(perfil.getFlPortabilidade())){
-					possuiPortabilidade = true;
-				}
-				
 				
 				PDFBoxUtils.setField("codigo_"+indice, perfil.getProduto().getCodigoOi().toString(), _pdfDocument);
 				PDFBoxUtils.setField("ddd_"+indice, perfil.getNuDdd().toString(), _pdfDocument);
@@ -105,7 +101,7 @@ public class RelContratoMovel {
 				indice++;
 			}
 			PDFBoxUtils.setField("X1", "X", _pdfDocument);
-			if(possuiPortabilidade){
+			if(vendaMovel.getQtItensPortabilidade() > 0){
 				PDFBoxUtils.setField("possuiPortabilidadeS", "X", _pdfDocument);
 			} else {
 				PDFBoxUtils.setField("possuiPortabilidadeN", "X", _pdfDocument);

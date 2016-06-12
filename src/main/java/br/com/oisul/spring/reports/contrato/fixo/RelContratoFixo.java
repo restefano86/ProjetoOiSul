@@ -82,7 +82,7 @@ public class RelContratoFixo {
 				}
 				String lCodigo = perfil.getProduto().getCodigoOi().toString();
 				String qtdAcessos = perfil.getQtAcessos().toString();
-				String lTAD = "99,90";
+				String lTAD = "10x R$9,90";
 				
 				String vlAssinatura;
 				if(perfil.getIdProdutoBL() != null){
